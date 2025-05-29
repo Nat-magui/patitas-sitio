@@ -441,3 +441,48 @@ blockquote {
     font-size: 0.75rem;
   }
 }
+
+/* ===================================== */
+/*     BENEFICIOS DE ADOPTAR (CUTE)      */
+/* ===================================== */
+#beneficios h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.grid-beneficios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+  justify-items: center;
+}
+
+.beneficio-card {
+  background-color: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  transition: transform 0.2s;
+  width: 100%;
+  max-width: 220px;
+  border: 2px dashed var(--acento);
+}
+
+.beneficio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.beneficio-card .emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.beneficio-card p {
+  font-weight: 600;
+  color: #444;
+  font-size: 1.05rem;
+}
