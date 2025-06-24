@@ -297,11 +297,45 @@ document.addEventListener("DOMContentLoaded", () => {
       updateSlider();
     });
   }
+
   // Contador inicial del carrito
   actualizarContadorCarrito();
+
   // Aplicar fade-in global cuando el DOM esté listo
   document.body.classList.add("fade-in-global");
   setTimeout(() => {
     document.body.classList.add("visible");
   }, 50); // pequeño delay para que el CSS se aplique correctamente
+
+  // Modo oscuro: detectar si ya estaba activado
+  const preferido = localStorage.getItem("modoOscuro") === "true";
+  if (preferido) document.body.classList.add("modo-oscuro");
+
+  // Agregar listener al botón
+  const botonModo = document.getElementById("modoOscuroToggle");
+  if (botonModo) {
+    botonModo.textContent = preferido ? "☀️ Modo claro" : "🌙 Modo oscuro";
+    botonModo.addEventListener("click", () => {
+      const activo = document.body.classList.toggle("modo-oscuro");
+      localStorage.setItem("modoOscuro", activo);
+      botonModo.textContent = activo ? "☀️ Modo claro" : "🌙 Modo oscuro";
+    });
+  }
+  // FUNCIONALIDAD SWITCH OSCURO
+  const switchModo = document.getElementById("modo-switch");
+  const body = document.body;
+
+  // Restaurar preferencia
+  if (localStorage.getItem("modo") === "oscuro") {
+    body.classList.add("modo-oscuro");
+    switchModo.checked = true;
+  }
+
+  switchModo.addEventListener("change", () => {
+    body.classList.toggle("modo-oscuro");
+    localStorage.setItem(
+      "modo",
+      body.classList.contains("modo-oscuro") ? "oscuro" : "claro"
+    );
+  });
 });
