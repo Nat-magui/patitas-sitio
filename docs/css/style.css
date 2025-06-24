@@ -1642,3 +1642,53 @@ textarea:valid {
     width: 100%;
     max-width: 260px;
   }
+}
+
+/* ===================================== */
+/*       NOTIFICACIÓN VISUAL CARRITO     */
+/* ===================================== */
+.notificacion {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--acento);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+  max-width: 300px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.notificacion.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.notificacion.success {
+  background-color: #88a97f;
+}
+
+.notificacion.warning {
+  background-color: #d94f6d;
+}
+
+.emoji-notif {
+  margin-right: 8px;
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+
+
+

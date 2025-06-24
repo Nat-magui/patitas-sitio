@@ -4,14 +4,14 @@ function agregarAlCarrito(nombre, edad, imagen) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   const yaExiste = carrito.find((m) => m.nombre === nombre);
-  if (!yaExiste) {
-    carrito.push(michi);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    actualizarContadorCarrito();
-    alert(`${nombre} fue agregado al carrito 🐾`);
-  } else {
-    alert(`${nombre} ya está en el carrito 🛒`);
-  }
+if (!yaExiste) {
+  carrito.push(michi);
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContadorCarrito();
+  mostrarNotificacion(`${nombre} fue agregado al carrito`, "success");
+} else {
+  mostrarNotificacion(`${nombre} ya está en el carrito`, "warning");
+}
 }
 
 // Muestra la cantidad de michis en el icono del carrito (en todas las páginas)
@@ -23,6 +23,29 @@ function actualizarContadorCarrito() {
     contador.style.display = carrito.length > 0 ? "inline-block" : "none";
   }
 }
+
+function mostrarNotificacion(mensaje, tipo = "info") {
+  const notif = document.getElementById("notificacion");
+  if (!notif) return;
+
+  // Limpiar clases previas
+  notif.className = "notificacion";
+
+  // Agregar ícono según tipo
+  let emoji = "ℹ️";
+  if (tipo === "success") emoji = "🐾";
+  if (tipo === "warning") emoji = "⚠️";
+
+  notif.innerHTML = `<span class="emoji-notif">${emoji}</span> ${mensaje}`;
+  notif.classList.add("visible", tipo);
+
+  // Cerrar al hacer clic
+  notif.onclick = () => notif.classList.remove("visible");
+
+  // Desaparece solo
+  setTimeout(() => notif.classList.remove("visible"), 4000);
+}
+
 
 function esperarCargaImagenes(container, callback) {
   const imagenes = container.querySelectorAll("img");
