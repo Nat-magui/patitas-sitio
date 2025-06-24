@@ -4,14 +4,14 @@ function agregarAlCarrito(nombre, edad, imagen) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   const yaExiste = carrito.find((m) => m.nombre === nombre);
-if (!yaExiste) {
-  carrito.push(michi);
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  actualizarContadorCarrito();
-  mostrarNotificacion(`${nombre} fue agregado al carrito`, "success");
-} else {
-  mostrarNotificacion(`${nombre} ya está en el carrito`, "warning");
-}
+  if (!yaExiste) {
+    carrito.push(michi);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContadorCarrito();
+    mostrarNotificacion(`${nombre} fue agregado al carrito`, "success");
+  } else {
+    mostrarNotificacion(`${nombre} ya está en el carrito`, "warning");
+  }
 }
 
 // Muestra la cantidad de michis en el icono del carrito (en todas las páginas)
@@ -45,7 +45,6 @@ function mostrarNotificacion(mensaje, tipo = "info") {
   // Desaparece solo
   setTimeout(() => notif.classList.remove("visible"), 4000);
 }
-
 
 function esperarCargaImagenes(container, callback) {
   const imagenes = container.querySelectorAll("img");
@@ -298,7 +297,11 @@ document.addEventListener("DOMContentLoaded", () => {
       updateSlider();
     });
   }
-
   // Contador inicial del carrito
   actualizarContadorCarrito();
+  // Aplicar fade-in global cuando el DOM esté listo
+  document.body.classList.add("fade-in-global");
+  setTimeout(() => {
+    document.body.classList.add("visible");
+  }, 50); // pequeño delay para que el CSS se aplique correctamente
 });

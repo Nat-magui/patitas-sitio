@@ -42,6 +42,15 @@ html {
   scroll-behavior: smooth;
 }
 
+body.fade-in-global {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+body.fade-in-global.visible {
+  opacity: 1;
+}
+
 /* ===================================== */
 /*              HEADER + NAV             */
 /* ===================================== */

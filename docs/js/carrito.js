@@ -7,6 +7,8 @@ function mostrarCarrito() {
   const contenedor = document.getElementById("carrito-contenido");
   const total = document.getElementById("total-michis");
 
+  if (!contenedor || !total) return;
+
   contenedor.innerHTML = "";
 
   if (carrito.length === 0) {
@@ -19,7 +21,7 @@ function mostrarCarrito() {
     const card = document.createElement("div");
     card.className = "michi-card";
     card.innerHTML = `
-      <img src="${michi.imagen}" alt="${michi.nombre}" />
+      <img src="${michi.imagen}" alt="${michi.nombre}, ${michi.edad} meses" />
       <h3>${michi.nombre}</h3>
       <p>Edad: ${michi.edad} mes(es)</p>
       <button onclick="eliminarDelCarrito(${index})" class="boton-secundario">❌ Quitar</button>
@@ -46,11 +48,11 @@ function vaciarCarrito() {
 
 function actualizarContadorCarrito() {
   const contador = document.getElementById("carrito-contador");
+  if (!contador) return;
+
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  if (contador) {
-    contador.textContent = carrito.length;
-    contador.style.display = carrito.length > 0 ? "inline-block" : "none";
-  }
+  contador.textContent = carrito.length;
+  contador.style.display = carrito.length > 0 ? "inline-block" : "none";
 }
 
 // ========================
@@ -58,8 +60,10 @@ function actualizarContadorCarrito() {
 // ========================
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.location.href.includes("carrito.html")) {
+  actualizarContadorCarrito();
+
+  if (location.pathname.endsWith("carrito.html")) {
     mostrarCarrito();
-    actualizarContadorCarrito();
   }
 });
+
