@@ -15,7 +15,8 @@
   --acento: #ffa8b6;
   /* Color de botones y destacados */
   --gris-texto: #444;
-  /* Color de texto común */;
+  /* Color de texto común */
+  ;
 }
 
 /* ===================================== */
@@ -133,7 +134,8 @@ header {
 }
 
 .menu-toggle {
-  display: none; /* 👈 esto es lo que faltaba */
+  display: none;
+  /* 👈 esto es lo que faltaba */
   background-color: var(--verde-salvajes);
   border: 2px solid #aaa;
   border-radius: 8px;
@@ -189,7 +191,8 @@ header {
   color: #4a3b58;
   border: 2px dashed var(--acento);
   padding: 10px 18px;
-  /* se mantiene diferente si querés este más suave */;
+  /* se mantiene diferente si querés este más suave */
+  ;
 }
 
 .boton-claro:hover {
@@ -354,7 +357,8 @@ section ul li {
   transform: none !important;
   transition: none !important;
   pointer-events: none;
-  /* Evita que el cursor "active" el hover */;
+  /* Evita que el cursor "active" el hover */
+  ;
 }
 
 /* ===================================== */
@@ -414,7 +418,7 @@ section ul li {
 @media (max-width: 480px) {
   .michi-card img {
     height: 180px;
-}
+  }
 
 }
 
@@ -701,13 +705,13 @@ blockquote {
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-  transform: translateY(20px);
-}
+    transform: translateY(20px);
+  }
 
-100% {
-  opacity: 1;
-  transform: translateY(0);
-}
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
 }
 
@@ -715,6 +719,31 @@ blockquote {
 /*        RESPONSIVE HEADER             */
 /* ===================================== */
 @media (max-width: 768px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--verde-salvajes);
+    padding: 12px 20px;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .logo img {
+    height: 44px;
+    border-radius: 50%;
+  }
+
   .logo h1 {
     display: none;
   }
@@ -741,21 +770,25 @@ blockquote {
 
   .nav-lista {
     display: none;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    right: 10px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     flex-direction: column;
-    background-color: var(--verde-salvajes);
-    padding: 10px 20px;
-    border-radius: 0 0 10px 10px;
-    width: 100%;
-  /*🎯 Animación */
-    transition: max-height 0.3s ease;
-    overflow: hidden;
-    max-height: 0;
-    }
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    padding: 10px 0;
+  }
 
   .nav-lista.activa {
     display: flex;
-    max-height: 500px; /* Ajustalo si el menú es más largo */
-
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -766,13 +799,13 @@ blockquote {
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
-  transform: translateY(-10px);
-}
+    transform: translateY(-10px);
+  }
 
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
 }
 
@@ -902,7 +935,7 @@ to {
 @media (max-width: 600px) {
   .carrusel {
     flex-direction: column;
-}
+  }
 
 }
 
@@ -1004,7 +1037,7 @@ to {
   border: 2px dashed var(--verde-salvajes);
 }
 
-.aliados-flex + p {
+.aliados-flex+p {
   margin-top: 20px;
 }
 
@@ -1127,7 +1160,8 @@ to {
   padding: 0 20px;
   position: relative;
   overflow: visible;
-  /* ← importante */;
+  /* ← importante */
+  ;
 }
 
 .slider-btn {
@@ -1327,11 +1361,11 @@ to {
 }
 
 /* Espaciado entre bloques internos del fieldset */
-.formulario-contacto fieldset > div {
+.formulario-contacto fieldset>div {
   margin-bottom: 22px;
 }
 
-.formulario-contacto fieldset > div:first-child {
+.formulario-contacto fieldset>div:first-child {
   margin-top: 0;
 }
 
@@ -1396,20 +1430,23 @@ textarea:valid {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0);
-}
 
-25% {
-  transform: translateX(-2px);
-}
+  0%,
+  100% {
+    transform: translateX(0);
+  }
 
-50% {
-  transform: translateX(2px);
-}
+  25% {
+    transform: translateX(-2px);
+  }
 
-75% {
-  transform: translateX(-2px);
-}
+  50% {
+    transform: translateX(2px);
+  }
+
+  75% {
+    transform: translateX(-2px);
+  }
 
 }
 
@@ -1603,6 +1640,5 @@ textarea:valid {
 @media (max-width: 600px) {
   .botones-ayuda a {
     width: 100%;
-  max-width: 260px;
-}
-
+    max-width: 260px;
+  }
