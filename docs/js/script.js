@@ -24,6 +24,35 @@ function actualizarContadorCarrito() {
   }
 }
 
+function esperarCargaImagenes(container, callback) {
+  const imagenes = container.querySelectorAll("img");
+  let cargadas = 0;
+
+  if (imagenes.length === 0) {
+    callback();
+    return;
+  }
+
+  imagenes.forEach((img) => {
+    if (img.complete) {
+      cargadas++;
+    } else {
+      img.addEventListener("load", () => {
+        cargadas++;
+        if (cargadas === imagenes.length) callback();
+      });
+      img.addEventListener("error", () => {
+        cargadas++;
+        if (cargadas === imagenes.length) callback();
+      });
+    }
+  });
+
+  if (cargadas === imagenes.length) {
+    callback();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Guardar total de michis en adopta.html
   if (location.pathname.includes("adopta")) {
@@ -199,47 +228,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const indicadores = document.getElementById("indicadores-slider");
 
   if (sliderTrack && slides.length > 0 && indicadores) {
-    let currentIndex = 0;
-    const visibleCards = 2;
-    const totalSlides = slides.length;
+    esperarCargaImagenes(sliderTrack, () => {
+      let currentIndex = 0;
+      const visibleCards = 2;
+      const totalSlides = slides.length;
 
-    const totalSteps = Math.ceil(totalSlides / visibleCards);
-    for (let i = 0; i < totalSteps; i++) {
-      const dot = document.createElement("span");
-      dot.className = "indicador-bolita-slider";
-      if (i === 0) dot.classList.add("activo");
-      indicadores.appendChild(dot);
-    }
+      const totalSteps = Math.ceil(totalSlides / visibleCards);
+      for (let i = 0; i < totalSteps; i++) {
+        const dot = document.createElement("span");
+        dot.className = "indicador-bolita-slider";
+        if (i === 0) dot.classList.add("activo");
+        indicadores.appendChild(dot);
+      }
 
-    function updateSlider() {
-      const slideWidth = slides[0].offsetWidth + 20;
-      const offset = slideWidth * currentIndex;
-      sliderTrack.style.transition = "transform 0.5s ease-in-out";
-      sliderTrack.style.transform = `translateX(-${offset}px)`;
+      function updateSlider() {
+        const slideWidth = slides[0].offsetWidth + 20;
+        const offset = slideWidth * currentIndex;
+        sliderTrack.style.transition = "transform 0.5s ease-in-out";
+        sliderTrack.style.transform = `translateX(-${offset}px)`;
 
-      const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
-      dots.forEach((dot) => dot.classList.remove("activo"));
-      const dotIndex = Math.floor(currentIndex / visibleCards);
-      if (dots[dotIndex]) dots[dotIndex].classList.add("activo");
-    }
+        const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
+        dots.forEach((dot) => dot.classList.remove("activo"));
+        const dotIndex = Math.floor(currentIndex / visibleCards);
+        if (dots[dotIndex]) dots[dotIndex].classList.add("activo");
+      }
 
-    nextSlide?.addEventListener("click", () => {
-      currentIndex = (currentIndex + visibleCards) % totalSlides;
+      nextSlide?.addEventListener("click", () => {
+        currentIndex = (currentIndex + visibleCards) % totalSlides;
+        updateSlider();
+      });
+
+      prevSlide?.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - visibleCards + totalSlides) % totalSlides;
+        updateSlider();
+      });
+
+      let autoScroll = setInterval(() => nextSlide?.click(), 5000);
+      sliderTrack.addEventListener("mouseenter", () =>
+        clearInterval(autoScroll)
+      );
+      sliderTrack.addEventListener("mouseleave", () => {
+        autoScroll = setInterval(() => nextSlide?.click(), 5000);
+      });
+
       updateSlider();
     });
-
-    prevSlide?.addEventListener("click", () => {
-      currentIndex = (currentIndex - visibleCards + totalSlides) % totalSlides;
-      updateSlider();
-    });
-
-    let autoScroll = setInterval(() => nextSlide?.click(), 5000);
-    sliderTrack.addEventListener("mouseenter", () => clearInterval(autoScroll));
-    sliderTrack.addEventListener("mouseleave", () => {
-      autoScroll = setInterval(() => nextSlide?.click(), 5000);
-    });
-
-    updateSlider();
   }
 
   // Contador inicial del carrito
