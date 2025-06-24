@@ -59,7 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
           hayError = true;
 
           if (isMensaje) {
-            errorMensaje.textContent = "El mensaje debe tener al menos 10 caracteres.";
+            errorMensaje.textContent =
+              "El mensaje debe tener al menos 10 caracteres.";
           }
         } else {
           if (isMensaje) errorMensaje.textContent = "";
@@ -99,6 +100,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Cierra el menú cuando se hace clic en un enlace (solo en mobile)
+  document.querySelectorAll(".nav-lista a").forEach((enlace) => {
+    enlace.addEventListener("click", () => {
+      const navLista = document.querySelector(".nav-lista");
+      if (navLista.classList.contains("activa")) {
+        navLista.classList.remove("activa");
+      }
+    });
+  });
+
   // Carrusel de testimonios
   const carruselItems = document.querySelectorAll(".carrusel-item");
   const carruselTrack = document.querySelector(".carrusel-contenido");
@@ -109,7 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
     let pausaTestimonios = false;
 
-    const contenedorIndicadores = document.getElementById("indicadores-testimonios");
+    const contenedorIndicadores = document.getElementById(
+      "indicadores-testimonios"
+    );
     carruselItems.forEach((_, i) => {
       const bolita = document.createElement("span");
       bolita.classList.add("indicador-bolita");
@@ -137,7 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     prevBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + carruselItems.length) % carruselItems.length;
+      currentIndex =
+        (currentIndex - 1 + carruselItems.length) % carruselItems.length;
       mostrarTestimonio(currentIndex);
       pausaTestimonios = true;
     });
@@ -148,8 +162,14 @@ document.addEventListener("DOMContentLoaded", () => {
       pausaTestimonios = true;
     });
 
-    carruselTrack.addEventListener("mouseenter", () => pausaTestimonios = true);
-    carruselTrack.addEventListener("mouseleave", () => pausaTestimonios = false);
+    carruselTrack.addEventListener(
+      "mouseenter",
+      () => (pausaTestimonios = true)
+    );
+    carruselTrack.addEventListener(
+      "mouseleave",
+      () => (pausaTestimonios = false)
+    );
 
     setInterval(() => {
       if (!pausaTestimonios) {
@@ -198,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
       sliderTrack.style.transform = `translateX(-${offset}px)`;
 
       const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
-      dots.forEach(dot => dot.classList.remove("activo"));
+      dots.forEach((dot) => dot.classList.remove("activo"));
       const dotIndex = Math.floor(currentIndex / visibleCards);
       if (dots[dotIndex]) dots[dotIndex].classList.add("activo");
     }
