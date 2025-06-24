@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto | Patitas Salvajes</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo Patitas Salvajes" />
+        <h1>Patitas Salvajes</h1>
+      </div>
+      <nav class="nav-principal">
+        <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+        <ul class="nav-lista">
+          <li><a href="index.html">🏠 Inicio</a></li>
+          <li><a href="adopta.html">💞 Adoptá</a></li>
+          <li><a href="transito.html">🏠 Tránsito</a></li>
+          <li><a href="ayuda.html">🤝 Cómo ayudar</a></li>
+          <li><a href="cuidados.html">🩺 Cuidados</a></li>
+          <li><a href="eventos.html">🎟️ Eventos</a></li>
+          <li><a href="historias.html">📸 Historias</a></li>
+          <li><a href="nosotras.html">👩‍🦰 Nosotras</a></li>
+          <li><a href="contacto.html">📬 Contacto</a></li>
+        </ul>
+        <a href="carrito.html" class="icono-carrito" aria-label="Ir al carrito">
+          🛒
+          <span class="carrito-contador" id="carrito-contador">0</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="contacto" class="fade-in fondo-blanco">
+        <h2>📬 Contactanos</h2>
+        <p>
+          ¿Querés adoptar, apadrinar, donar o tenés alguna duda? ¡Escribinos!
+          🐱💬
+        </p>
+
+        <form
+          action="https://formspree.io/f/mqaqrpzg"
+          method="POST"
+          class="formulario-contacto"
+        >
+          <input
+            type="hidden"
+            name="_redirect"
+            value="https://nat-magui.github.io/patitas-sitio/gracias.html"
+          />
+
+          <fieldset>
+            <legend>📨 Tus datos</legend>
+            <label for="nombre">👤 Nombre completo:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Ej: Camila Pérez"
+              required
+            />
+
+            <label for="email">📧 Correo electrónico:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Ej: cami@gmail.com"
+              required
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>📌 Motivo y mensaje</legend>
+            <label for="motivo">📌 ¿Por qué te contactás?</label>
+            <select id="motivo" name="motivo" required>
+              <option value="">Elegí una opción</option>
+              <option value="adopcion">🐱 Quiero adoptar un michi</option>
+              <option value="transito">🏠 Quiero ofrecer tránsito</option>
+              <option value="donacion">💖 Quiero hacer una donación</option>
+              <option value="apadrinar">👩‍🍼 Quiero apadrinar un michi</option>
+              <option value="evento">
+                🎟️ Quiero organizar un evento solidario
+              </option>
+              <option value="consulta">📬 Tengo una duda o consulta</option>
+            </select>
+
+            <label for="mensaje">✏️ Mensaje:</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              placeholder="Contanos cómo te gustaría ayudar"
+              required
+            ></textarea>
+            <small id="error-mensaje" class="error-texto"></small>
+          </fieldset>
+
+          <div style="text-align: center; margin-top: 15px">
+            <button type="submit" class="boton">Enviar mensaje 🐾</button>
+          </div>
+        </form>
+
+        <div class="redes-contacto">
+          <h3>🐾 También podés encontrarnos en redes sociales:</h3>
+          <div class="grupo-redes-flex">
+            <div class="grupo-redes salvajes">
+              <h4>✨ Patitas Salvajes</h4>
+              <div class="redes-botones">
+                <a
+                  href="https://www.instagram.com/patitas.salvajes.junin/"
+                  target="_blank"
+                >
+                  <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100092324811084"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook"></i> Facebook
+                </a>
+              </div>
+            </div>
+            <div class="grupo-redes felices">
+              <h4>💖 Patitas Felices</h4>
+              <div class="redes-botones">
+                <a
+                  href="https://www.instagram.com/patitasfelicesjunin/"
+                  target="_blank"
+                >
+                  <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61558323128904"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook"></i> Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

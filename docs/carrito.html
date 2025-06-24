@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Adopciones | Patitas Salvajes</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo Patitas Salvajes" />
+        <h1>Patitas Salvajes</h1>
+      </div>
+      <nav class="nav-principal">
+        <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+        <ul class="nav-lista">
+          <li><a href="index.html">🏠 Inicio</a></li>
+          <li><a href="adopta.html">💞 Adoptá</a></li>
+          <li><a href="transito.html">🏠 Tránsito</a></li>
+          <li><a href="ayuda.html">🤝 Cómo ayudar</a></li>
+          <li><a href="cuidados.html">🩺 Cuidados</a></li>
+          <li><a href="eventos.html">🎟️ Eventos</a></li>
+          <li><a href="historias.html">📸 Historias</a></li>
+          <li><a href="nosotras.html">👩‍🦰 Nosotras</a></li>
+          <li><a href="contacto.html">📬 Contacto</a></li>
+        </ul>
+        <a href="carrito.html" class="icono-carrito" aria-label="Ir al carrito">
+          🛒
+          <span class="carrito-contador" id="carrito-contador">0</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="carrito" class="fondo-verde">
+        <h2>🛒 Carrito de adopciones</h2>
+        <p>Estos son los michis que seleccionaste para adoptar 💖</p>
+
+        <div id="carrito-contenido" class="carrito-contenido"></div>
+
+        <div id="carrito-total" class="carrito-total">
+          <p>Total de michis: <span id="total-michis">0</span></p>
+          <button onclick="vaciarCarrito()" class="boton-secundario">
+            🗑️ Vaciar carrito
+          </button>
+        </div>
+
+        <div class="carrito-finalizar">
+          <p>¿Listo para dar el siguiente paso?</p>
+          <a href="index.html#contacto" class="boton"
+            >📬 Contactanos para continuar</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/carrito.js"></script>
+  </body>
+</html>

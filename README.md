@@ -1,38 +1,55 @@
-# 🐾 Patitas Salvajes - Proyecto Web
+# 🐾 Patitas Salvajes – Sitio Web Oficial
 
-Este proyecto fue desarrollado como parte del curso **Front-End con JavaScript** de Talento Tech.
-
-## 🎯 Objetivo
-
-Crear un sitio web accesible, amigable y funcional para ayudar a la ONG **Patitas Salvajes** a difundir su labor de rescate, tránsito y adopción de gatos en situación de calle 🐱. También incluye información para colaborar mediante donaciones, apadrinamiento o tránsito.
-
-## 🌐 Secciones del sitio
-
-- **Inicio**: Bienvenida y presentación de la ONG
-- **Adoptá**: Invitación a adoptar con mensaje motivacional
-- **Gatitos en adopción**: Galería con fichas de gatos que buscan hogar
-- **Requisitos**: Condiciones necesarias para adoptar de forma responsable
-- **Cuidados**: Consejos de seguridad, salud y adaptación del gatito
-- **Preparativos**: Checklist para recibir al adoptado
-- **Antes de adoptar**: Preguntas clave para adoptar con compromiso
-- **Cómo ayudar**: Información sobre donaciones, insumos, tránsito y apadrinamiento
-- **Contacto**: Formulario conectado a Formspree para recibir consultas
-
-## 🛠️ Tecnologías usadas
-
-- HTML5
-- CSS3
-- Git & GitHub
-- Formspree (para formulario de contacto)
-
-## 📬 Formulario de contacto
-
-Usamos [Formspree](https://formspree.io/) para que los interesados puedan comunicarse fácilmente con el equipo de la ONG.
-
-## ❤️ Agradecimientos
-
-Gracias a **Talento Tech** por la formación y a **Patitas Salvajes y Patitas Felices** por su labor tan valiosa. Este sitio fue creado con mucho amor por los michis y quienes los rescatan.
+**"De la calle al sillón, una historia a la vez."**  
+Sitio web del grupo de voluntarias **Patitas Salvajes** de Junín, Buenos Aires. Rescatamos, cuidamos y buscamos hogar para gatos en situación de calle. Promovemos la adopción responsable, el tránsito solidario y el compromiso con el bienestar animal.
 
 ---
 
-**Desarrollado por Magalí 🐱**
+## 🌐 Estructura del Sitio
+
+El sitio está dividido en páginas específicas para facilitar la navegación:
+
+| Página | Contenido |
+|--------|-----------|
+| `index.html` | Landing principal con botones clave, presentación e invitación a participar |
+| `adopta.html` | Galería de gatos en adopción, requisitos y preparativos |
+| `transito.html` | Información sobre tránsito, campañas urgentes y testimonios |
+| `ayuda.html` | Formas de ayudar: donaciones, insumos, apadrinamiento |
+| `cuidados.html` | Consejos para el bienestar felino antes y después de adoptar |
+| `eventos.html` | Eventos solidarios, campañas, ferias, convocatorias |
+| `historias.html` | 📸 *De la calle al sillón*: historias de transformación con fotos del antes y después |
+| `gracias.html` | Página de agradecimiento tras enviar un formulario |
+
+---
+
+## 🧰 Tecnologías Utilizadas
+
+- **HTML5** y **CSS3**  
+- **JavaScript** vanilla  
+- `localStorage` para el carrito (en adopta.html)  
+- **Responsive Design** (Flexbox y Grid)  
+- Formularios conectados a [Formspree](https://formspree.io/)  
+- Animaciones con `fade-in` y confeti 🎉  
+- Diseño accesible y amigable para todos los dispositivos
+
+---
+
+## 🐱 Créditos y agradecimientos
+
+Este proyecto fue desarrollado con mucho amor por **Magalí** para **Patitas Salvajes**, en el marco del curso *Front-End JS* de **Talento Tech**.  
+Gracias a las chicas de Patitas por el trabajo increíble que hacen todos los días 💕
+
+---
+
+## 📬 Contacto
+
+¿Querés sumarte o colaborar con el sitio?  
+Podés escribirnos desde el [formulario de contacto](https://nat-magui.github.io/patitas-sitio/#contacto) o seguirnos en Instagram.
+
+---
+
+## 📸 Spoiler visual
+
+![Michi feliz](img/michi-despues.jpg)
+
+> "Un sitio para visibilizar. Una herramienta para transformar."
