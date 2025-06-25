@@ -1632,6 +1632,42 @@ blockquote {
   color: #555;
 }
 
+#origen .galeria-michis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+#origen .galeria-michis img {
+  width: 100%;
+  max-width: 240px; /* ⬅️ ajustado para ser más proporcionado */
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid var(--rosa-patitas);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+#origen .galeria-michis img:hover {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+  #origen .galeria-michis {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #origen .galeria-michis img {
+    max-width: 90%;
+  }
+}
+
 /* ===================================== */
 /*          COLORES EXTENDIDOS           */
 /* ===================================== */
