@@ -908,7 +908,7 @@ blockquote {
 
 .hero-landing {
   position: relative;
-  background-image: url('../img/michi-rescatado.jpg'); /* Asegurate que esta imagen exista o cámbiala */
+  background-image: url("../img/michi-rescatado.jpg"); /* Asegurate que esta imagen exista o cámbiala */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -919,7 +919,6 @@ blockquote {
   border-radius: 16px;
   margin-top: 60px;
   background-attachment: fixed;
-
 }
 
 /* Overlay centrado con fondo suave */
@@ -928,11 +927,11 @@ blockquote {
   backdrop-filter: blur(2px);
   padding: 30px 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   display: inline-block;
   max-width: 800px;
   margin: 0 auto;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hero-overlay h2 {
@@ -1148,40 +1147,52 @@ blockquote {
   overflow: hidden;
   min-height: 280px;
   min-height: auto;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 .carrusel-item {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
   background-color: #fff;
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 12px;
   border: 2px dashed var(--verde-salvajes);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: opacity 0.5s ease, transform 0.5s ease;
+
   opacity: 0;
-  transform: scale(0.95);
-  position: absolute;
-  left: 0;
+  position: relative; /* ⛔️ Quitamos absolute */
+  margin: 0 auto;
   width: 100%;
+  max-width: 600px;
+
+  display: none;
 }
 
 .carrusel-item img {
   width: 100%;
-  max-height: 180px;
-  object-fit: cover;
+  max-width: 280px;
+  height: auto;
   border-radius: 10px;
   margin-bottom: 15px;
-  border: 2px solid var(--rosa-patitas);
-  max-height: 140px;
+  object-fit: cover;
 }
 
 .carrusel-item p {
   font-style: italic;
+  font-size: 1.05rem;
+  color: var(--gris-texto);
+  max-width: 90%;
   margin-bottom: 10px;
 }
 
 .carrusel-item strong {
   display: block;
+  margin-top: 5px;
   font-size: 0.95rem;
   color: #444;
 }
@@ -1235,6 +1246,9 @@ blockquote {
   .carrusel {
     flex-direction: column;
   }
+  .carrusel-item p {
+    font-size: 0.95rem;
+  }
 }
 
 /* ===================================== */
@@ -1263,6 +1277,7 @@ blockquote {
   border-radius: 12px;
   border: 3px dashed var(--verde-salvajes);
   transition: transform 0.2s ease;
+  animation: fadeInUp 0.6s ease both;
 }
 
 .grid-galeria img:hover {

@@ -382,4 +382,56 @@ document.addEventListener("DOMContentLoaded", () => {
       body.classList.contains("modo-oscuro") ? "oscuro" : "claro"
     );
   });
+
+    // Carrusel de testimonios de eventos (sección en eventos.html)
+  const carruselEvItems = document.querySelectorAll("#carruselEventos .carrusel-item");
+  const prevEv = document.getElementById("prevEvento");
+  const nextEv = document.getElementById("nextEvento");
+  const indicadoresEv = document.getElementById("indicadores-eventos");
+
+  if (carruselEvItems.length > 0 && prevEv && nextEv && indicadoresEv) {
+    let currentEv = 0;
+
+    // Crear indicadores visuales (bolitas)
+    carruselEvItems.forEach((_, i) => {
+      const bolita = document.createElement("span");
+      bolita.classList.add("indicador-bolita");
+      if (i === 0) bolita.classList.add("activo");
+      bolita.addEventListener("click", () => {
+        currentEv = i;
+        actualizarCarruselEventos();
+      });
+      indicadoresEv.appendChild(bolita);
+    });
+
+    // Actualiza el carrusel mostrando solo el testimonio actual
+    const actualizarCarruselEventos = () => {
+      carruselEvItems.forEach((item, i) =>
+        item.classList.toggle("activo", i === currentEv)
+      );
+      indicadoresEv
+        .querySelectorAll(".indicador-bolita")
+        .forEach((dot, i) =>
+          dot.classList.toggle("activo", i === currentEv)
+        );
+    };
+
+    // Navegación con flechas
+    prevEv.addEventListener("click", () => {
+      currentEv = (currentEv - 1 + carruselEvItems.length) % carruselEvItems.length;
+      actualizarCarruselEventos();
+    });
+
+    nextEv.addEventListener("click", () => {
+      currentEv = (currentEv + 1) % carruselEvItems.length;
+      actualizarCarruselEventos();
+    });
+
+    // Autoplay cada 6 segundos
+    setInterval(() => {
+      currentEv = (currentEv + 1) % carruselEvItems.length;
+      actualizarCarruselEventos();
+    }, 6000);
+  }
+
 });

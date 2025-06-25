@@ -4,6 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventos Solidarios | Patitas Salvajes</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Eventos solidarios organizados por Patitas Salvajes. Yoga, ferias, rifas y jornadas de adopción que ayudan a los gatitos."
+    />
+    <meta
+      name="keywords"
+      content="eventos solidarios, gatos, rifas, adopciones, yoga, Patitas Salvajes, Junín"
+    />
+    <meta name="author" content="Patitas Salvajes" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Eventos Solidarios | Patitas Salvajes 🐾"
+    />
+    <meta
+      property="og:description"
+      content="Sumate a nuestras ferias, talleres y campañas para ayudar a los michis en situación de calle en Junín."
+    />
+    <meta
+      property="og:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://nat-magui.github.io/patitas-sitio/eventos.html"
+    />
+    <meta property="og:type" content="website" />
+
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -37,7 +67,18 @@
     </header>
 
     <main>
-      <section id="eventos">
+      <section class="hero-landing fondo-rosa fade-in">
+        <div class="centrado hero-overlay">
+          <h2>Juntas y juntos, transformamos cada evento en esperanza 🐱</h2>
+          <p>
+            Talleres, ferias, jornadas de adopción, rifas... Cada acción
+            solidaria suma para rescatar, visibilizar y cuidar a los michis que
+            más lo necesitan.
+          </p>
+        </div>
+      </section>
+
+      <section id="eventos" class="fade-in">
         <h2>🎟️ Eventos solidarios</h2>
 
         <div class="card-ayuda">
@@ -45,21 +86,21 @@
           <p>
             El viernes 19 de enero a las 19:30 se realizó una hermosa clase de
             yoga al aire libre en el jardín del Museo Histórico (Quintana y
-            Newbery), a beneficio de <strong>Patitas Felices</strong>.
+            Newbery), a beneficio de <strong>Patitas Salvajes</strong>.
           </p>
-      <p>
-        La actividad fue organizada por la Dirección de Cultura del Gobierno
-        de Junín y dictada por la profe <strong>Belén Rodríguez</strong>. La
-        entrada fue libre y gratuita, con una invitación especial: colaborar
-        con <strong>alimento para felinos</strong> 💕
-      </p>
+          <p>
+            La actividad fue organizada por la Dirección de Cultura del Gobierno
+            de Junín y dictada por la profe <strong>Belén Rodríguez</strong>. La
+            entrada fue libre y gratuita, con una invitación especial: colaborar
+            con <strong>alimento para felinos</strong> 💕
+          </p>
 
-      <p>
-        La jornada buscó no solo recaudar donaciones, sino también visibilizar
-        la causa del abandono animal y promover el compromiso comunitario.
-        Además, fue una oportunidad para que nuevos vecinos se acerquen al
-        Museo y conozcan su rol cultural y social.
-      </p>
+          <p>
+            La jornada buscó no solo recaudar donaciones, sino también
+            visibilizar la causa del abandono animal y promover el compromiso
+            comunitario. Además, fue una oportunidad para que nuevos vecinos se
+            acerquen al Museo y conozcan su rol cultural y social.
+          </p>
           <blockquote>
             “Las puertas de los espacios culturales están abiertas para accionar
             por causas que nos comprometen a todos como comunidad.”
@@ -110,7 +151,7 @@
           </div>
         </div>
       </section>
-      <section id="galeria-eventos">
+      <section id="galeria-eventos" class="fade-in">
         <h2>📸 Galería de eventos pasados</h2>
         <div class="grid-galeria">
           <img src="img/evento-yoga.jpg" alt="Clase de yoga solidaria" />
@@ -122,7 +163,7 @@
           />
         </div>
       </section>
-      <section id="proximos-eventos">
+      <section id="proximos-eventos" class="fade-in">
         <h2>📅 Próximos eventos</h2>
         <ul class="lista-eventos">
           <li>
@@ -137,20 +178,95 @@
             <strong>🎟️ Rifa “Invierno sin hambre”</strong><br />
             <small>Hasta el 20 de julio – Sorteo en Instagram</small>
           </li>
+          <li>
+            <strong>🧘 Yoga solidario</strong><br />
+            <small> Sábado 24/08 - Plaza Central</small>
+          </li>
+          <li>
+            <strong>🎟️ Rifa mensual</strong><br />
+            <small> Sortea el 15/09 – Sorteo en Instagram</small>
+          </li>
+          <li>
+            <strong>📦 Jornada de donación</strong><br />
+            <small> Sábado 30/09 - Veterinaria Pueblo Nuevo</small>
+          </li>
         </ul>
       </section>
-      <section id="aliados">
+      <!-- Carrusel de testimonios de eventos -->
+      <section id="testimonios-eventos" class="fade-in fondo-lavanda">
+        <h2>💬 Lo que nos dejó cada encuentro</h2>
+        <div class="carrusel">
+          <button
+            id="prevEvento"
+            class="carrusel-btn"
+            aria-label="Anterior testimonio"
+          >
+            ←
+          </button>
+          <div class="carrusel-contenido" id="carruselEventos">
+            <div class="carrusel-item activo">
+              <p>
+                “Gracias a la feria pude adoptar a mi gata Frida. Las conocí ahí
+                por primera vez.”
+              </p>
+              <strong>— Sofía R.</strong>
+            </div>
+            <div class="carrusel-item">
+              <p>
+                “La clase de yoga fue hermosa, y saber que ayudamos a los michis
+                la hizo aún más especial.”
+              </p>
+              <strong>— Paula C.</strong>
+            </div>
+            <div class="carrusel-item">
+              <p>
+                “Participamos en familia y terminamos apadrinando a un michi.
+                ¡Una experiencia llena de amor!”
+              </p>
+              <strong>— Diego y Mariela</strong>
+            </div>
+          </div>
+          <button
+            id="nextEvento"
+            class="carrusel-btn"
+            aria-label="Siguiente testimonio"
+          >
+            →
+          </button>
+        </div>
+        <div class="indicadores-testimonios" id="indicadores-eventos"></div>
+      </section>
+
+      <section id="aliados" class="fade-in">
         <h2>🤝 Aliados solidarios</h2>
         <div class="aliados-flex">
-          <img src="img/logo-cultura-junin.jpg" alt="Cultura Junín" />
-          <img
-            src="img/logo-vet-pueblo-nuevo.png"
-            alt="Veterinaria Pueblo Nuevo"
-          />
-          <img
-            src="img/logo-comercio-patitas.jpg"
-            alt="Comercio amigo Patitas"
-          />
+          <a
+            href="https://www.instagram.com/culturajunin/"
+            target="_blank"
+            aria-label="Cultura Junín"
+          >
+            <img src="img/logo-cultura-junin.jpg" alt="Cultura Junín" />
+          </a>
+          <a
+            href="https://www.instagram.com/veterinariapueblonuevo/"
+            target="_blank"
+            aria-label="Veterinaria Pueblo Nuevo"
+          >
+            <img
+              src="img/logo-vet-pueblo-nuevo.png"
+              alt="Veterinaria Pueblo Nuevo"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/amor.x.las.mascotas/"
+            target="_blank"
+            aria-label="Comercio amigo Patitas"
+          >
+            <img
+              src="img/logo-comercio-patitas.jpg"
+              alt="Comercio amigo Patitas"
+            />
+          </a>
         </div>
         <p>
           Gracias a cada organización, comercio y profesional que colabora con
@@ -161,6 +277,18 @@
 
     <footer>
       <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+      <div class="modo-toggle">
+        <input
+          type="checkbox"
+          id="modo-switch"
+          aria-label="Alternar modo oscuro"
+        />
+        <label for="modo-switch">
+          <span class="icono-sol">🌞</span>
+          <span class="icono-luna">🌙</span>
+          <span class="slider"></span>
+        </label>
+      </div>
     </footer>
 
     <script src="js/script.js"></script>
