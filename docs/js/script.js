@@ -248,52 +248,96 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextSlide = document.getElementById("nextSlide");
   const slides = document.querySelectorAll(".michi-slide");
   const indicadores = document.getElementById("indicadores-slider");
+  let autoScroll;
 
   if (sliderTrack && slides.length > 0 && indicadores) {
     esperarCargaImagenes(sliderTrack, () => {
       let currentIndex = 0;
-      const visibleCards = 2;
+      let visibleCards = window.matchMedia("(max-width: 600px)").matches
+        ? 1
+        : 2;
       const totalSlides = slides.length;
 
-      const totalSteps = Math.ceil(totalSlides / visibleCards);
-      for (let i = 0; i < totalSteps; i++) {
-        const dot = document.createElement("span");
-        dot.className = "indicador-bolita-slider";
-        if (i === 0) dot.classList.add("activo");
-        indicadores.appendChild(dot);
+      // Función para actualizar cuántos michis mostrar
+      const updateVisibleCards = () => {
+        visibleCards = window.matchMedia("(max-width: 600px)").matches ? 1 : 2;
+        updateIndicators();
+        updateSlider();
+      };
+
+      window.addEventListener("resize", updateVisibleCards);
+
+      // Crear indicadores
+      function updateIndicators() {
+        indicadores.innerHTML = "";
+        const totalSteps = totalSlides - visibleCards + 1;
+        for (let i = 0; i < totalSteps; i++) {
+          const dot = document.createElement("span");
+          dot.className = "indicador-bolita-slider";
+          if (i === currentIndex) dot.classList.add("activo");
+          dot.addEventListener("click", () => {
+            currentIndex = i;
+            updateSlider();
+          });
+          indicadores.appendChild(dot);
+        }
       }
 
-      function updateSlider() {
+      function updateSlider(skipTransition = false) {
         const slideWidth = slides[0].offsetWidth + 20;
         const offset = slideWidth * currentIndex;
-        sliderTrack.style.transition = "transform 0.5s ease-in-out";
+
+        if (skipTransition) {
+          sliderTrack.style.transition = "none";
+        } else {
+          sliderTrack.style.transition = "transform 0.5s ease-in-out";
+        }
+
         sliderTrack.style.transform = `translateX(-${offset}px)`;
 
         const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
-        dots.forEach((dot) => dot.classList.remove("activo"));
-        const dotIndex = Math.floor(currentIndex / visibleCards);
-        if (dots[dotIndex]) dots[dotIndex].classList.add("activo");
+        dots.forEach((dot, i) =>
+          dot.classList.toggle("activo", i === currentIndex)
+        );
       }
 
       nextSlide?.addEventListener("click", () => {
-        currentIndex = (currentIndex + visibleCards) % totalSlides;
-        updateSlider();
+        const maxIndex = totalSlides - visibleCards;
+        if (currentIndex < maxIndex) {
+          currentIndex++;
+          updateSlider();
+        } else {
+          // animamos hasta el final
+          currentIndex++;
+          updateSlider();
+
+          // después de la animación, volver sin transición
+          setTimeout(() => {
+            currentIndex = 0;
+            updateSlider(true); // sin transición
+          }, 510);
+        }
       });
 
       prevSlide?.addEventListener("click", () => {
-        currentIndex =
-          (currentIndex - visibleCards + totalSlides) % totalSlides;
+        const maxIndex = totalSlides - visibleCards;
+        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
         updateSlider();
       });
 
-      let autoScroll = setInterval(() => nextSlide?.click(), 5000);
       sliderTrack.addEventListener("mouseenter", () =>
         clearInterval(autoScroll)
       );
       sliderTrack.addEventListener("mouseleave", () => {
-        autoScroll = setInterval(() => nextSlide?.click(), 5000);
+        autoScroll = setInterval(() => {
+          const maxIndex = totalSlides - visibleCards;
+          currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+          updateSlider();
+        }, 5000);
       });
 
+      // Inicial
+      updateIndicators();
       updateSlider();
     });
   }

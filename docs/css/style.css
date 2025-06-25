@@ -142,7 +142,7 @@
 }
 
 .modo-oscuro .lista-eventos small {
-  color: --texto-claro;
+  color: var(--texto-claro);
 }
 
 .modo-oscuro .historia-card {
@@ -162,7 +162,6 @@
 .modo-oscuro section h2 {
   color: var(--texto-claro);
 }
-
 
 .modo-oscuro #historias {
   background-color: var(--fondo-tarjeta);
@@ -879,6 +878,83 @@ blockquote {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
+/* ============================== */
+/* HERO LANDING - BIENVENIDA     */
+/* ============================== */
+
+.hero-landing {
+  position: relative;
+  background-image: url('../img/michi-rescatado.jpg'); /* Asegurate que esta imagen exista o cámbiala */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3); /* capa oscura encima */
+  border-radius: 16px;
+  margin-top: 60px;
+  background-attachment: fixed;
+
+}
+
+/* Overlay centrado con fondo suave */
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  display: inline-block;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.hero-overlay h2 {
+  color: white !important;
+  font-weight: 700;
+  font-size: 2rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Botones más claros sobre fondo oscuro */
+.hero-overlay .boton,
+.hero-overlay .boton-secundario {
+  color: white;
+  background-color: var(--acento);
+  border: none;
+}
+
+.hero-overlay .boton-secundario {
+  background-color: #88a97f;
+}
+
+.hero-overlay .boton:hover,
+.hero-overlay .boton-secundario:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero-overlay {
+    padding: 20px 15px;
+  }
+
+  .hero-overlay h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1rem;
+  }
+}
+
 /* ===================================== */
 /*     BOTON TOP                         */
 /* ===================================== */
@@ -1340,7 +1416,7 @@ blockquote {
   flex-direction: column;
   align-items: center;
   margin: 60px auto;
-  padding: 30px 0;
+  padding: 30px 10px;
   background-color: #fef7f4;
   /* Un rosa muy muy claro */
   border-radius: 10px;
@@ -1349,35 +1425,37 @@ blockquote {
 }
 
 .slider-wrapper {
+  position: relative;
+  overflow: hidden; /* ← evita que el botón se corte */
+  padding: 0 40px; /* más espacio para que entren los botones */
+  margin: auto;
+  max-width: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 20px;
-  position: relative;
-  overflow: visible;
-  /* ← importante */
+  box-sizing: border-box;
 }
 
 .slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
   background-color: var(--acento);
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 1.5rem;
+  padding: 10px 14px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: background 0.3s, box-shadow 0.3s;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-  z-index: 10;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .slider-btn:hover {
   background-color: #ff7f9f;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   color: white;
 }
 
@@ -1410,6 +1488,30 @@ blockquote {
   /* o var(--rosa-patitas) para un toque más dulce */
   border: 2px solid var(--rosa-patitas);
   border-radius: 8px;
+}
+
+#prevSlide {
+  left: 10px;
+}
+
+#nextSlide {
+  right: 10px;
+}
+
+@media (max-width: 600px) {
+  .slider-wrapper {
+    padding: 0 20px;
+  }
+
+  .michi-slide {
+    flex: 0 0 100%;
+  }
+
+  #prevSlide,
+  #nextSlide {
+    padding: 10px;
+    font-size: 1.2rem;
+  }
 }
 
 /* ===================================== */
@@ -1889,4 +1991,3 @@ textarea:valid {
   white-space: nowrap;
   border: 0;
 }
-
