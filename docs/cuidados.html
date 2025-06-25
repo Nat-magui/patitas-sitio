@@ -1,166 +1,233 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuidados del Michi | Patitas Salvajes</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Guía básica de cuidados para quienes adoptan un gato. Seguridad, alimentación, salud y más."
+    />
+    <meta
+      name="keywords"
+      content="cuidados gato, adoptar gato, comida para michi, seguridad gatos, Patitas Salvajes"
+    />
+    <meta name="author" content="Patitas Salvajes" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cuidados del Michi | Patitas Salvajes</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-</head>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cuidados del Michi | Patitas Salvajes" />
+    <meta
+      property="og:description"
+      content="Guía práctica para cuidar y acompañar a tu gato con amor y responsabilidad."
+    />
+    <meta
+      property="og:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://nat-magui.github.io/patitas-sitio/cuidados.html"
+    />
+    <meta property="og:type" content="website" />
 
-<body>
-  <header>
-    <div class="logo">
-      <img src="img/logo.png" alt="Logo Patitas Salvajes" />
-      <h1>Patitas Salvajes</h1>
-    </div>
-    <nav class="nav-principal">
-      <button class="menu-toggle" aria-label="Abrir menú">☰</button>
-      <ul class="nav-lista">
-        <li><a href="index.html">🏠 Inicio</a></li>
-        <li><a href="adopta.html">💞 Adoptá</a></li>
-        <li><a href="transito.html">🏠 Tránsito</a></li>
-        <li><a href="ayuda.html">🤝 Cómo ayudar</a></li>
-        <li><a href="cuidados.html">🩺 Cuidados</a></li>
-        <li><a href="eventos.html">🎟️ Eventos</a></li>
-        <li><a href="historias.html">📸 Historias</a></li>
-        <li><a href="nosotras.html">👩‍🦰 Nosotras</a></li>
-        <li><a href="contacto.html">📬 Contacto</a></li>
-      </ul>
-      <a href="carrito.html" class="icono-carrito" aria-label="Ir al carrito">
-        🛒
-        <span class="carrito-contador" id="carrito-contador">0</span>
-      </a>
-    </nav>
-  </header>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <main>
-    <section id="cuidados" class="fondo-celeste">
-      <h2>🛡️ Cuidados y Seguridad</h2>
-
-      <div class="card-cuidados">
-        <h3>💉 Vacunación y Castración</h3>
-        <ul>
-          <li>
-            🧪 A los 2 meses: se inicia la vacunación con triple felina.
-          </li>
-          <li>
-            📆 Luego de 21 días: se aplica el refuerzo y la antirrábica.
-          </li>
-          <li>
-            🦠 Se recomienda vacunar contra leucemia felina (si está
-            disponible).
-          </li>
-          <li>✂️ Castración obligatoria entre los 6 y 7 meses.</li>
-        </ul>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo Patitas Salvajes" />
+        <h1>Patitas Salvajes</h1>
       </div>
-
-      <div class="card-cuidados">
-        <h3>🏡 Seguridad en el hogar</h3>
-        <ul>
-          <li>No debe tener acceso libre al exterior.</li>
-          <li>Ventanas y balcones siempre con redes o protección.</li>
-          <li>Mantener puertas y ventanas cerradas hasta que se adapte. Para evitar acccidentes</li>
+      <nav class="nav-principal">
+        <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+        <ul class="nav-lista">
+          <li><a href="index.html">🏠 Inicio</a></li>
+          <li><a href="adopta.html">💞 Adoptá</a></li>
+          <li><a href="transito.html">🏠 Tránsito</a></li>
+          <li><a href="ayuda.html">🤝 Cómo ayudar</a></li>
+          <li><a href="cuidados.html">🩺 Cuidados</a></li>
+          <li><a href="eventos.html">🎟️ Eventos</a></li>
+          <li><a href="historias.html">📸 Historias</a></li>
+          <li><a href="nosotras.html">👩‍🦰 Nosotras</a></li>
+          <li><a href="contacto.html">📬 Contacto</a></li>
         </ul>
-        <div class="mensaje-fijo">
-          <p>Los gatos no necesitan mucho espacio para ser felices, <br />¡pero sí seguridad y amor! 💖</p>
+        <a href="carrito.html" class="icono-carrito" aria-label="Ir al carrito">
+          🛒
+          <span class="carrito-contador" id="carrito-contador">0</span>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-landing fondo-rosa">
+        <div class="centrado hero-overlay">
+          <h2>Cuidar a un michi es amar con compromiso 🩺</h2>
+          <p>
+            En esta guía vas a encontrar todo lo esencial para darle una vida
+            sana, feliz y segura. Porque ellos dan amor incondicional... ¡y
+            merecen lo mejor! 🐾
+          </p>
         </div>
-      </div>
+      </section>
 
-      <div class="card-cuidados">
-        <h3>📦 ¿Dónde colocar sus cosas?</h3>
-        <ul>
-          <li>Durante la adaptación, ubicarlo en una habitación segura.</li>
-          <li>La caja sanitaria debe estar lejos de la comida y el agua.</li>
-          <li>Cambiar las piedras cada vez que estén sucias o con olor.</li>
-        </ul>
-      </div>
+      <section id="cuidados" class="fondo-celeste">
+        <h2>🛡️ Cuidados y Seguridad</h2>
 
-      <div class="card-cuidados">
-        <h3>🥣 Alimentación recomendada</h3>
-        <ul>
-          <li>Gatitos pequeños: 5–6 raciones diarias pequeñas.</li>
-          <li>
-            Comida húmeda: 2–3 cucharadas por vez (no guardar lo fermentado).
-          </li>
-          <li>Comida seca: a voluntad hasta saciedad.</li>
-          <li>💧 Agua limpia y fresca siempre disponible.</li>
-          <li>🧼 Limpiar comederos y bebederos todos los días.</li>
-        </ul>
-      </div>
-      <div class="mensaje-fijo">
-        <p>
-          🧸 Cuidar de un michi no es difícil, solo requiere compromiso y
-          amor. Ellos devuelven todo con ronroneos, ternura y compañía
-          incondicional 🐾
-        </p>
-      </div>
-    </section>
+        <div class="card-cuidados">
+          <h3>💉 Vacunación y Castración</h3>
+          <ul>
+            <li>
+              🧪 A los 2 meses: se inicia la vacunación con triple felina.
+            </li>
+            <li>
+              📆 Luego de 21 días: se aplica el refuerzo y la antirrábica.
+            </li>
+            <li>
+              🦠 Se recomienda vacunar contra leucemia felina (si está
+              disponible).
+            </li>
+            <li>✂️ Castración obligatoria entre los 6 y 7 meses.</li>
+          </ul>
+        </div>
 
-    <section id="preparativos" class="fondo-rosa">
-      <h2>🎒 ¿Qué preparar antes de que llegue?</h2>
-      <div class="card-cuidados">
-        <ul>
-          <li>🥣 Alimento balanceado</li>
-          <li>🚽 Caja sanitaria + piedras</li>
-          <li>🍽️ Comederos y bebederos</li>
-          <li>🪵 Rascador</li>
-          <li>📛 Collar con identificación (¡sin cascabel!)</li>
-          <li>🧸 Juguetes</li>
-          <li>🛏️ Un lugar para dormir (camita, moisés, colchón, cuevita)</li>
-          <li>🚗 Jaula o bolso transportador (obligatorio para ir al veterinario)</li>
-        </ul>
-      </div>
-      <div class="mensaje-fijo">
-        <p>
-          ✨ Si no podés conseguir todo antes de recibirlo, ¡no pasa nada! <br />Lo importante es que esté seguro y que
-          vayas consiguiendo todo lo necesario de a poco con amor y responsabilidad 🐾
-        </p>
-      </div>
-    </section>
+        <div class="card-cuidados">
+          <h3>🏡 Seguridad en el hogar</h3>
+          <ul>
+            <li>No debe tener acceso libre al exterior.</li>
+            <li>Ventanas y balcones siempre con redes o protección.</li>
+            <li>
+              Mantené puertas y ventanas cerradas hasta que se adapte para
+              evitar accidentes.
+            </li>
+          </ul>
+          <div class="mensaje-fijo">
+            <p>
+              Los gatos no necesitan mucho espacio para ser felices, <br />¡pero
+              sí seguridad y amor! 💖
+            </p>
+          </div>
+        </div>
 
-    <section id="antes-de-adoptar" class="fondo-lavanda">
-      <h2>📋 Qué saber antes de adoptar</h2>
-      <div class="card-cuidados">
-        <ul>
-          <li>
-            🐱 Los michis pueden vivir más de 15 años. ¿Podés comprometerte a cuidarlo por todo ese tiempo?
-          </li>
-          <li>
-            💸 Un gato implica gastos mensuales en comida, piedras sanitarias
-            y salud veterinaria.
-          </li>
-          <li>
-            ⏳ Los animales no son juguetes: requieren tiempo, paciencia y mucho amor, especialmente si están
-            adaptándose.
-          </li>
-          <li>👪 Todos en el hogar deben estar de acuerdo con la adopción.</li>
-          <li>
-            🏥 ¿Podés afrontar gastos imprevistos como vacunas, esterilización o emergencias?
-          </li>
-          <li>
-            🚫 No se entregan gatos para tener en patios o techos. Siempre deben vivir dentro del hogar, protegidos.
-          </li>
-          <li>
-            ❌ Si no podés continuar, jamás abandones. Contactanos, ¡te
-            ayudamos a reubicarlo!
-          </li>
-        </ul>
+        <div class="card-cuidados">
+          <h3>📦 ¿Dónde colocar sus cosas?</h3>
+          <ul>
+            <li>Durante la adaptación, ubicarlo en una habitación segura.</li>
+            <li>La caja sanitaria debe estar lejos de la comida y el agua.</li>
+            <li>Cambiar las piedras cada vez que estén sucias o con olor.</li>
+          </ul>
+        </div>
+
+        <div class="card-cuidados">
+          <h3>🥣 Alimentación recomendada</h3>
+          <ul>
+            <li>Gatitos pequeños: 5–6 raciones diarias pequeñas.</li>
+            <li>
+              Comida húmeda: 2–3 cucharadas por vez (no guardar lo fermentado).
+            </li>
+            <li>Comida seca: a voluntad hasta saciedad.</li>
+            <li>💧 Agua limpia y fresca siempre disponible.</li>
+            <li>🧼 Limpiar comederos y bebederos todos los días.</li>
+          </ul>
+        </div>
+        <div class="mensaje-fijo">
+          <p>
+            🧸 Cuidar a un michi no es difícil. Solo requiere compromiso y amor.
+            Ellos lo devuelven con ronroneos, ternura y compañía incondicional
+            🐾
+          </p>
+        </div>
+      </section>
+
+      <section id="preparativos" class="fondo-rosa">
+        <h2>🎒 ¿Qué preparar antes de que llegue?</h2>
+        <div class="card-cuidados">
+          <ul>
+            <li>🥣 Alimento balanceado</li>
+            <li>🚽 Caja sanitaria + piedras</li>
+            <li>🍽️ Comederos y bebederos</li>
+            <li>🪵 Rascador</li>
+            <li>📛 Collar con identificación (¡sin cascabel!)</li>
+            <li>🧸 Juguetes</li>
+            <li>🛏️ Un lugar para dormir (camita, moisés, colchón, cuevita)</li>
+            <li>
+              🚗 Jaula o bolso transportador (obligatorio para ir al
+              veterinario)
+            </li>
+          </ul>
+        </div>
+        <div class="mensaje-fijo">
+          <p>
+            ✨ Si no podés conseguir todo antes de recibirlo, ¡no pasa nada!
+            <br />Lo importante es que esté seguro y que vayas consiguiendo todo
+            lo necesario de a poco con amor y responsabilidad 🐾
+          </p>
+        </div>
+      </section>
+
+      <section id="antes-de-adoptar" class="fondo-lavanda">
+        <h2>📋 Qué saber antes de adoptar</h2>
+        <div class="card-cuidados">
+          <ul>
+            <li>
+              🐱 Los michis pueden vivir más de 15 años. ¿Podés comprometerte a
+              cuidarlo por todo ese tiempo?
+            </li>
+            <li>
+              💸 Un gato implica gastos mensuales en comida, piedras sanitarias
+              y salud veterinaria.
+            </li>
+            <li>
+              ⏳ Los animales no son juguetes: requieren tiempo, paciencia y
+              mucho amor, especialmente si están adaptándose.
+            </li>
+            <li>
+              👪 Todos en el hogar deben estar de acuerdo con la adopción.
+            </li>
+            <li>
+              🏥 ¿Podés afrontar gastos imprevistos como vacunas, esterilización
+              o emergencias?
+            </li>
+            <li>
+              🚫 No se entregan gatos para tener en patios o techos. Siempre
+              deben vivir dentro del hogar, protegidos.
+            </li>
+            <li>
+              ❌ Si no podés continuar, jamás abandones. Contactanos, ¡te
+              ayudamos a reubicarlo!
+            </li>
+          </ul>
+        </div>
+        <div class="mensaje-fijo">
+          <p>
+            ✨ Adoptar es un acto de amor profundo. Por favor, hacelo con
+            responsabilidad y compromiso. ¡Gracias por cambiar una vida! 🐾
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+      <div class="modo-toggle">
+        <input
+          type="checkbox"
+          id="modo-switch"
+          aria-label="Alternar modo oscuro"
+        />
+        <label for="modo-switch">
+          <span class="icono-sol">🌞</span>
+          <span class="icono-luna">🌙</span>
+          <span class="slider"></span>
+        </label>
       </div>
-      <div class="mensaje-fijo">
-        ✨ Adoptar es un acto de amor profundo. Por favor, hacelo con responsabilidad y compromiso. ¡Gracias por cambiar
-        una vida! 🐾
-        </p>
-      </div>
-    </section>
-  </main>
+    </footer>
 
-  <footer>
-    <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
-  </footer>
-
-  <script src="js/script.js"></script>
-</body>
-
+    <script src="js/script.js"></script>
+  </body>
 </html>
