@@ -521,6 +521,30 @@ section ul li {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
 }
 
+.frase-transicion {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+#ayuda p {
+  margin-bottom: 10px;
+}
+
+#ayuda h2 {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 480px) {
+  .card-ayuda ul li {
+    font-size: 0.95rem;
+  }
+  .hero-overlay {
+    padding: 15px;
+  }
+}
+
 /* ===================================== */
 /*         TARJETAS DE CUIDADOS          */
 /* ===================================== */

@@ -4,6 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cómo Ayudar | Patitas Salvajes</title>
+    <meta
+      name="description"
+      content="Descubrí cómo ayudar a Patitas Salvajes. Adoptá, ofrecé tránsito, doná o apadriná un gatito en Junín. Todo suma para cambiar vidas."
+    />
+    <meta
+      name="keywords"
+      content="ayuda gatos, donar, tránsito, adoptar, Patitas Salvajes, Junín, felinos"
+    />
+    <meta name="author" content="Patitas Salvajes" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cómo ayudar | Patitas Salvajes 🐾" />
+    <meta
+      property="og:description"
+      content="Descubrí cómo podés colaborar: adoptar, donar, transitar o apadrinar. ¡Tu ayuda salva vidas!"
+    />
+    <meta
+      property="og:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://nat-magui.github.io/patitas-sitio/ayuda.html"
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cómo ayudar | Patitas Salvajes 🐾" />
+    <meta
+      name="twitter:description"
+      content="Descubrí cómo podés colaborar con nuestra red felina en Junín. 🐱"
+    />
+    <meta
+      name="twitter:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -37,20 +75,34 @@
     </header>
 
     <main>
-      <section id="ayuda" class="fondo-rosa">
+      <section class="hero-landing fondo-rosa fade-in">
+        <div class="centrado hero-overlay">
+          <h2>Una pequeña ayuda puede cambiarlo todo 💞</h2>
+          <p>
+            No hace falta hacer mucho para marcar la diferencia. Adoptar, donar,
+            ofrecer tránsito o simplemente difundir… ¡Todo suma para salvar
+            vidas!
+          </p>
+          <div class="botones-inicio">
+            <a href="#ayuda" class="boton">🐾 Ver formas de ayudar</a>
+            <a href="contacto.html" class="boton-secundario">📬 Escribinos</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="ayuda" class="fondo-rosa fade-in">
         <h2>🤝 Cómo ayudar</h2>
-
         <p>
-          Hay muchas formas de ayudar a los michis de Patitas. Todas son
-          valiosas y necesarias 💗
-        </p>
-        <p>
-          Podés colaborar con insumos, donaciones mensuales, ofreciendo
-          tránsito, apadrinando un michi o incluso adoptando. ¡Cualquier forma
-          de ayuda suma muchísimo! 🐾
+          En Patitas hay muchas formas de ayudar, y todas cuentan 💗 Podés
+          donar, ofrecer tránsito, apadrinar o adoptar. No importa cómo,
+          <strong>tu ayuda salva vidas</strong> 🐾
         </p>
 
-        <div class="card-ayuda">
+        <p class="centrado frase-transicion">
+          👇 Elegí la forma que más se ajuste a vos
+        </p>
+
+        <div class="card-ayuda" id="donar-insumos">
           <h3>🧺 Donar insumos</h3>
           <p>
             Si no podés colaborar con dinero, ¡los insumos son más que
@@ -78,7 +130,7 @@
           </div>
         </div>
 
-        <div class="card-ayuda">
+        <div class="card-ayuda" id="donacion-mensual">
           <h3>💸 Ayuda mensual o donación única</h3>
           <p>
             Con tu aporte mensual ayudás a cubrir gastos veterinarios,
@@ -104,9 +156,12 @@
           </div>
         </div>
 
-        <div class="card-ayuda">
+        <div class="card-ayuda" id="apadrinar">
           <h3>👩‍🍼 Apadriná / Amadriná un michi</h3>
-          <p>¿Querés ayudar pero no podés adoptar? ¡Apadrinálo!</p>
+          <p>
+            ¿Querés ayudar pero no podés adoptar? Apadrinar es una forma hermosa
+            de estar presente 💛
+          </p>
           <ul>
             <li>
               🐈 Elegís un michi rescatado y colaborás mensualmente con su
@@ -114,7 +169,8 @@
             </li>
             <li>📷 Recibís fotos y actualizaciones de su progreso</li>
             <li>
-              ❤️ Ideal si te encantan los gatos pero no podés tener uno en casa
+              ❤️ Si amás a los michis pero no podés tener uno en casa, apadrinar
+              es una forma hermosa de estar cerca y cambiarle la vida.
             </li>
           </ul>
           <div class="card-ayuda-suave fondo-verde">
@@ -138,7 +194,7 @@
             >
           </div>
         </div>
-        <div class="card-ayuda">
+        <div class="card-ayuda" id="transito">
           <h3>🏠 Ofrecé tránsito</h3>
           <p>
             Los tránsitos salvan vidas. Un hogar de paso es clave para que un
@@ -162,7 +218,7 @@
             <a href="transito.html" class="boton">🏡 Ofrecer tránsito</a>
           </div>
         </div>
-        <div class="card-ayuda">
+        <div class="card-ayuda" id="adoptar">
           <h3>🐾 ¿Y si adoptás?</h3>
           <p>
             La forma más directa de ayudar es darles un hogar definitivo. Si
@@ -174,7 +230,7 @@
         </div>
       </section>
 
-      <section id="beneficios" class="fondo-celeste">
+      <section id="beneficios" class="fondo-celeste fade-in">
         <h2>🎁 Beneficios de adoptar un michi</h2>
         <div class="grid-beneficios">
           <div class="beneficio-card">
@@ -210,11 +266,30 @@
             <p>Son compañeros ideales para hogares tranquilos</p>
           </div>
         </div>
+        <div class="centrado mensaje-bienvenida fondo-verde fade-in">
+          <p>
+            Cada acción cuenta. No importa cuán pequeña parezca,
+            <strong>ayudar salva vidas</strong>. Gracias por ser parte de esta
+            red de amor 🐱💛
+          </p>
+        </div>
       </section>
     </main>
 
     <footer>
       <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+      <div class="modo-toggle">
+        <input
+          type="checkbox"
+          id="modo-switch"
+          aria-label="Alternar modo oscuro"
+        />
+        <label for="modo-switch">
+          <span class="icono-sol">🌞</span>
+          <span class="icono-luna">🌙</span>
+          <span class="slider"></span>
+        </label>
+      </div>
     </footer>
 
     <script src="js/script.js"></script>
