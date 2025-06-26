@@ -1602,16 +1602,19 @@ blockquote {
   .slider-wrapper {
     overflow-x: auto;
     padding: 0;
+    margin: 0 auto;
   }
 
   .slider-track {
     display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 10px;
     padding: 0 10px;
     width: 100%;
+    box-sizing: border-box;
   }
 
   .slider-track::-webkit-scrollbar {
@@ -1619,9 +1622,8 @@ blockquote {
   }
 
   .michi-slide {
-    min-width: 100%;
-    max-width: 100%;
-    flex: 0 0 100%;
+    flex: 0 0 calc(100% - 20px); /* Descuento del gap para evitar desborde */
+    max-width: calc(100% - 20px);
     scroll-snap-align: start;
     box-sizing: border-box;
   }
@@ -1636,7 +1638,6 @@ blockquote {
     display: none !important;
   }
 }
-
 
 /* ===================================== */
 /* Página "Nosotras" (nosotras.html) */
