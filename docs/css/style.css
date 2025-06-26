@@ -2467,7 +2467,7 @@ textarea:valid {
 
   .carrusel-eventos-item {
     scroll-snap-align: center;
-    flex: 0 0 100%;
+    flex: 0 0 90%;
     display: block !important;
     opacity: 1 !important;
     transform: none !important;
@@ -2480,8 +2480,8 @@ textarea:valid {
     font-style: italic;
     font-size: 1rem;
     color: var(--gris-texto);
-    max-width: 95%;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .carrusel-eventos-item strong {
@@ -2494,9 +2494,25 @@ textarea:valid {
 
   .indicadores-eventos {
     order: 3;
-    margin: 1rem auto;
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .indicadores-eventos span {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .indicadores-eventos .activo {
+    background-color: var(--acento);
   }
 }
+
 
 
 
