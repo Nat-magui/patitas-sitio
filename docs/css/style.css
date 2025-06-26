@@ -1502,6 +1502,11 @@ blockquote {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding: 0 1rem;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .carrusel-historias-contenido::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
 
   .carrusel-historias-contenido .carrusel-item {
