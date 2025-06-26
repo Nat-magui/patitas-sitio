@@ -1825,8 +1825,7 @@ blockquote {
 
   /* Ocultar flechas y bolitas en mobile */
   #prevRescatados,
-  #nextRescatados,
-  #indicadores-slider {
+  #nextRescatados {
     display: none !important;
   }
 }
