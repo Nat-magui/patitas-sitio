@@ -226,6 +226,19 @@ input:checked + label .slider {
   transform: translateX(40px);
 }
 
+@media (max-width: 600px) {
+  #modoOscuroToggle {
+    bottom: 80px;
+    left: 16px;
+    padding: 8px 12px;
+    font-size: 14px;
+    max-width: 90vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
 /* ===================================== */
 /*   Reset y tipografía base (General)   */
 /* ===================================== */
@@ -987,6 +1000,15 @@ blockquote {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  #scrollTop {
+    bottom: 20px;
+    right: 16px;
+    padding: 10px 12px;
+    font-size: 18px;
   }
 }
 
