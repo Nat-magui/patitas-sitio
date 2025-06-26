@@ -1637,17 +1637,15 @@ blockquote {
   overflow: hidden;
 }
 
-.slider-wrapper {
+.slider-wrapper-ultimos {
   position: relative;
-  overflow: hidden; /* evita que el botón se corte */
-  padding: 0 40px; /* más espacio para que entren los botones */
-  margin: auto;
+  overflow: hidden;
+  padding: 0 60px;
   max-width: 1000px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  box-sizing: border-box;
 }
 
 .slider-btn {
@@ -1658,18 +1656,22 @@ blockquote {
   background-color: var(--acento);
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s, transform 0.2s ease;
 }
 
 .slider-btn:hover {
   background-color: #ff7f9f;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  color: white;
+  transform: scale(1.1);
 }
 
 .slider-track {
@@ -1680,34 +1682,85 @@ blockquote {
   transition: transform 0.5s ease-in-out;
 }
 
-.michi-slide {
-  flex: 0 0 calc((100% - 20px) / 2);
-  /* 2 tarjetas visibles */
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 10px;
+.slider-track-ultimos {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  padding: 1rem 0;
+}
+
+.michi-slide-ultimos {
+  flex: 0 0 45%;
+  max-width: 45%;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.michi-slide img {
+.michi-slide-ultimos img {
+  width: 100%;
   height: 240px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-  display: block;
-  background-color: #fffaf5;
-  border: 2px solid var(--rosa-patitas);
-  border-radius: 8px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+/* Botones exclusivos */
+.slider-btn-ultimos {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background-color: var(--acento);
+  color: white;
+  border: none;
+  border-radius: 14px; /* menos redondeado → más cuadrado */
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#prevSlide {
+.slider-btn-ultimos:hover {
+  background-color: #ff7f9f;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#prevRescatados {
   left: 10px;
 }
 
-#nextSlide {
+#nextRescatados {
   right: 10px;
+}
+
+/* Bolitas indicadores */
+.indicadores-slider-ultimos {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.indicador-bolita-ultimos {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fcdde5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.indicador-bolita-ultimos.activo {
+  background-color: var(--acento);
+  box-shadow: 0 0 0 2px white, 0 0 6px var(--acento);
 }
 
 @media (max-width: 600px) {

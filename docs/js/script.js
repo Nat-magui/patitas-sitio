@@ -298,129 +298,76 @@ document.addEventListener("DOMContentLoaded", () => {
   fadeIns.forEach((el) => observer.observe(el));
 
   // Carrusel "Últimos rescatados"
-  function iniciarSliderUltimosRescatados() {
-    const sliderTrack = document.getElementById("sliderTrack");
-    const prevSlide = document.getElementById("prevSlide");
-    const nextSlide = document.getElementById("nextSlide");
-    const slides = document.querySelectorAll(".michi-slide");
+  (() => {
+    const slider = document.getElementById("sliderTrackUltimos");
+    const slides = document.querySelectorAll(".michi-slide-ultimos");
+    const prev = document.getElementById("prevRescatados");
+    const next = document.getElementById("nextRescatados");
     const indicadores = document.getElementById("indicadores-slider");
-    let autoScroll;
 
-    if (sliderTrack && slides.length > 0 && indicadores) {
-      esperarCargaImagenes(sliderTrack, () => {
-        const isMobile = window.innerWidth <= 600;
-        if (isMobile) {
-          // Aplicamos clases especiales solo para mobile
-          sliderTrack.classList.add("slider-track-mobile");
-          nextSlide?.classList.add("oculto");
-          prevSlide?.classList.add("oculto");
-          indicadores?.classList.add("oculto");
+    if (!slider || !slides.length || !prev || !next || !indicadores) return;
 
-          slides.forEach((slide) => {
-            slide.classList.add("michi-slide-mobile");
-          });
+    let current = 0;
+    let visible = 2;
+    let autoplay;
+    let reinicio; // 👈 importante
 
-          return;
-        }
+    const actualizar = () => {
+      const slideWidth = slides[0].offsetWidth + 20;
+      slider.style.transform = `translateX(-${current * slideWidth}px)`;
+      indicadores
+        .querySelectorAll(".indicador-bolita-ultimos")
+        .forEach((dot, i) => dot.classList.toggle("activo", i === current));
+    };
 
-        let currentIndex = 0;
-        let visibleCards = window.matchMedia("(max-width: 600px)").matches
-          ? 1
-          : 2;
-        const totalSlides = slides.length;
+    const avanzar = () => {
+      current = (current + 1) % (slides.length - visible + 1);
+      actualizar();
+    };
 
-        // Función para actualizar cuántos michis mostrar
-        const updateVisibleCards = () => {
-          visibleCards = window.matchMedia("(max-width: 600px)").matches
-            ? 1
-            : 2;
-          updateIndicators();
-          updateSlider();
-        };
+    const retroceder = () => {
+      current =
+        (current - 1 + (slides.length - visible + 1)) %
+        (slides.length - visible + 1);
+      actualizar();
+    };
 
-        window.addEventListener("resize", updateVisibleCards);
+    const pausarYReanudar = () => {
+      clearInterval(autoplay);
+      clearTimeout(reinicio);
+      reinicio = setTimeout(() => {
+        autoplay = setInterval(avanzar, 5000);
+      }, 6000); // ⏱️ vuelve a activarse luego de 6 segundos
+    };
 
-        // Crear indicadores
-        function updateIndicators() {
-          indicadores.innerHTML = "";
-          const totalSteps = totalSlides - visibleCards + 1;
-          for (let i = 0; i < totalSteps; i++) {
-            const dot = document.createElement("span");
-            dot.className = "indicador-bolita-slider";
-            if (i === currentIndex) dot.classList.add("activo");
-            dot.addEventListener("click", () => {
-              currentIndex = i;
-              updateSlider();
-            });
-            indicadores.appendChild(dot);
-          }
-        }
+    prev.addEventListener("click", () => {
+      retroceder();
+      pausarYReanudar();
+    });
 
-        function updateSlider(skipTransition = false) {
-          const slideWidth = slides[0].getBoundingClientRect().width + 20;
-          const offset = slideWidth * currentIndex;
+    next.addEventListener("click", () => {
+      avanzar();
+      pausarYReanudar();
+    });
 
-          if (skipTransition) {
-            sliderTrack.style.transition = "none";
-          } else {
-            sliderTrack.style.transition = "transform 0.5s ease-in-out";
-          }
-
-          sliderTrack.style.transform = `translateX(-${offset}px)`;
-
-          const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
-          dots.forEach((dot, i) =>
-            dot.classList.toggle("activo", i === currentIndex)
-          );
-        }
-
-        nextSlide?.addEventListener("click", () => {
-          const maxIndex = totalSlides - visibleCards;
-          if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateSlider();
-          } else {
-            // animamos hasta el final
-            currentIndex++;
-            updateSlider();
-
-            // después de la animación, volver sin transición
-            setTimeout(() => {
-              currentIndex = 0;
-              updateSlider(true); // sin transición
-            }, 510);
-          }
-        });
-
-        prevSlide?.addEventListener("click", () => {
-          const maxIndex = totalSlides - visibleCards;
-          currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-          updateSlider();
-        });
-
-        sliderTrack.addEventListener("mouseenter", () =>
-          clearInterval(autoScroll)
-        );
-        sliderTrack.addEventListener("mouseleave", () => {
-          autoScroll = setInterval(() => {
-            const maxIndex = totalSlides - visibleCards;
-            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-            updateSlider();
-          }, 5000);
-        });
-
-        // Inicial
-        updateIndicators();
-        updateSlider();
-        // Iniciar scroll automático al cargar (solo escritorio)
-        autoScroll = setInterval(() => {
-          const maxIndex = totalSlides - visibleCards;
-          currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-          updateSlider();
-        }, 5000);
+    // Crear bolitas
+    const total = slides.length - visible + 1;
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("span");
+      dot.className = "indicador-bolita-ultimos";
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        current = i;
+        actualizar();
+        pausarYReanudar();
       });
+      indicadores.appendChild(dot);
     }
-  }
+
+    autoplay = setInterval(avanzar, 5000);
+    actualizar();
+  })();
+
   // Contador inicial del carrito
   actualizarContadorCarrito();
 
