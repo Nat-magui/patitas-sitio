@@ -1830,6 +1830,20 @@ blockquote {
     margin-top: 12px;
   }
 
+  .indicador-bolita-ultimos {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fcdde5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .indicador-bolita-ultimos.activo {
+    background-color: var(--acento);
+    box-shadow: 0 0 4px var(--acento);
+  }
+
   /* Ocultar flechas */
   #prevRescatados,
   #nextRescatados {
