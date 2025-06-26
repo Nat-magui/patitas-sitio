@@ -1471,7 +1471,7 @@ blockquote {
 
 @media (max-width: 768px) {
   .carrusel-btn {
-    display: none;
+    display: none !important;
   }
 
   .carrusel-historias-contenido {
@@ -1480,12 +1480,12 @@ blockquote {
     display: flex;
     gap: 1rem;
     scroll-behavior: smooth;
-    padding: 1rem;
+    padding: 1rem 0;
     -webkit-overflow-scrolling: touch;
   }
 
   .carrusel-item {
-    flex: 0 0 88%;
+    flex: 0 0 90%;
     scroll-snap-align: center;
     opacity: 1 !important;
     transform: none !important;
