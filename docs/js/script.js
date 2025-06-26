@@ -240,30 +240,17 @@ document.addEventListener("DOMContentLoaded", () => {
       esperarCargaImagenes(sliderTrack, () => {
         const isMobile = window.innerWidth <= 600;
         if (isMobile) {
-          // Solo para móvil: scroll táctil
-          sliderTrack.style.display = "flex";
-          sliderTrack.style.scrollSnapType = "x mandatory";
-          sliderTrack.style.overflowX = "auto";
-          sliderTrack.style.webkitOverflowScrolling = "touch";
-          sliderTrack.style.gap = "1rem";
-          sliderTrack.style.width = "100%";
-          sliderTrack.style.boxSizing = "border-box";
-          sliderTrack.style.transform = "none";
-
+          // Aplicamos clases especiales solo para mobile
+          sliderTrack.classList.add("slider-track-mobile");
           nextSlide?.classList.add("oculto");
           prevSlide?.classList.add("oculto");
           indicadores?.classList.add("oculto");
 
           slides.forEach((slide) => {
-            slide.style.scrollSnapAlign = "start";
-            slide.style.flex = "0 0 100%";
-            slide.style.minWidth = "100%";
-            slide.style.maxWidth = "100%";
-            slide.style.boxSizing = "border-box";
-            slide.style.padding = "0"; // Por si algún padding genera desborde
+            slide.classList.add("michi-slide-mobile");
           });
 
-          return; // Salta el resto del carrusel en mobile
+          return;
         }
 
         let currentIndex = 0;
