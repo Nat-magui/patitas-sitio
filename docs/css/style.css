@@ -2471,12 +2471,32 @@ textarea:valid {
     display: block !important;
     opacity: 1 !important;
     transform: none !important;
+
+    background-color: white;
+    padding: 1.2rem;
+    border-radius: 16px;
+    border: 1px dashed var(--verde-salvajes);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gris-texto);
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+  .carrusel-eventos-item strong {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
   }
 
   .indicadores-eventos {
     order: 3;
-    margin-top: 0.5rem;
+    margin: 1rem auto;
   }
 }
+
 
 
