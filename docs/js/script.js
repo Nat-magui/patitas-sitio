@@ -558,93 +558,89 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   })();
+//carrusel historas de la calle al sillon
+(() => {
+  const items = document.querySelectorAll("#carruselHistorias .carrusel-item");
+  const prev = document.getElementById("prevHistoria");
+  const next = document.getElementById("nextHistoria");
+  const indicadores = document.getElementById("indicadores-historias");
+  const carrusel = document.getElementById("carruselHistorias");
 
-  (() => {
-    const items = document.querySelectorAll(
-      "#carruselHistorias .carrusel-item"
-    );
-    const prev = document.getElementById("prevHistoria");
-    const next = document.getElementById("nextHistoria");
-    const indicadores = document.getElementById("indicadores-historias");
-    const carrusel = document.getElementById("carruselHistorias");
-    const esEscritorio = window.innerWidth > 768;
+  if (!items.length || !carrusel || !indicadores) return;
 
-    if (items.length && carrusel && indicadores) {
-      let index = 0;
-      let autoplay;
-      let startX = 0;
+  let index = 0;
+  let autoplay;
+  let startX = 0;
 
-      // Crear los indicadores (solo en escritorio)
-      items.forEach((_, i) => {
-        const dot = document.createElement("span");
-        dot.classList.add("indicador-transito");
-        if (i === 0) dot.classList.add("activo");
-        dot.addEventListener("click", () => {
-          index = i;
-          actualizar();
-        });
-        indicadores.appendChild(dot);
-      });
+  const esEscritorio = window.innerWidth > 768;
 
-      const actualizar = () => {
-        items.forEach((item, i) => {
-          if (esEscritorio) {
-            item.classList.toggle("activo", i === index);
-          } else {
-            item.classList.add("activo"); // siempre visibles en móvil
-          }
-        });
-
-        indicadores
-          .querySelectorAll(".indicador-transito")
-          .forEach((dot, i) => {
-            if (esEscritorio) {
-              dot.classList.toggle("activo", i === index);
-            } else {
-              dot.classList.remove("activo");
-            }
-          });
-      };
-
-      // Flechas (solo en escritorio)
-      if (esEscritorio) {
-        if (prev && next) {
-          prev.addEventListener("click", () => {
-            index = (index - 1 + items.length) % items.length;
-            actualizar();
-          });
-
-          next.addEventListener("click", () => {
-            index = (index + 1) % items.length;
-            actualizar();
-          });
-        }
-
-        autoplay = setInterval(() => {
-          index = (index + 1) % items.length;
-          actualizar();
-        }, 6000);
-      }
-
-      // Swipe en móvil
-      if (!esEscritorio) {
-        carrusel.addEventListener("touchstart", (e) => {
-          startX = e.touches[0].clientX;
-        });
-
-        carrusel.addEventListener("touchend", (e) => {
-          const endX = e.changedTouches[0].clientX;
-          const diff = startX - endX;
-
-          if (diff > 50) index = (index + 1) % items.length;
-          else if (diff < -50)
-            index = (index - 1 + items.length) % items.length;
-
-          actualizar();
-        });
-      }
-
+  // Crear bolitas
+  items.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("indicador-transito");
+    if (i === 0) dot.classList.add("activo");
+    dot.addEventListener("click", () => {
+      index = i;
       actualizar();
-    }
-  })();
+    });
+    indicadores.appendChild(dot);
+  });
+
+  const actualizar = () => {
+    items.forEach((item, i) => {
+      if (esEscritorio) {
+        item.classList.toggle("activo", i === index);
+      } else {
+        item.classList.add("activo"); // mostrar todos en móvil
+      }
+    });
+
+    indicadores
+      .querySelectorAll(".indicador-transito")
+      .forEach((dot, i) => {
+        dot.classList.toggle("activo", i === index);
+      });
+  };
+
+  // Flechas en escritorio
+  if (esEscritorio) {
+    prev?.addEventListener("click", () => {
+      index = (index - 1 + items.length) % items.length;
+      actualizar();
+    });
+
+    next?.addEventListener("click", () => {
+      index = (index + 1) % items.length;
+      actualizar();
+    });
+
+    autoplay = setInterval(() => {
+      index = (index + 1) % items.length;
+      actualizar();
+    }, 6000);
+  }
+
+  // Swipe en móvil
+  if (!esEscritorio) {
+    carrusel.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    carrusel.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (diff > 50) {
+        index = (index + 1) % items.length;
+        actualizar();
+      } else if (diff < -50) {
+        index = (index - 1 + items.length) % items.length;
+        actualizar();
+      }
+    });
+  }
+
+  actualizar();
+})();
+
 });
