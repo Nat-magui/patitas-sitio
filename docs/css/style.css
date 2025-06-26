@@ -1600,25 +1600,34 @@ blockquote {
 
 @media (max-width: 600px) {
   .slider-track {
-    gap: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    scroll-snap-type: x mandatory;
+    width: max-content;
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    gap: 10px;
+    padding: 0 5px;
   }
+
+  .slider-track::-webkit-scrollbar {
+    display: none; /* oculta scrollbar */
+  }
+
   .slider-wrapper {
     padding: 0 10px;
+    overflow: visible; /* permite que el scroll funcione */
   }
 
   .michi-slide {
+    flex: 0 0 100%; /* fuerza una sola tarjeta por fila */
     scroll-snap-align: start;
+    box-sizing: border-box;
   }
 
   #prevSlide,
   #nextSlide {
-    padding: 10px;
-    font-size: 1.2rem;
+    display: none;
   }
 }
 

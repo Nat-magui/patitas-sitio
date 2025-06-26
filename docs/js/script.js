@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function updateSlider(skipTransition = false) {
-          const slideWidth = slides[0].offsetWidth + 20;
+          const slideWidth = slides[0].getBoundingClientRect().width + 20;
           const offset = slideWidth * currentIndex;
 
           if (skipTransition) {
