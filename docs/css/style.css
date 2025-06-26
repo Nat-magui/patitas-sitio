@@ -2442,3 +2442,33 @@ textarea:valid {
   font-weight: 600;
   color: #222;
 }
+
+@media (max-width: 600px) {
+  .carrusel-eventos {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .carrusel-eventos-btn {
+    width: 100%;
+    max-width: 140px;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  .carrusel-eventos-btn:first-child {
+    order: 1;
+  }
+
+  .carrusel-eventos-contenido {
+    order: 2;
+  }
+
+  .carrusel-eventos-btn:last-child {
+    order: 3;
+  }
+}
+
