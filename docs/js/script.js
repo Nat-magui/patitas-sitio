@@ -447,169 +447,181 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Carrusel de Lo que nos dejó cada encuentro - eventos
   (() => {
-  const items = document.querySelectorAll("#carruselEventos .carrusel-eventos-item");
-  const prevBtn = document.getElementById("prevEvento");
-  const nextBtn = document.getElementById("nextEvento");
-  const indicadores = document.getElementById("indicadores-eventos");
-  const carrusel = document.getElementById("carruselEventos");
-  const isMobile = window.innerWidth <= 600;
+    const items = document.querySelectorAll(
+      "#carruselEventos .carrusel-eventos-item"
+    );
+    const prevBtn = document.getElementById("prevEvento");
+    const nextBtn = document.getElementById("nextEvento");
+    const indicadores = document.getElementById("indicadores-eventos");
+    const carrusel = document.getElementById("carruselEventos");
+    const isMobile = window.innerWidth <= 600;
 
-  if (!carrusel || items.length === 0 || !indicadores) return;
+    if (!carrusel || items.length === 0 || !indicadores) return;
 
-  let currentIndex = 0;
-  let autoplayInterval;
+    let currentIndex = 0;
+    let autoplayInterval;
 
-  // Crear indicadores (siempre)
-  items.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.classList.add("indicador-bolita");
-    if (i === 0) dot.classList.add("activo");
-    dot.addEventListener("click", () => {
-      if (isMobile) {
-        items[i].scrollIntoView({ behavior: "smooth", inline: "center" });
-      } else {
-        irA(i);
+    // Crear indicadores (siempre)
+    items.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-bolita");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        if (isMobile) {
+          items[i].scrollIntoView({ behavior: "smooth", inline: "center" });
+        } else {
+          irA(i);
+          detenerAutoplay();
+        }
+      });
+      indicadores.appendChild(dot);
+    });
+
+    if (isMobile) {
+      // Estilos forzados en mobile
+      items.forEach((item) => {
+        item.style.display = "block";
+        item.style.opacity = "1";
+        item.style.transform = "none";
+      });
+
+      // Scroll tracking en mobile
+      carrusel.addEventListener("scroll", () => {
+        const scrollLeft = carrusel.scrollLeft;
+        const itemWidth = carrusel.clientWidth;
+        const index = Math.round(scrollLeft / itemWidth);
+        [...indicadores.children].forEach((dot, i) => {
+          dot.classList.toggle("activo", i === index);
+        });
+      });
+
+      return; // no seguir con la lógica de escritorio
+    }
+
+    // ---- Lógica para escritorio ----
+    function updateCarrusel() {
+      items.forEach((item, i) => {
+        item.classList.toggle("activo", i === currentIndex);
+      });
+
+      [...indicadores.children].forEach((dot, i) => {
+        dot.classList.toggle("activo", i === currentIndex);
+      });
+    }
+
+    function irA(index) {
+      currentIndex = (index + items.length) % items.length;
+      updateCarrusel();
+    }
+
+    function siguiente() {
+      irA(currentIndex + 1);
+    }
+
+    function anterior() {
+      irA(currentIndex - 1);
+    }
+
+    function iniciarAutoplay() {
+      autoplayInterval = setInterval(siguiente, 5000);
+    }
+
+    function detenerAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    updateCarrusel();
+    iniciarAutoplay();
+
+    prevBtn?.addEventListener("click", () => {
+      anterior();
+      detenerAutoplay();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      siguiente();
+      detenerAutoplay();
+    });
+
+    // Swipe manual (escritorio táctil)
+    let startX = 0;
+    carrusel.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+    carrusel.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) siguiente();
+        else anterior();
         detenerAutoplay();
       }
     });
-    indicadores.appendChild(dot);
-  });
-
-  if (isMobile) {
-    // Estilos forzados en mobile
-    items.forEach((item) => {
-      item.style.display = "block";
-      item.style.opacity = "1";
-      item.style.transform = "none";
-    });
-
-    // Scroll tracking en mobile
-    carrusel.addEventListener("scroll", () => {
-      const scrollLeft = carrusel.scrollLeft;
-      const itemWidth = carrusel.clientWidth;
-      const index = Math.round(scrollLeft / itemWidth);
-      [...indicadores.children].forEach((dot, i) => {
-        dot.classList.toggle("activo", i === index);
-      });
-    });
-
-    return; // no seguir con la lógica de escritorio
-  }
-
-  // ---- Lógica para escritorio ----
-  function updateCarrusel() {
-    items.forEach((item, i) => {
-      item.classList.toggle("activo", i === currentIndex);
-    });
-
-    [...indicadores.children].forEach((dot, i) => {
-      dot.classList.toggle("activo", i === currentIndex);
-    });
-  }
-
-  function irA(index) {
-    currentIndex = (index + items.length) % items.length;
-    updateCarrusel();
-  }
-
-  function siguiente() {
-    irA(currentIndex + 1);
-  }
-
-  function anterior() {
-    irA(currentIndex - 1);
-  }
-
-  function iniciarAutoplay() {
-    autoplayInterval = setInterval(siguiente, 5000);
-  }
-
-  function detenerAutoplay() {
-    clearInterval(autoplayInterval);
-  }
-
-  updateCarrusel();
-  iniciarAutoplay();
-
-  prevBtn?.addEventListener("click", () => {
-    anterior();
-    detenerAutoplay();
-  });
-
-  nextBtn?.addEventListener("click", () => {
-    siguiente();
-    detenerAutoplay();
-  });
-
-  // Swipe manual (escritorio táctil)
-  let startX = 0;
-  carrusel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-  carrusel.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) siguiente();
-      else anterior();
-      detenerAutoplay();
-    }
-  });
-})();
+  })();
 
   // Carrusel de historias
-  const itemsHistoria = document.querySelectorAll(
-    "#carruselHistorias .carrusel-item"
-  );
-  const prevHistoria = document.getElementById("prevHistoria");
-  const nextHistoria = document.getElementById("nextHistoria");
-  const indicadoresHistoria = document.getElementById("indicadores-historias");
+  (() => {
+    const itemsHistoria = document.querySelectorAll(
+      "#carruselHistorias .carrusel-item"
+    );
+    const prevHistoria = document.getElementById("prevHistoria");
+    const nextHistoria = document.getElementById("nextHistoria");
+    const indicadoresHistoria = document.getElementById(
+      "indicadores-historias"
+    );
+    const carruselHistorias = document.getElementById("carruselHistorias");
 
-  if (
-    itemsHistoria.length > 0 &&
-    prevHistoria &&
-    nextHistoria &&
-    indicadoresHistoria
-  ) {
-    let currentHistoria = 0;
+    if (
+      itemsHistoria.length > 0 &&
+      prevHistoria &&
+      nextHistoria &&
+      indicadoresHistoria &&
+      carruselHistorias
+    ) {
+      let currentHistoria = 0;
+      let autoplay;
 
-    itemsHistoria.forEach((_, i) => {
-      const dot = document.createElement("span");
-      dot.classList.add("indicador-transito");
-      if (i === 0) dot.classList.add("activo");
-      dot.addEventListener("click", () => {
-        currentHistoria = i;
+      itemsHistoria.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.classList.add("indicador-transito");
+        if (i === 0) dot.classList.add("activo");
+        dot.addEventListener("click", () => {
+          currentHistoria = i;
+          actualizarCarruselHistorias();
+        });
+        indicadoresHistoria.appendChild(dot);
+      });
+
+      const actualizarCarruselHistorias = () => {
+        itemsHistoria.forEach((item, i) =>
+          item.classList.toggle("activo", i === currentHistoria)
+        );
+        indicadoresHistoria
+          .querySelectorAll(".indicador-transito")
+          .forEach((dot, i) =>
+            dot.classList.toggle("activo", i === currentHistoria)
+          );
+      };
+
+      prevHistoria.addEventListener("click", () => {
+        currentHistoria =
+          (currentHistoria - 1 + itemsHistoria.length) % itemsHistoria.length;
         actualizarCarruselHistorias();
       });
-      indicadoresHistoria.appendChild(dot);
-    });
 
-    const actualizarCarruselHistorias = () => {
-      itemsHistoria.forEach((item, i) =>
-        item.classList.toggle("activo", i === currentHistoria)
+      nextHistoria.addEventListener("click", () => {
+        currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
+        actualizarCarruselHistorias();
+      });
+
+      autoplay = setInterval(() => {
+        currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
+        actualizarCarruselHistorias();
+      }, 6000);
+
+      carruselHistorias.addEventListener("touchstart", () =>
+        clearInterval(autoplay)
       );
-      indicadoresHistoria
-        .querySelectorAll(".indicador-transito")
-        .forEach((dot, i) =>
-          dot.classList.toggle("activo", i === currentHistoria)
-        );
-    };
-
-    prevHistoria.addEventListener("click", () => {
-      currentHistoria =
-        (currentHistoria - 1 + itemsHistoria.length) % itemsHistoria.length;
-      actualizarCarruselHistorias();
-    });
-
-    nextHistoria.addEventListener("click", () => {
-      currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
-      actualizarCarruselHistorias();
-    });
-
-    setInterval(() => {
-      currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
-      actualizarCarruselHistorias();
-    }, 6000);
-  }
-  iniciarSliderUltimosRescatados();
+    }
+  })();
 });

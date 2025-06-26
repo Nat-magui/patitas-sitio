@@ -380,11 +380,13 @@ header {
 .boton-secundario {
   background-color: #88a97f;
   color: white;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
 .boton-secundario:hover {
   background-color: #6f8c67;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
 }
 
 /* Botón claro */
@@ -1110,6 +1112,7 @@ blockquote {
   justify-content: center;
   gap: 15px;
   margin-top: 20px;
+  margin-bottom: 2rem;
 }
 
 .carrusel-btn {
@@ -1397,6 +1400,19 @@ blockquote {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.historia-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 💡 centra verticalmente */
+  align-items: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .historia-card:hover {
@@ -1407,6 +1423,7 @@ blockquote {
   display: flex;
   gap: 0;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 .historia-imgs img {
@@ -1414,10 +1431,6 @@ blockquote {
   height: 200px;
   object-fit: cover;
   display: block;
-}
-
-.historia-info {
-  padding: 15px 20px;
 }
 
 .historia-info h3 {
@@ -1467,6 +1480,9 @@ blockquote {
   transform: scale(0.95);
   transition: opacity 0.4s ease;
   display: none;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .carrusel-item.activo {
@@ -1480,13 +1496,19 @@ blockquote {
   border: none;
   color: white;
   font-size: 24px;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 50%;
+  width: 56px;
+  height: 44px;
+  border-radius: 10px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.3s;
 }
 
 #prevHistoria {
