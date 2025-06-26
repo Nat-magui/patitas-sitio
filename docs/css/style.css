@@ -1602,39 +1602,55 @@ blockquote {
   .slider-wrapper {
     overflow-x: auto;
     padding: 0;
-    margin: 0 auto;
+    width: 100vw; /* 🔧 Asegura que no se pase del ancho visible */
+    box-sizing: border-box;
   }
 
   .slider-track {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    gap: 16px;
     scroll-snap-type: x mandatory;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    gap: 10px;
-    padding: 0 10px;
-    width: 100%;
+    padding: 0 8px;
     box-sizing: border-box;
-  }
-
-  .slider-track::-webkit-scrollbar {
-    display: none;
   }
 
   .michi-slide {
-    flex: 0 0 calc(100% - 20px); /* Descuento del gap para evitar desborde */
-    max-width: calc(100% - 20px);
-    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 100vw; /* 🔧 Usa vw para limitar real al viewport */
+    max-width: 90vw;
+    scroll-snap-align: center;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 12px;
     box-sizing: border-box;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .michi-slide img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .michi-slide h3 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .michi-slide p {
+    font-size: 0.9rem;
+    padding: 0 6px;
+    line-height: 1.4;
   }
 
   #prevSlide,
   #nextSlide,
   #indicadores-slider {
-    display: none !important;
-  }
-
-  .oculto {
     display: none !important;
   }
 }
