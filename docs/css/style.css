@@ -1456,12 +1456,43 @@ blockquote {
   text-align: center;
 }
 
+.carrusel-historias {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
 @media (min-width: 768px) {
   .historia-imgs img {
     height: 260px;
     object-position: top; /* Asegura que se vea el texto arriba */
   }
 }
+
+@media (max-width: 768px) {
+  .carrusel-btn {
+    display: none;
+  }
+
+  .carrusel-historias-contenido {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    padding: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carrusel-item {
+    flex: 0 0 88%;
+    scroll-snap-align: center;
+    opacity: 1 !important;
+    transform: none !important;
+    display: block !important;
+  }
+}
+
 /* ===================================== */
 /* Carrusel historias (historias.html) */
 /* ===================================== */
