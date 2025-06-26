@@ -1764,26 +1764,36 @@ blockquote {
 }
 
 @media (max-width: 600px) {
-  .slider-wrapper {
-    overflow-x: auto;
+  #ultimos-rescatados {
+    padding: 20px 0;
+  }
+
+  .slider-wrapper-ultimos {
     padding: 0;
-    width: 100vw; /* 🔧 Asegura que no se pase del ancho visible */
+    overflow-x: auto;
+    width: 100vw;
     box-sizing: border-box;
   }
 
-  .slider-track {
+  .slider-track-ultimos {
     display: flex;
     gap: 16px;
     scroll-snap-type: x mandatory;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding: 0 8px;
+    width: 100%;
     box-sizing: border-box;
+    transform: none !important;
   }
 
-  .michi-slide {
+  .slider-track-ultimos::-webkit-scrollbar {
+    display: none;
+  }
+
+  .michi-slide-ultimos {
     flex: 0 0 auto;
-    width: 100vw; /* 🔧 Usa vw para limitar real al viewport */
+    width: 100vw;
     max-width: 90vw;
     scroll-snap-align: center;
     background-color: #fff;
@@ -1795,52 +1805,30 @@ blockquote {
     text-align: center;
   }
 
-  .michi-slide img {
+  .michi-slide-ultimos img {
     width: 100%;
     max-height: 180px;
     object-fit: cover;
     border-radius: 12px;
   }
 
-  .michi-slide h3 {
+  .michi-slide-ultimos h3 {
     font-size: 1rem;
     margin-top: 10px;
   }
 
-  .michi-slide p {
+  .michi-slide-ultimos p {
     font-size: 0.9rem;
     padding: 0 6px;
     line-height: 1.4;
   }
 
-  #prevSlide,
-  #nextSlide,
+  /* Ocultar flechas y bolitas en mobile */
+  #prevRescatados,
+  #nextRescatados,
   #indicadores-slider {
     display: none !important;
   }
-}
-
-.slider-track-mobile {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  overflow-x: auto !important;
-  scroll-snap-type: x mandatory !important;
-  -webkit-overflow-scrolling: touch !important;
-  gap: 10px !important;
-  padding: 0 10px !important;
-  width: 100% !important;
-  transform: none !important;
-}
-
-.slider-track-mobile::-webkit-scrollbar {
-  display: none !important;
-}
-
-.michi-slide-mobile {
-  flex: 0 0 calc(100% - 20px) !important;
-  max-width: calc(100% - 20px) !important;
-  scroll-snap-align: start !important;
-  box-sizing: border-box !important;
 }
 
 /* ===================================== */
