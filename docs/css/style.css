@@ -2461,16 +2461,20 @@ textarea:valid {
     display: flex;
     gap: 1rem;
     scroll-behavior: smooth;
-    padding: 1rem 0;
+    padding: 1rem;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .carrusel-eventos-item {
     scroll-snap-align: center;
-    flex: 0 0 90%;
+    flex: 0 0 88%; /* 🔧 Menos del 100% para que no rompa */
+    box-sizing: border-box;
     display: block !important;
     opacity: 1 !important;
     transform: none !important;
+    margin: 0 auto;
 
     background-color: white;
     padding: 1.2rem;
@@ -2480,8 +2484,6 @@ textarea:valid {
     font-style: italic;
     font-size: 1rem;
     color: var(--gris-texto);
-    margin: 0 auto;
-    box-sizing: border-box;
   }
 
   .carrusel-eventos-item strong {
@@ -2512,7 +2514,3 @@ textarea:valid {
     background-color: var(--acento);
   }
 }
-
-
-
-
