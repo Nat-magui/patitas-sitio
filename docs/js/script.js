@@ -445,103 +445,130 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-(() => {
-  const items = document.querySelectorAll("#carruselEventos .carrusel-eventos-item");
-  const prevBtn = document.getElementById("prevEvento");
-  const nextBtn = document.getElementById("nextEvento");
-  const indicadores = document.getElementById("indicadores-eventos");
-  const carrusel = document.getElementById("carruselEventos");
+  // Carrusel de Lo que nos dejó cada encuentro - eventos
+  (() => {
+    const items = document.querySelectorAll(
+      "#carruselEventos .carrusel-eventos-item"
+    );
+    const prevBtn = document.getElementById("prevEvento");
+    const nextBtn = document.getElementById("nextEvento");
+    const indicadores = document.getElementById("indicadores-eventos");
+    const carrusel = document.getElementById("carruselEventos");
 
-  if (!carrusel || items.length === 0 || !indicadores) return;
+    if (!carrusel || items.length === 0 || !indicadores) return;
 
-  let currentIndex = 0;
-  let autoplayInterval;
-  const isMobile = window.innerWidth <= 600;
+    let currentIndex = 0;
+    let autoplayInterval;
+    const isMobile = window.innerWidth <= 600;
 
-  if (isMobile) {
-    // Mostrar todos los ítems y no controlar visibilidad por JS
-    items.forEach((item) => {
-      item.style.display = "block";
-      item.style.opacity = "1";
-      item.style.transform = "none";
-    });
-    // Nada más: el scroll táctil se maneja solo con CSS
-    return;
-  }
+    if (isMobile) {
+      // Mostrar todos los ítems visibles para scroll horizontal
+      items.forEach((item) => {
+        item.style.display = "block";
+        item.style.opacity = "1";
+        item.style.transform = "none";
+      });
 
-  // ---- Comportamiento para escritorio ----
-  function updateCarrusel() {
-    items.forEach((item, i) => {
-      item.classList.toggle("activo", i === currentIndex);
-    });
+      // Crear indicadores también en móvil
+      items.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.classList.add("indicador-bolita");
+        if (i === 0) dot.classList.add("activo");
+        dot.addEventListener("click", () => {
+          items[i].scrollIntoView({ behavior: "smooth", inline: "center" });
+        });
+        indicadores.appendChild(dot);
+      });
 
-    [...indicadores.children].forEach((dot, i) => {
-      dot.classList.toggle("activo", i === currentIndex);
-    });
-  }
+      // Detectar scroll para activar el indicador correspondiente
+      const carruselContenido = document.querySelector(
+        ".carrusel-eventos-contenido"
+      );
+      if (carruselContenido) {
+        carruselContenido.addEventListener("scroll", () => {
+          const scrollLeft = carruselContenido.scrollLeft;
+          const itemWidth = carruselContenido.clientWidth;
+          const index = Math.round(scrollLeft / itemWidth);
+          [...indicadores.children].forEach((dot, i) => {
+            dot.classList.toggle("activo", i === index);
+          });
+        });
+      }
 
-  function irA(index) {
-    currentIndex = (index + items.length) % items.length;
-    updateCarrusel();
-  }
-
-  function siguiente() {
-    irA(currentIndex + 1);
-  }
-
-  function anterior() {
-    irA(currentIndex - 1);
-  }
-
-  function iniciarAutoplay() {
-    autoplayInterval = setInterval(siguiente, 5000);
-  }
-
-  function detenerAutoplay() {
-    clearInterval(autoplayInterval);
-  }
-
-  // Crear indicadores
-  items.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.classList.add("indicador-bolita");
-    if (i === 0) dot.classList.add("activo");
-    dot.addEventListener("click", () => {
-      irA(i);
-      detenerAutoplay();
-    });
-    indicadores.appendChild(dot);
-  });
-
-  updateCarrusel();
-  iniciarAutoplay();
-
-  // Botones
-  prevBtn?.addEventListener("click", () => {
-    anterior();
-    detenerAutoplay();
-  });
-  nextBtn?.addEventListener("click", () => {
-    siguiente();
-    detenerAutoplay();
-  });
-
-  // Swipe manual (escritorio táctil)
-  let startX = 0;
-  carrusel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-  carrusel.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) siguiente();
-      else anterior();
-      detenerAutoplay();
+      return;
     }
-  });
-})();
+    // ---- Comportamiento para escritorio ----
+    function updateCarrusel() {
+      items.forEach((item, i) => {
+        item.classList.toggle("activo", i === currentIndex);
+      });
 
+      [...indicadores.children].forEach((dot, i) => {
+        dot.classList.toggle("activo", i === currentIndex);
+      });
+    }
+
+    function irA(index) {
+      currentIndex = (index + items.length) % items.length;
+      updateCarrusel();
+    }
+
+    function siguiente() {
+      irA(currentIndex + 1);
+    }
+
+    function anterior() {
+      irA(currentIndex - 1);
+    }
+
+    function iniciarAutoplay() {
+      autoplayInterval = setInterval(siguiente, 5000);
+    }
+
+    function detenerAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    // Crear indicadores
+    items.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-bolita");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        irA(i);
+        detenerAutoplay();
+      });
+      indicadores.appendChild(dot);
+    });
+
+    updateCarrusel();
+    iniciarAutoplay();
+
+    // Botones
+    prevBtn?.addEventListener("click", () => {
+      anterior();
+      detenerAutoplay();
+    });
+    nextBtn?.addEventListener("click", () => {
+      siguiente();
+      detenerAutoplay();
+    });
+
+    // Swipe manual (escritorio táctil)
+    let startX = 0;
+    carrusel.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+    carrusel.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) siguiente();
+        else anterior();
+        detenerAutoplay();
+      }
+    });
+  })();
 
   // Carrusel de historias
   const itemsHistoria = document.querySelectorAll(
