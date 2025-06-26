@@ -1828,8 +1828,7 @@ blockquote {
     justify-content: center;
     gap: 10px;
     margin-top: 12px;
-      padding-bottom: 10px;
-
+    padding-bottom: 10px;
   }
 
   /* Ocultar flechas */
@@ -2387,18 +2386,17 @@ textarea:valid {
 }
 
 .carrusel-item-transito {
-  display: none;
+  display: none; /* 🔄 antes era none */
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* 🆕 esto centra verticalmente */
   text-align: center;
-
   background-color: #fff;
   padding: 20px 30px;
   border-radius: 12px;
   border: 2px dashed var(--verde-salvajes);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: opacity 0.5s ease, transform 0.5s ease;
-
   opacity: 0;
   position: relative;
   margin: 0 auto;
@@ -2407,7 +2405,7 @@ textarea:valid {
 }
 
 .carrusel-item-transito.activo {
-  display: block;
+  display: flex;
   opacity: 1;
   transform: scale(1);
 }
@@ -2419,6 +2417,9 @@ textarea:valid {
   border-radius: 10px;
   margin-bottom: 15px;
   object-fit: cover;
+  display: block; /* ✅ evita el pequeño espacio extra */
+  margin-left: auto; /* ✅ centra horizontalmente */
+  margin-right: auto; /* ✅ centra horizontalmente */
 }
 
 .carrusel-item-transito p {
@@ -2473,6 +2474,9 @@ textarea:valid {
     max-width: 100%;
     height: auto;
     border-radius: 12px;
+    display: block; /* ✅ centrado horizontal */
+    margin-left: auto; /* ✅ centrado horizontal */
+    margin-right: auto; /* ✅ centrado horizontal */
   }
 
   .carrusel-item-transito p {
@@ -2680,4 +2684,3 @@ textarea:valid {
   color: var(--acento);
   transition: color 0.3s ease;
 }
-
