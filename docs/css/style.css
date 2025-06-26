@@ -2343,4 +2343,8 @@ textarea:valid {
   .indicadores-transito {
     margin-top: 8px;
   }
+
+  .carrusel-btn-transito {
+    display: none;
+  }
 }
