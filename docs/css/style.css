@@ -1627,7 +1627,7 @@ blockquote {
 
   #prevSlide,
   #nextSlide {
-    display: none;
+    display: none !important;
   }
 }
 

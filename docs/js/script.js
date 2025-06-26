@@ -239,21 +239,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sliderTrack && slides.length > 0 && indicadores) {
       esperarCargaImagenes(sliderTrack, () => {
         let currentIndex = 0;
-        let visibleCards = window.matchMedia("(max-width: 600px)").matches
-          ? 1
-          : 2;
+
+        function calcularVisibleCards() {
+          const width = window.innerWidth;
+          if (width < 600) return 1;
+          if (width < 900) return 2;
+          return 3;
+        }
+
+        let visibleCards = calcularVisibleCards();
         const totalSlides = slides.length;
 
-        // Función para actualizar cuántos michis mostrar
-        const updateVisibleCards = () => {
-          visibleCards = window.matchMedia("(max-width: 600px)").matches
-            ? 1
-            : 2;
+        window.addEventListener("resize", () => {
+          visibleCards = calcularVisibleCards();
           updateIndicators();
-          updateSlider();
-        };
-
-        window.addEventListener("resize", updateVisibleCards);
+          updateSlider(true); // sin transición
+        });
 
         // Crear indicadores
         function updateIndicators() {
@@ -262,9 +263,11 @@ document.addEventListener("DOMContentLoaded", () => {
           for (let i = 0; i < totalSteps; i++) {
             const dot = document.createElement("span");
             dot.className = "indicador-bolita-slider";
-            if (i === currentIndex) dot.classList.add("activo");
+            if (i === Math.floor(currentIndex / visibleCards)) {
+              dot.classList.add("activo");
+            }
             dot.addEventListener("click", () => {
-              currentIndex = i;
+              currentIndex = i * visibleCards;
               updateSlider();
             });
             indicadores.appendChild(dot);
@@ -275,17 +278,18 @@ document.addEventListener("DOMContentLoaded", () => {
           const slideWidth = slides[0].getBoundingClientRect().width + 20;
           const offset = slideWidth * currentIndex;
 
-          if (skipTransition) {
-            sliderTrack.style.transition = "none";
-          } else {
-            sliderTrack.style.transition = "transform 0.5s ease-in-out";
-          }
+          sliderTrack.style.transition = skipTransition
+            ? "none"
+            : "transform 0.5s ease-in-out";
 
           sliderTrack.style.transform = `translateX(-${offset}px)`;
 
           const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
           dots.forEach((dot, i) =>
-            dot.classList.toggle("activo", i === currentIndex)
+            dot.classList.toggle(
+              "activo",
+              i === Math.floor(currentIndex / visibleCards)
+            )
           );
         }
 
@@ -295,11 +299,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currentIndex++;
             updateSlider();
           } else {
-            // animamos hasta el final
             currentIndex++;
             updateSlider();
 
-            // después de la animación, volver sin transición
             setTimeout(() => {
               currentIndex = 0;
               updateSlider(true); // sin transición
