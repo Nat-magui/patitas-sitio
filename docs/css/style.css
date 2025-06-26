@@ -1471,10 +1471,10 @@ blockquote {
   background-color: var(--acento);
   border: none;
   color: white;
-  font-size: 28px;         /* Tamaño de la flecha un poco mayor */
-  width: 56px;             /* Más ancho */
-  height: 56px;            /* Más alto */
-  border-radius: 12px;     /* Esquinas suavemente redondeadas */
+  font-size: 28px; /* Tamaño de la flecha un poco mayor */
+  width: 56px; /* Más ancho */
+  height: 56px; /* Más alto */
+  border-radius: 12px; /* Esquinas suavemente redondeadas */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -1502,19 +1502,26 @@ blockquote {
     gap: 1rem;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding: 1rem 0;
+    padding: 0 1rem;
   }
 
   .carrusel-item {
-    flex: 0 0 90%;
+    flex: 0 0 92%;
     scroll-snap-align: center;
     display: block !important;
     opacity: 1 !important;
     transform: none !important;
+    background-color: transparent;
+    box-shadow: none;
+    margin-right: 1rem;
   }
 
   .carrusel-btn-historia {
-    display: none !important; /* Oculta las flechas en celular */
+    display: none !important; /* oculta flechas en móvil */
+  }
+
+  .indicadores-testimonios {
+    margin-top: 1rem;
   }
 }
 
