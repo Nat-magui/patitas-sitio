@@ -82,30 +82,50 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("totalMichis", totalMichis);
   }
 
-  // Mostrar contador real de michis en index.html
+  // Mostrar contador real de michis en index.html solo cuando se vea en pantalla
   if (location.pathname.includes("index")) {
     const contador = document.getElementById("contador-michis");
     const total = parseInt(localStorage.getItem("totalMichis") || "0");
 
-    if (contador && total > 0) {
+    if (!contador) return;
+
+    if (total === 0) {
+      contador.textContent = "0";
+      return;
+    }
+
+    let activado = false;
+
+    const animarContador = () => {
       let actual = 0;
-      const duracion = 4000; // 4 segundoS total
+      const duracion = 4000; // 4 segundos
       const pasos = 20;
       const incremento = Math.ceil(total / pasos);
       const intervalo = duracion / pasos;
 
-      const animarContador = setInterval(() => {
+      const intervaloID = setInterval(() => {
         actual += incremento;
         if (actual >= total) {
           contador.textContent = total;
-          clearInterval(animarContador);
+          clearInterval(intervaloID);
         } else {
           contador.textContent = actual;
         }
       }, intervalo);
-    } else if (contador) {
-      contador.textContent = "0";
-    }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        if (entries[0].isIntersecting && !activado) {
+          activado = true;
+          animarContador();
+          observer.disconnect(); // solo se ejecuta una vez
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(contador);
   }
 
   // Validación de mensaje del formulario
