@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("visible");
   }, 50); // pequeño delay para que el CSS se aplique correctamente
 
-  // Modo oscuro: detectar si ya estaba activado
+  /*// Modo oscuro: detectar si ya estaba activado
   const preferido = localStorage.getItem("modoOscuro") === "true";
   if (preferido) document.body.classList.add("modo-oscuro");
 
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("modoOscuro", activo);
       botonModo.textContent = activo ? "☀️ Modo claro" : "🌙 Modo oscuro";
     });
-  }
+  }*/
   // FUNCIONALIDAD SWITCH OSCURO
   const switchModo = document.getElementById("modo-switch");
   const body = document.body;

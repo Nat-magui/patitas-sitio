@@ -226,19 +226,6 @@ input:checked + label .slider {
   transform: translateX(40px);
 }
 
-@media (max-width: 600px) {
-  #modoOscuroToggle {
-    bottom: 80px;
-    left: 16px;
-    padding: 8px 12px;
-    font-size: 14px;
-    max-width: 90vw;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-}
-
 /* ===================================== */
 /*   Reset y tipografía base (General)   */
 /* ===================================== */
