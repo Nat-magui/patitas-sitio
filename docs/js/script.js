@@ -320,14 +320,19 @@ document.addEventListener("DOMContentLoaded", () => {
           inline: "center",
           block: "nearest",
         });
+
+        // También actualizamos las bolitas en caso de autoplay en mobile
+        indicadores
+          .querySelectorAll(".indicador-bolita-ultimos")
+          .forEach((dot, i) => dot.classList.toggle("activo", i === current));
       } else {
         const slideWidth = slides[0].offsetWidth + 20;
         slider.style.transform = `translateX(-${current * slideWidth}px)`;
-      }
 
-      indicadores
-        .querySelectorAll(".indicador-bolita-ultimos")
-        .forEach((dot, i) => dot.classList.toggle("activo", i === current));
+        indicadores
+          .querySelectorAll(".indicador-bolita-ultimos")
+          .forEach((dot, i) => dot.classList.toggle("activo", i === current));
+      }
     };
 
     const avanzar = () => {
