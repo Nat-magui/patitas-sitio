@@ -2304,13 +2304,43 @@ textarea:valid {
 @media (max-width: 600px) {
   .carrusel-transito {
     flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .carrusel-contenido-transito {
+    padding: 0 5px;
+    width: 100%;
+  }
+
+  .carrusel-item-transito {
+    max-width: 90%;
+  }
+
+  .carrusel-item-transito img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
   }
 
   .carrusel-item-transito p {
     font-size: 0.95rem;
   }
 
-  .carrusel-contenido-transito {
-    padding: 0 5px;
+  .carrusel-btn-transito {
+    position: static;
+    margin: 6px 0;
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .indicadores-transito {
+    margin-top: 8px;
   }
 }
