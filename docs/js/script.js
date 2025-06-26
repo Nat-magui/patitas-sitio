@@ -570,6 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "indicadores-historias"
     );
     const carruselHistorias = document.getElementById("carruselHistorias");
+    const esEscritorio = window.innerWidth > 768;
 
     if (
       itemsHistoria.length > 0 &&
@@ -593,14 +594,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const actualizarCarruselHistorias = () => {
-        itemsHistoria.forEach((item, i) =>
-          item.classList.toggle("activo", i === currentHistoria)
-        );
+        itemsHistoria.forEach((item, i) => {
+          if (esEscritorio) {
+            item.classList.toggle("activo", i === currentHistoria);
+          } else {
+            item.classList.add("activo");
+          }
+        });
+
         indicadoresHistoria
           .querySelectorAll(".indicador-transito")
-          .forEach((dot, i) =>
-            dot.classList.toggle("activo", i === currentHistoria)
-          );
+          .forEach((dot, i) => {
+            if (esEscritorio) {
+              dot.classList.toggle("activo", i === currentHistoria);
+            } else {
+              dot.classList.remove("activo");
+            }
+          });
       };
 
       prevHistoria.addEventListener("click", () => {
@@ -614,10 +624,12 @@ document.addEventListener("DOMContentLoaded", () => {
         actualizarCarruselHistorias();
       });
 
-      autoplay = setInterval(() => {
-        currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
-        actualizarCarruselHistorias();
-      }, 6000);
+      if (window.innerWidth > 768) {
+        setInterval(() => {
+          currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
+          actualizarCarruselHistorias();
+        }, 6000);
+      }
 
       carruselHistorias.addEventListener("touchstart", () =>
         clearInterval(autoplay)
