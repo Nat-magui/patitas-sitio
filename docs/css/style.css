@@ -1629,6 +1629,10 @@ blockquote {
   #nextSlide {
     display: none !important;
   }
+
+  .oculto {
+    display: none !important;
+  }
 }
 
 /* ===================================== */

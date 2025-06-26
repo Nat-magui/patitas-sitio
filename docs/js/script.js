@@ -239,22 +239,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sliderTrack && slides.length > 0 && indicadores) {
       esperarCargaImagenes(sliderTrack, () => {
         let currentIndex = 0;
-
-        function calcularVisibleCards() {
-          const width = window.innerWidth;
-          if (width < 600) return 1;
-          if (width < 900) return 2;
-          return 3;
-        }
-
-        let visibleCards = calcularVisibleCards();
+        let visibleCards = window.matchMedia("(max-width: 600px)").matches
+          ? 1
+          : 2;
         const totalSlides = slides.length;
 
-        window.addEventListener("resize", () => {
-          visibleCards = calcularVisibleCards();
+        // Función para actualizar cuántos michis mostrar
+        const updateVisibleCards = () => {
+          visibleCards = window.matchMedia("(max-width: 600px)").matches
+            ? 1
+            : 2;
           updateIndicators();
-          updateSlider(true); // sin transición
-        });
+          updateSlider();
+        };
+
+        window.addEventListener("resize", updateVisibleCards);
 
         // Crear indicadores
         function updateIndicators() {
@@ -263,11 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
           for (let i = 0; i < totalSteps; i++) {
             const dot = document.createElement("span");
             dot.className = "indicador-bolita-slider";
-            if (i === Math.floor(currentIndex / visibleCards)) {
-              dot.classList.add("activo");
-            }
+            if (i === currentIndex) dot.classList.add("activo");
             dot.addEventListener("click", () => {
-              currentIndex = i * visibleCards;
+              currentIndex = i;
               updateSlider();
             });
             indicadores.appendChild(dot);
@@ -278,18 +275,17 @@ document.addEventListener("DOMContentLoaded", () => {
           const slideWidth = slides[0].getBoundingClientRect().width + 20;
           const offset = slideWidth * currentIndex;
 
-          sliderTrack.style.transition = skipTransition
-            ? "none"
-            : "transform 0.5s ease-in-out";
+          if (skipTransition) {
+            sliderTrack.style.transition = "none";
+          } else {
+            sliderTrack.style.transition = "transform 0.5s ease-in-out";
+          }
 
           sliderTrack.style.transform = `translateX(-${offset}px)`;
 
           const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
           dots.forEach((dot, i) =>
-            dot.classList.toggle(
-              "activo",
-              i === Math.floor(currentIndex / visibleCards)
-            )
+            dot.classList.toggle("activo", i === currentIndex)
           );
         }
 
@@ -299,9 +295,11 @@ document.addEventListener("DOMContentLoaded", () => {
             currentIndex++;
             updateSlider();
           } else {
+            // animamos hasta el final
             currentIndex++;
             updateSlider();
 
+            // después de la animación, volver sin transición
             setTimeout(() => {
               currentIndex = 0;
               updateSlider(true); // sin transición
@@ -330,6 +328,28 @@ document.addEventListener("DOMContentLoaded", () => {
         updateIndicators();
         updateSlider();
       });
+    }
+    const isMobile = window.innerWidth <= 600;
+
+    if (isMobile) {
+      // Configuración especial solo para móviles
+      sliderTrack.style.scrollSnapType = "x mandatory";
+      sliderTrack.style.overflowX = "auto";
+      sliderTrack.style.webkitOverflowScrolling = "touch";
+
+      // Hacer scroll suave con los dedos (sin flechas ni translateX)
+      nextSlide?.classList.add("oculto");
+      prevSlide?.classList.add("oculto");
+
+      // Eliminar cualquier transform aplicado
+      sliderTrack.style.transform = "none";
+
+      // Activar scroll táctil en cada tarjeta
+      slides.forEach((slide) => {
+        slide.style.scrollSnapAlign = "start";
+      });
+
+      return; // Salteamos toda la lógica de carrusel si es mobile
     }
   }
   // Contador inicial del carrito
