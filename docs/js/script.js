@@ -445,50 +445,68 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // Carrusel exclusivo de eventos (eventos.html)
 (() => {
-  const items = document.querySelectorAll('#carruselEventos .carrusel-eventos-item');
-  const prevBtn = document.getElementById('prevEvento');
-  const nextBtn = document.getElementById('nextEvento');
-  const indicadores = document.getElementById('indicadores-eventos');
+  const items = document.querySelectorAll("#carruselEventos .carrusel-eventos-item");
+  const prevBtn = document.getElementById("prevEvento");
+  const nextBtn = document.getElementById("nextEvento");
+  const indicadores = document.getElementById("indicadores-eventos");
+  const carrusel = document.getElementById("carruselEventos");
+
+  if (!carrusel || items.length === 0 || !indicadores) return;
 
   let currentIndex = 0;
-  let autoplayActivo = true;
   let autoplayInterval;
+  const isMobile = window.innerWidth <= 600;
 
-  const updateCarrusel = () => {
+  if (isMobile) {
+    // Mostrar todos los ítems y no controlar visibilidad por JS
+    items.forEach((item) => {
+      item.style.display = "block";
+      item.style.opacity = "1";
+      item.style.transform = "none";
+    });
+    // Nada más: el scroll táctil se maneja solo con CSS
+    return;
+  }
+
+  // ---- Comportamiento para escritorio ----
+  function updateCarrusel() {
     items.forEach((item, i) => {
-      item.classList.toggle('activo', i === currentIndex);
+      item.classList.toggle("activo", i === currentIndex);
     });
 
     [...indicadores.children].forEach((dot, i) => {
-      dot.classList.toggle('activo', i === currentIndex);
+      dot.classList.toggle("activo", i === currentIndex);
     });
-  };
+  }
 
-  const irA = (index) => {
+  function irA(index) {
     currentIndex = (index + items.length) % items.length;
     updateCarrusel();
-  };
+  }
 
-  const siguiente = () => irA(currentIndex + 1);
-  const anterior = () => irA(currentIndex - 1);
+  function siguiente() {
+    irA(currentIndex + 1);
+  }
 
-  const iniciarAutoplay = () => {
+  function anterior() {
+    irA(currentIndex - 1);
+  }
+
+  function iniciarAutoplay() {
     autoplayInterval = setInterval(siguiente, 5000);
-  };
+  }
 
-  const detenerAutoplay = () => {
+  function detenerAutoplay() {
     clearInterval(autoplayInterval);
-    autoplayActivo = false;
-  };
+  }
 
   // Crear indicadores
   items.forEach((_, i) => {
-    const dot = document.createElement('span');
-    dot.classList.add('indicador-bolita');
-    if (i === 0) dot.classList.add('activo');
-    dot.addEventListener('click', () => {
+    const dot = document.createElement("span");
+    dot.classList.add("indicador-bolita");
+    if (i === 0) dot.classList.add("activo");
+    dot.addEventListener("click", () => {
       irA(i);
       detenerAutoplay();
     });
@@ -498,39 +516,32 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCarrusel();
   iniciarAutoplay();
 
-  // Eventos
-  if (prevBtn && nextBtn) {
-    prevBtn.addEventListener('click', () => {
-      anterior();
-      detenerAutoplay();
-    });
-    nextBtn.addEventListener('click', () => {
-      siguiente();
-      detenerAutoplay();
-    });
-  }
+  // Botones
+  prevBtn?.addEventListener("click", () => {
+    anterior();
+    detenerAutoplay();
+  });
+  nextBtn?.addEventListener("click", () => {
+    siguiente();
+    detenerAutoplay();
+  });
 
-  // Gestos táctiles (Swipe)
+  // Swipe manual (escritorio táctil)
   let startX = 0;
-  let endX = 0;
-
-  const carruselTouch = document.getElementById('carruselEventos');
-  if (carruselTouch) {
-    carruselTouch.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    carruselTouch.addEventListener('touchend', (e) => {
-      endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) siguiente();
-        else anterior();
-        detenerAutoplay();
-      }
-    });
-  }
+  carrusel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+  carrusel.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) siguiente();
+      else anterior();
+      detenerAutoplay();
+    }
+  });
 })();
+
 
   // Carrusel de historias
   const itemsHistoria = document.querySelectorAll(

@@ -2468,7 +2468,9 @@ textarea:valid {
   .carrusel-eventos-item {
     scroll-snap-align: center;
     flex: 0 0 100%;
-    display: block;
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .indicadores-eventos {
@@ -2476,4 +2478,5 @@ textarea:valid {
     margin-top: 0.5rem;
   }
 }
+
 
