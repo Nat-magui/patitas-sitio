@@ -321,14 +321,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const avanzar = () => {
-      current = (current + 1) % (slides.length - visible + 1);
+      current = (current + 1) % slides.length;
       actualizar();
     };
 
     const retroceder = () => {
-      current =
-        (current - 1 + (slides.length - visible + 1)) %
-        (slides.length - visible + 1);
+      current = (current - 1 + slides.length) % slides.length;
       actualizar();
     };
 
@@ -351,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Crear bolitas
-    const total = slides.length - visible + 1;
+    const total = slides.length;
     for (let i = 0; i < total; i++) {
       const dot = document.createElement("span");
       dot.className = "indicador-bolita-ultimos";
