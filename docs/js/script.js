@@ -161,74 +161,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Carrusel de testimonios
-  const carruselItems = document.querySelectorAll(".carrusel-item");
-  const carruselTrack = document.querySelector(".carrusel-contenido");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-
-  if (carruselItems.length && carruselTrack && prevBtn && nextBtn) {
-    let currentIndex = 0;
-    let pausaTestimonios = false;
-
-    const contenedorIndicadores = document.getElementById(
-      "indicadores-testimonios"
+  // Carrusel "Historias de quienes ya transitaron" - Página transito.html
+  (() => {
+    const carruselItems = document.querySelectorAll(
+      "#carruselTransito .carrusel-item"
     );
-    carruselItems.forEach((_, i) => {
-      const bolita = document.createElement("span");
-      bolita.classList.add("indicador-bolita");
-      if (i === 0) bolita.classList.add("activo");
-      contenedorIndicadores.appendChild(bolita);
-    });
+    const prevBtn = document.getElementById("prevTransito");
+    const nextBtn = document.getElementById("nextTransito");
+    const indicadores = document.getElementById("indicadores-transito");
 
-    function mostrarTestimonio(index) {
-      carruselItems.forEach((item, i) => {
-        item.classList.toggle("activo", i === index);
+    if (carruselItems.length > 0 && prevBtn && nextBtn && indicadores) {
+      let currentIndex = 0;
+
+      // Crear indicadores
+      carruselItems.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.classList.add("indicador-transito");
+        if (i === 0) dot.classList.add("activo");
+        dot.addEventListener("click", () => {
+          currentIndex = i;
+          updateCarrusel();
+        });
+        indicadores.appendChild(dot);
       });
 
-      const bolitas = document.querySelectorAll(".indicador-bolita");
-      bolitas.forEach((bolita, i) => {
-        bolita.classList.toggle("activo", i === index);
+      const updateCarrusel = () => {
+        carruselItems.forEach((item, i) =>
+          item.classList.toggle("activo", i === currentIndex)
+        );
+        indicadores;
+        indicadores
+          .querySelectorAll(".indicador-transito")
+          .forEach((dot, i) =>
+            dot.classList.toggle("activo", i === currentIndex)
+          );
+      };
+
+      prevBtn.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + carruselItems.length) % carruselItems.length;
+        updateCarrusel();
       });
-    }
 
-    document.querySelectorAll(".indicador-bolita").forEach((bolita, i) => {
-      bolita.addEventListener("click", () => {
-        currentIndex = i;
-        mostrarTestimonio(currentIndex);
-        pausaTestimonios = true;
-      });
-    });
-
-    prevBtn.addEventListener("click", () => {
-      currentIndex =
-        (currentIndex - 1 + carruselItems.length) % carruselItems.length;
-      mostrarTestimonio(currentIndex);
-      pausaTestimonios = true;
-    });
-
-    nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % carruselItems.length;
-      mostrarTestimonio(currentIndex);
-      pausaTestimonios = true;
-    });
-
-    carruselTrack.addEventListener(
-      "mouseenter",
-      () => (pausaTestimonios = true)
-    );
-    carruselTrack.addEventListener(
-      "mouseleave",
-      () => (pausaTestimonios = false)
-    );
-
-    setInterval(() => {
-      if (!pausaTestimonios) {
+      nextBtn.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % carruselItems.length;
-        mostrarTestimonio(currentIndex);
-      }
-    }, 4000);
-  }
+        updateCarrusel();
+      });
+
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % carruselItems.length;
+        updateCarrusel();
+      }, 8000); // cada 8 segundos
+    }
+  })();
 
   // Animaciones por scroll
   const fadeIns = document.querySelectorAll(".fade-in");
@@ -243,105 +228,108 @@ document.addEventListener("DOMContentLoaded", () => {
   fadeIns.forEach((el) => observer.observe(el));
 
   // Carrusel "Últimos rescatados"
-  const sliderTrack = document.getElementById("sliderTrack");
-  const prevSlide = document.getElementById("prevSlide");
-  const nextSlide = document.getElementById("nextSlide");
-  const slides = document.querySelectorAll(".michi-slide");
-  const indicadores = document.getElementById("indicadores-slider");
-  let autoScroll;
+  function iniciarSliderUltimosRescatados() {
+    const sliderTrack = document.getElementById("sliderTrack");
+    const prevSlide = document.getElementById("prevSlide");
+    const nextSlide = document.getElementById("nextSlide");
+    const slides = document.querySelectorAll(".michi-slide");
+    const indicadores = document.getElementById("indicadores-slider");
+    let autoScroll;
 
-  if (sliderTrack && slides.length > 0 && indicadores) {
-    esperarCargaImagenes(sliderTrack, () => {
-      let currentIndex = 0;
-      let visibleCards = window.matchMedia("(max-width: 600px)").matches
-        ? 1
-        : 2;
-      const totalSlides = slides.length;
+    if (sliderTrack && slides.length > 0 && indicadores) {
+      esperarCargaImagenes(sliderTrack, () => {
+        let currentIndex = 0;
+        let visibleCards = window.matchMedia("(max-width: 600px)").matches
+          ? 1
+          : 2;
+        const totalSlides = slides.length;
 
-      // Función para actualizar cuántos michis mostrar
-      const updateVisibleCards = () => {
-        visibleCards = window.matchMedia("(max-width: 600px)").matches ? 1 : 2;
+        // Función para actualizar cuántos michis mostrar
+        const updateVisibleCards = () => {
+          visibleCards = window.matchMedia("(max-width: 600px)").matches
+            ? 1
+            : 2;
+          updateIndicators();
+          updateSlider();
+        };
+
+        window.addEventListener("resize", updateVisibleCards);
+
+        // Crear indicadores
+        function updateIndicators() {
+          indicadores.innerHTML = "";
+          const totalSteps = totalSlides - visibleCards + 1;
+          for (let i = 0; i < totalSteps; i++) {
+            const dot = document.createElement("span");
+            dot.className = "indicador-bolita-slider";
+            if (i === currentIndex) dot.classList.add("activo");
+            dot.addEventListener("click", () => {
+              currentIndex = i;
+              updateSlider();
+            });
+            indicadores.appendChild(dot);
+          }
+        }
+
+        function updateSlider(skipTransition = false) {
+          const slideWidth = slides[0].offsetWidth + 20;
+          const offset = slideWidth * currentIndex;
+
+          if (skipTransition) {
+            sliderTrack.style.transition = "none";
+          } else {
+            sliderTrack.style.transition = "transform 0.5s ease-in-out";
+          }
+
+          sliderTrack.style.transform = `translateX(-${offset}px)`;
+
+          const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
+          dots.forEach((dot, i) =>
+            dot.classList.toggle("activo", i === currentIndex)
+          );
+        }
+
+        nextSlide?.addEventListener("click", () => {
+          const maxIndex = totalSlides - visibleCards;
+          if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateSlider();
+          } else {
+            // animamos hasta el final
+            currentIndex++;
+            updateSlider();
+
+            // después de la animación, volver sin transición
+            setTimeout(() => {
+              currentIndex = 0;
+              updateSlider(true); // sin transición
+            }, 510);
+          }
+        });
+
+        prevSlide?.addEventListener("click", () => {
+          const maxIndex = totalSlides - visibleCards;
+          currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+          updateSlider();
+        });
+
+        sliderTrack.addEventListener("mouseenter", () =>
+          clearInterval(autoScroll)
+        );
+        sliderTrack.addEventListener("mouseleave", () => {
+          autoScroll = setInterval(() => {
+            const maxIndex = totalSlides - visibleCards;
+            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+            updateSlider();
+          }, 5000);
+        });
+
+        // Inicial
         updateIndicators();
         updateSlider();
-      };
-
-      window.addEventListener("resize", updateVisibleCards);
-
-      // Crear indicadores
-      function updateIndicators() {
-        indicadores.innerHTML = "";
-        const totalSteps = totalSlides - visibleCards + 1;
-        for (let i = 0; i < totalSteps; i++) {
-          const dot = document.createElement("span");
-          dot.className = "indicador-bolita-slider";
-          if (i === currentIndex) dot.classList.add("activo");
-          dot.addEventListener("click", () => {
-            currentIndex = i;
-            updateSlider();
-          });
-          indicadores.appendChild(dot);
-        }
-      }
-
-      function updateSlider(skipTransition = false) {
-        const slideWidth = slides[0].offsetWidth + 20;
-        const offset = slideWidth * currentIndex;
-
-        if (skipTransition) {
-          sliderTrack.style.transition = "none";
-        } else {
-          sliderTrack.style.transition = "transform 0.5s ease-in-out";
-        }
-
-        sliderTrack.style.transform = `translateX(-${offset}px)`;
-
-        const dots = indicadores.querySelectorAll(".indicador-bolita-slider");
-        dots.forEach((dot, i) =>
-          dot.classList.toggle("activo", i === currentIndex)
-        );
-      }
-
-      nextSlide?.addEventListener("click", () => {
-        const maxIndex = totalSlides - visibleCards;
-        if (currentIndex < maxIndex) {
-          currentIndex++;
-          updateSlider();
-        } else {
-          // animamos hasta el final
-          currentIndex++;
-          updateSlider();
-
-          // después de la animación, volver sin transición
-          setTimeout(() => {
-            currentIndex = 0;
-            updateSlider(true); // sin transición
-          }, 510);
-        }
       });
-
-      prevSlide?.addEventListener("click", () => {
-        const maxIndex = totalSlides - visibleCards;
-        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-        updateSlider();
-      });
-
-      sliderTrack.addEventListener("mouseenter", () =>
-        clearInterval(autoScroll)
-      );
-      sliderTrack.addEventListener("mouseleave", () => {
-        autoScroll = setInterval(() => {
-          const maxIndex = totalSlides - visibleCards;
-          currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-          updateSlider();
-        }, 5000);
-      });
-
-      // Inicial
-      updateIndicators();
-      updateSlider();
-    });
+    }
   }
-
   // Contador inicial del carrito
   actualizarContadorCarrito();
 
@@ -383,8 +371,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-    // Carrusel de testimonios de eventos (sección en eventos.html)
-  const carruselEvItems = document.querySelectorAll("#carruselEventos .carrusel-item");
+  // Carrusel de testimonios de eventos (sección en eventos.html)
+  const carruselEvItems = document.querySelectorAll(
+    "#carruselEventos .carrusel-item"
+  );
   const prevEv = document.getElementById("prevEvento");
   const nextEv = document.getElementById("nextEvento");
   const indicadoresEv = document.getElementById("indicadores-eventos");
@@ -411,14 +401,13 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       indicadoresEv
         .querySelectorAll(".indicador-bolita")
-        .forEach((dot, i) =>
-          dot.classList.toggle("activo", i === currentEv)
-        );
+        .forEach((dot, i) => dot.classList.toggle("activo", i === currentEv));
     };
 
     // Navegación con flechas
     prevEv.addEventListener("click", () => {
-      currentEv = (currentEv - 1 + carruselEvItems.length) % carruselEvItems.length;
+      currentEv =
+        (currentEv - 1 + carruselEvItems.length) % carruselEvItems.length;
       actualizarCarruselEventos();
     });
 
@@ -434,4 +423,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 6000);
   }
 
+  // Carrusel de historias
+  const itemsHistoria = document.querySelectorAll(
+    "#carruselHistorias .carrusel-item"
+  );
+  const prevHistoria = document.getElementById("prevHistoria");
+  const nextHistoria = document.getElementById("nextHistoria");
+  const indicadoresHistoria = document.getElementById("indicadores-historias");
+
+  if (
+    itemsHistoria.length > 0 &&
+    prevHistoria &&
+    nextHistoria &&
+    indicadoresHistoria
+  ) {
+    let currentHistoria = 0;
+
+    itemsHistoria.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-transito");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        currentHistoria = i;
+        actualizarCarruselHistorias();
+      });
+      indicadoresHistoria.appendChild(dot);
+    });
+
+    const actualizarCarruselHistorias = () => {
+      itemsHistoria.forEach((item, i) =>
+        item.classList.toggle("activo", i === currentHistoria)
+      );
+      indicadoresHistoria
+        .querySelectorAll(".indicador-transito")
+        .forEach((dot, i) =>
+          dot.classList.toggle("activo", i === currentHistoria)
+        );
+    };
+
+    prevHistoria.addEventListener("click", () => {
+      currentHistoria =
+        (currentHistoria - 1 + itemsHistoria.length) % itemsHistoria.length;
+      actualizarCarruselHistorias();
+    });
+
+    nextHistoria.addEventListener("click", () => {
+      currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
+      actualizarCarruselHistorias();
+    });
+
+    setInterval(() => {
+      currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
+      actualizarCarruselHistorias();
+    }, 6000);
+  }
+  iniciarSliderUltimosRescatados();
 });

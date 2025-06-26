@@ -4,6 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>De la calle al sillón | Patitas Salvajes</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="Gatitos rescatados por Patitas Salvajes que hoy viven rodeados de amor. Conocé sus historias reales de transformación y ternura."
+    />
+    <meta
+      name="keywords"
+      content="gatos adoptados, historias, rescates, antes y después, Patitas Salvajes, Junín"
+    />
+    <meta name="author" content="Patitas Salvajes" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Historias Reales | Patitas Salvajes 🐾"
+    />
+    <meta
+      property="og:description"
+      content="De la calle al sillón: conocé cómo el amor transforma vidas."
+    />
+    <meta
+      property="og:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://nat-magui.github.io/patitas-sitio/historias.html"
+    />
+    <meta property="og:type" content="website" />
+
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -37,79 +67,94 @@
     </header>
 
     <main>
-      <section id="historias">
-        <h2>🛋️ De la calle al sillón</h2>
-        <p>
-          Conocé algunas de las historias que más nos emocionaron. Estas
-          transformaciones son posibles gracias a vos 💖
-        </p>
+      <section id="historias" class="fade-in fondo-blanco">
+  <h2>🛋️ De la calle al sillón</h2>
+  <p>
+    Conocé algunas de las historias que más nos emocionaron. Estas
+    transformaciones son posibles gracias a vos 💖
+  </p>
 
-        <div class="historias-grid">
-          <div class="historia-card fade-in">
-            <div class="historia-imgs">
-              <img src="img/Fermin-antes.jpg" alt="Michi antes" />
-              <img src="img/Fermin-despues.jpg" alt="Michi después" />
-            </div>
-            <div class="historia-info">
-              <h3>Fermin</h3>
-              <p>
-                Tirado en una caja, herido y sin fuerzas. Hoy duerme en
-                sillones, rodeado de amor, con su familia adoptiva y sus nuevos
-                hermanitos 💖🏠
-              </p>
-              <a
-                href="https://www.instagram.com/p/DIpOvd_S3oc/?img_index=1"
-                class="boton-secundario"
-                >💗 Ver su historia completa</a
-              >
-            </div>
+  <div class="carrusel">
+    <button id="prevHistoria" class="carrusel-btn" aria-label="Historia anterior">←</button>
+
+    <div class="carrusel-contenido" id="carruselHistorias">
+      <div class="carrusel-item activo">
+        <div class="historia-card">
+          <div class="historia-imgs">
+            <img src="img/Fermin-antes.jpg" alt="Fermín antes del rescate" />
+            <img src="img/Fermin-despues.jpg" alt="Fermín feliz en su hogar" />
           </div>
-
-          <div class="historia-card fade-in">
-            <div class="historia-imgs">
-              <img src="img/Nilo-antes.jpg" alt="Michi antes" />
-              <img src="img/Nilo-despues.jpg" alt="Michi después" />
-            </div>
-            <div class="historia-info">
-              <h3>Nilo</h3>
-              <p>
-                Pasó de estar acorralado por perros y lleno de miedo… a dormir
-                en paz, rodeado de amor. Hoy es un gato feliz, confiado y amado
-                🐈‍⬛🏡💘
-              </p>
-              <a
-                href="https://www.instagram.com/p/DIG8u26JkUm/?img_index=2"
-                class="boton-secundario"
-                >💗 Ver su historia completa</a
-              >
-            </div>
-          </div>
-
-          <div class="historia-card fade-in">
-            <div class="historia-imgs">
-              <img src="img/Rodri-antes.jpg" alt="Michi antes" />
-              <img src="img/Rodri-despues.jpg" alt="Michi después" />
-            </div>
-            <div class="historia-info">
-              <h3>Rodri</h3>
-              <p>
-                Fue rescatado en estado crítico y pasó semanas en incubadora.
-                Hoy hace travesuras desde su sillón, rodeado de amor y cuidados
-                🛋️💘
-              </p>
-              <a
-                href="https://www.instagram.com/p/DHhdxiTJgiR/?img_index=6"
-                class="boton-secundario"
-                >💗 Ver su historia completa</a
-              >
-            </div>
+          <div class="historia-info">
+            <h3>Fermín</h3>
+            <p>
+              Fue encontrado en una caja, herido y sin fuerzas. Hoy duerme en sillones, rodeado de amor, con su familia adoptiva y sus nuevos hermanitos 💖🏠
+            </p>
+            <a href="https://www.instagram.com/p/DIpOvd_S3oc/?img_index=1" class="boton-secundario">💗 Ver su historia completa</a>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div class="carrusel-item">
+        <div class="historia-card">
+          <div class="historia-imgs">
+            <img src="img/Nilo-antes.jpg" alt="Nilo antes del rescate" />
+            <img src="img/Nilo-despues.jpg" alt="Nilo feliz en su hogar" />
+          </div>
+          <div class="historia-info">
+            <h3>Nilo</h3>
+            <p>
+              Pasó de estar acorralado por perros y lleno de miedo… a dormir en paz, rodeado de amor. Hoy es un gato feliz, seguro y amado 🐈‍⬛🏡💘
+            </p>
+            <a href="https://www.instagram.com/p/DIG8u26JkUm/?img_index=2" class="boton-secundario">💗 Ver su historia completa</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carrusel-item">
+        <div class="historia-card">
+          <div class="historia-imgs">
+            <img src="img/Rodri-antes.jpg" alt="Rodri antes del rescate" />
+            <img src="img/Rodri-despues.jpg" alt="Rodri feliz en su hogar" />
+          </div>
+          <div class="historia-info">
+            <h3>Rodri</h3>
+            <p>
+              Fue rescatado en estado crítico y pasó semanas en incubadora. Hoy es un michi travieso que disfruta la vida desde su sillón, rodeado de amor y cuidados 🛋️💘
+            </p>
+            <a href="https://www.instagram.com/p/DHhdxiTJgiR/?img_index=6" class="boton-secundario">💗 Ver su historia completa</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="nextHistoria" class="carrusel-btn" aria-label="Historia siguiente">→</button>
+  </div>
+
+  <div class="indicadores-testimonios" id="indicadores-historias"></div>
+
+  <div class="ver-mas-historias">
+    <a href="https://www.instagram.com/patitas.salvajes" target="_blank" class="boton-claro">
+      📲 Ver más historias en Instagram
+    </a>
+  </div>
+</section>
+
     </main>
 
     <footer>
       <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+      <div class="modo-toggle">
+        <input
+          type="checkbox"
+          id="modo-switch"
+          aria-label="Alternar modo oscuro"
+        />
+        <label for="modo-switch">
+          <span class="icono-sol">🌞</span>
+          <span class="icono-luna">🌙</span>
+          <span class="slider"></span>
+        </label>
+      </div>
     </footer>
 
     <script src="js/script.js"></script>
