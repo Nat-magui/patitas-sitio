@@ -2500,6 +2500,7 @@ textarea:valid {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
+    padding-bottom: 1rem; /* espacio con sección siguiente */
   }
 
   .indicadores-eventos span {
@@ -2508,6 +2509,7 @@ textarea:valid {
     background-color: #ccc;
     border-radius: 50%;
     display: inline-block;
+    transition: background-color 0.3s ease;
   }
 
   .indicadores-eventos .activo {
