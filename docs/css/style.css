@@ -338,6 +338,25 @@ header {
 }
 
 /* ===================================== */
+/* Footer (General) */
+/* ===================================== */
+footer {
+  background-color: #fffaf5;
+  color: #555;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 10px 10px;
+  border-top: 2px dashed var(--verde-salvajes);
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* ===================================== */
 /* Botones reutilizables (General - botones primarios, secundarios, claros) */
 /* ===================================== */
 /* Estilos base para TODOS los botones */
@@ -693,15 +712,23 @@ section ul li {
 }
 
 .formulario-contacto input,
-.formulario-contacto textarea,
-.formulario-contacto select {
+.formulario-contacto select,
+.formulario-contacto textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 12px 14px;
-  border: 1px solid #ccc;
+  margin-bottom: 16px;
   border-radius: 10px;
+  border: 2px solid #ddd;
   font-size: 1rem;
-  margin-bottom: 8px;
-  /* más espacio entre campos */
   transition: border 0.2s ease;
+  line-height: 1.5;
+  background-color: #fffdfd;
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px 16px;
 }
 
 .formulario-contacto input:focus,
@@ -710,6 +737,8 @@ section ul li {
   border-color: var(--acento);
   outline: none;
   background-color: #fffafc;
+  box-shadow: 0 0 0 4px rgba(255, 168, 182, 0.2); /* anillo suave */
+  transition: all 0.3s ease;
 }
 
 .formulario-contacto.enviado button {
@@ -733,6 +762,30 @@ section ul li {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+.gracias-envio {
+  margin-top: 20px;
+  background-color: #d6f5d6;
+  border: 2px dashed #88a97f;
+  padding: 16px;
+  border-radius: 10px;
+  color: #2e662e;
+  font-weight: bold;
+  text-align: center;
+  animation: aparecer 0.5s ease-in-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 select {
   padding: 10px;
   border: 1px solid #ccc;
@@ -746,30 +799,17 @@ select {
   font-size: 0.9rem;
   margin-top: 4px;
   display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.error-texto.visible {
+  opacity: 1;
 }
 
 form fieldset legend {
   margin-bottom: 10px;
   padding-top: 16px;
-}
-
-/* ===================================== */
-/* Footer (General) */
-/* ===================================== */
-footer {
-  background-color: #fffaf5;
-  color: #555;
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 10px 10px;
-  border-top: 2px dashed var(--verde-salvajes);
-  margin-top: 20px;
-}
-
-footer p {
-  margin: 0;
-  font-weight: 500;
-  letter-spacing: 0.3px;
 }
 
 /* ===================================== */
@@ -857,6 +897,132 @@ blockquote {
 .grupo-redes.felices {
   background-color: #fff4f6;
   border: 2px dashed var(--rosa-patitas);
+}
+
+/* ===================================== */
+/* Estilo adicional para formularios (contacto.html) */
+/* ===================================== */
+.formulario-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px dashed var(--rosa-patitas);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* FIELDSETS */
+.formulario-contacto fieldset {
+  border: 2px dashed var(--verde-salvajes);
+  border-radius: 12px;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.formulario-contacto legend {
+  font-weight: bold;
+  color: #ff7f9f;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 0;
+}
+
+/* Espaciado entre bloques internos del fieldset */
+.formulario-contacto fieldset > div {
+  margin-bottom: 20px;
+}
+
+/* Etiquetas */
+.formulario-contacto label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border: 2px dashed #f26d6d;
+  background-color: #ffecec;
+}
+
+input:valid,
+select:valid,
+textarea:valid {
+  border: 2px solid var(--verde-salvajes);
+  background-color: #f5fff5;
+}
+
+/* Botón */
+.formulario-contacto button[type="submit"] {
+  display: block;
+  margin: 0 auto 0 auto;
+  padding: 12px 24px;
+  background-color: var(--acento);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  max-width: 240px;
+}
+
+.formulario-contacto button[type="submit"]:hover {
+  background-color: #ff9fb6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación al invalidar */
+.agitar {
+  animation: shake 0.3s;
+}
+
+@media (max-width: 500px) {
+  .formulario-contacto {
+    padding: 20px 15px;
+    margin: 20px 10px;
+  }
+
+  .formulario-contacto fieldset {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .formulario-contacto fieldset > div {
+    flex: 1 1 45%;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-2px);
+  }
+
+  50% {
+    transform: translateX(2px);
+  }
+
+  75% {
+    transform: translateX(-2px);
+  }
 }
 
 /* ===================================== */
@@ -973,7 +1139,6 @@ blockquote {
   color: #fefefe;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
-
 
 @media (max-width: 600px) {
   .hero-overlay {
@@ -2036,132 +2201,6 @@ body.fade-in-global.visible {
 
 .fondo-gris {
   background-color: var(--gris-claro);
-}
-
-/* ===================================== */
-/* Estilo adicional para formularios (contacto.html) */
-/* ===================================== */
-.formulario-contacto {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 600px;
-  margin: 30px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  border: 2px dashed var(--rosa-patitas);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-/* FIELDSETS */
-.formulario-contacto fieldset {
-  border: 2px dashed var(--verde-salvajes);
-  border-radius: 12px;
-  background-color: #fff;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.formulario-contacto legend {
-  font-weight: bold;
-  color: #ff7f9f;
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding-left: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-top: 0;
-}
-
-/* Espaciado entre bloques internos del fieldset */
-.formulario-contacto fieldset > div {
-  margin-bottom: 22px;
-}
-
-.formulario-contacto fieldset > div:first-child {
-  margin-top: 0;
-}
-
-/* Etiquetas */
-.formulario-contacto label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Inputs, selects y textarea */
-.formulario-contacto input,
-.formulario-contacto select,
-.formulario-contacto textarea {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-}
-
-input:invalid,
-select:invalid,
-textarea:invalid {
-  border: 2px dashed #f26d6d;
-  background-color: #ffecec;
-}
-
-input:valid,
-select:valid,
-textarea:valid {
-  border: 2px solid var(--verde-salvajes);
-  background-color: #f5fff5;
-}
-
-/* Botón */
-.formulario-contacto button[type="submit"] {
-  display: block;
-  margin: 0 auto 0 auto;
-  padding: 12px 24px;
-  background-color: var(--acento);
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-  max-width: 240px;
-}
-
-.formulario-contacto button[type="submit"]:hover {
-  background-color: #ff9fb6;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Animación al invalidar */
-.agitar {
-  animation: shake 0.3s;
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  25% {
-    transform: translateX(-2px);
-  }
-
-  50% {
-    transform: translateX(2px);
-  }
-
-  75% {
-    transform: translateX(-2px);
-  }
 }
 
 /* ===================================== */

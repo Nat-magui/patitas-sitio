@@ -149,13 +149,27 @@ document.addEventListener("DOMContentLoaded", () => {
           if (isMensaje) {
             errorMensaje.textContent =
               "El mensaje debe tener al menos 10 caracteres.";
+            errorMensaje.classList.add("visible");
           }
         } else {
-          if (isMensaje) errorMensaje.textContent = "";
+          if (isMensaje) {
+            errorMensaje.textContent = "";
+            errorMensaje.classList.remove("visible");
+          }
         }
       });
 
-      if (hayError) e.preventDefault();
+      if (hayError) {
+        e.preventDefault();
+      } else {
+        const mensajeGracias = document.getElementById("gracias-envio");
+        if (mensajeGracias) {
+          mensajeGracias.style.display = "block";
+          setTimeout(() => {
+            mensajeGracias.style.display = "none";
+          }, 5000);
+        }
+      }
     });
   }
 

@@ -43,7 +43,6 @@
       </section>
 
       <section id="contacto" class="fade-in fondo-blanco">
-
         <form
           action="https://formspree.io/f/mqaqrpzg"
           method="POST"
@@ -57,53 +56,62 @@
 
           <fieldset>
             <legend>📨 Tus datos</legend>
-            <label for="nombre">👤 Nombre completo:</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              placeholder="Ej: Camila Pérez"
-              required
-            />
-
-            <label for="email">📧 Correo electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Ej: cami@gmail.com"
-              required
-            />
+            <div>
+              <label for="nombre">👤 Nombre completo:</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Ej: Camila Pérez"
+                required
+              />
+            </div>
+            <div>
+              <label for="email">📧 Correo electrónico:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ej: cami@gmail.com"
+                required
+              />
+            </div>
           </fieldset>
 
           <fieldset>
             <legend>📌 Motivo y mensaje</legend>
-            <label for="motivo">📌 ¿Por qué te contactás?</label>
-            <select id="motivo" name="motivo" required>
-              <option value="">Elegí una opción</option>
-              <option value="adopcion">🐱 Quiero adoptar un michi</option>
-              <option value="transito">🏠 Quiero ofrecer tránsito</option>
-              <option value="donacion">💖 Quiero hacer una donación</option>
-              <option value="apadrinar">👩‍🍼 Quiero apadrinar un michi</option>
-              <option value="evento">
-                🎟️ Quiero organizar un evento solidario
-              </option>
-              <option value="consulta">📬 Tengo una duda o consulta</option>
-            </select>
-
-            <label for="mensaje">✏️ Mensaje:</label>
-            <textarea
-              id="mensaje"
-              name="mensaje"
-              rows="5"
-              placeholder="Contanos cómo te gustaría ayudar"
-              required
-            ></textarea>
-            <small id="error-mensaje" class="error-texto"></small>
+            <div>
+              <label for="motivo">📌 ¿Por qué te contactás?</label>
+              <select id="motivo" name="motivo" required>
+                <option value="">Elegí una opción</option>
+                <option value="adopcion">🐱 Quiero adoptar un michi</option>
+                <option value="transito">🏠 Quiero ofrecer tránsito</option>
+                <option value="donacion">💖 Quiero hacer una donación</option>
+                <option value="apadrinar">👩‍🍼 Quiero apadrinar un michi</option>
+                <option value="evento">
+                  🎟️ Quiero organizar un evento solidario
+                </option>
+                <option value="consulta">📬 Tengo una duda o consulta</option>
+              </select>
+            </div>
+            <div>
+              <label for="mensaje">✏️ Mensaje:</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="5"
+                placeholder="Contanos cómo te gustaría ayudar"
+                required
+              ></textarea>
+              <small id="error-mensaje" class="error-texto"></small>
+            </div>
           </fieldset>
 
           <div style="text-align: center; margin-top: 15px">
             <button type="submit" class="boton">Enviar mensaje 🐾</button>
+            <div id="gracias-envio" class="gracias-envio" style="display: none">
+              🐾 ¡Gracias por tu mensaje! Te responderemos pronto.
+            </div>
           </div>
         </form>
 
