@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Carrusel "Historias de quienes ya transitaron" - Página transito.html
   (() => {
     const carruselItems = document.querySelectorAll(
-      "#carruselTransito .carrusel-item"
+      "#carruselTransito .carrusel-item-transito"
     );
     const prevBtn = document.getElementById("prevTransito");
     const nextBtn = document.getElementById("nextTransito");

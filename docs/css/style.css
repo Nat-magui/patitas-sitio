@@ -1091,7 +1091,8 @@ blockquote {
 }
 
 /* ===================================== */
-/* Carrusel de testimonios (transito.html) */
+/* Carrusel general (usado en eventos, historias, etc.) */
+/* NO se usa en transito.html desde que se aisló su propio carrusel */
 /* ===================================== */
 #testimonios-transito {
   margin: 60px auto;
@@ -2198,4 +2199,118 @@ textarea:valid {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ===================================== */
+/* Carrusel exclusivo para transito.html */
+/* NO compartir clases con otros sliders */
+/* ===================================== */
+.carrusel-transito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: nowrap;
+}
+
+.carrusel-btn-transito {
+  background-color: var(--acento);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.carrusel-contenido-transito {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.carrusel-item-transito {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  border: 2px dashed var(--verde-salvajes);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  opacity: 0;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+.carrusel-item-transito.activo {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.carrusel-item-transito img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.carrusel-item-transito p {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--gris-texto);
+  max-width: 90%;
+  margin-bottom: 10px;
+}
+
+.carrusel-item-transito strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.indicador-transito {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--verde-salvajes);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.indicador-transito.activo {
+  background-color: var(--acento);
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+  .carrusel-transito {
+    flex-direction: column;
+  }
+
+  .carrusel-item-transito p {
+    font-size: 0.95rem;
+  }
+
+  .carrusel-contenido-transito {
+    padding: 0 5px;
+  }
 }
