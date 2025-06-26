@@ -169,7 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.getElementById("prevTransito");
     const nextBtn = document.getElementById("nextTransito");
     const indicadores = document.getElementById("indicadores-transito");
-
+    const carrusel = document.getElementById("carruselTransito");
+    if (!carrusel) return;
     if (carruselItems.length > 0 && indicadores) {
       let currentIndex = 0;
       let autoplayActivo = true;
@@ -238,8 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
         iniciarAutoplay();
       }
     }
-    const carrusel = document.getElementById("carruselTransito");
-    if (!carrusel) return;
 
     let startX = 0;
     let endX = 0;
