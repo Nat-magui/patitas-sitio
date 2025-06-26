@@ -1823,7 +1823,14 @@ blockquote {
     line-height: 1.4;
   }
 
-  /* Ocultar flechas y bolitas en mobile */
+  #indicadores-slider {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  /* Ocultar flechas */
   #prevRescatados,
   #nextRescatados {
     display: none !important;
