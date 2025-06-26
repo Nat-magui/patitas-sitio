@@ -241,9 +241,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const isMobile = window.innerWidth <= 600;
         if (isMobile) {
           // Solo para móvil: scroll táctil
+          sliderTrack.style.display = "flex";
           sliderTrack.style.scrollSnapType = "x mandatory";
           sliderTrack.style.overflowX = "auto";
           sliderTrack.style.webkitOverflowScrolling = "touch";
+          sliderTrack.style.gap = "1rem";
+          sliderTrack.style.width = "100%";
+          sliderTrack.style.boxSizing = "border-box";
           sliderTrack.style.transform = "none";
 
           nextSlide?.classList.add("oculto");
@@ -253,10 +257,13 @@ document.addEventListener("DOMContentLoaded", () => {
           slides.forEach((slide) => {
             slide.style.scrollSnapAlign = "start";
             slide.style.flex = "0 0 100%";
+            slide.style.minWidth = "100%";
+            slide.style.maxWidth = "100%";
             slide.style.boxSizing = "border-box";
+            slide.style.padding = "0"; // Por si algún padding genera desborde
           });
 
-          return; // Salta todo el resto del carrusel
+          return; // Salta el resto del carrusel en mobile
         }
 
         let currentIndex = 0;

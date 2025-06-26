@@ -1599,34 +1599,37 @@ blockquote {
 }
 
 @media (max-width: 600px) {
-  .slider-track {
-    width: max-content;
-    display: flex;
-    flex-wrap: nowrap;
+  .slider-wrapper {
     overflow-x: auto;
+    padding: 0;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 1rem;
     scroll-snap-type: x mandatory;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    gap: 10px;
-    padding: 0 5px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .slider-track::-webkit-scrollbar {
     display: none; /* oculta scrollbar */
   }
 
-  .slider-wrapper {
-    padding: 0 10px;
-    overflow: visible; /* permite que el scroll funcione */
-  }
-
   .michi-slide {
-    flex: 0 0 100%; /* fuerza una sola tarjeta por fila */
+    flex: 0 0 100%;
     scroll-snap-align: start;
     box-sizing: border-box;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0; /* asegura que no se desborde por padding */
   }
 
   #prevSlide,
-  #nextSlide {
+  #nextSlide,
+  #indicadores-slider {
     display: none !important;
   }
 
