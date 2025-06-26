@@ -365,14 +365,46 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i === 0) dot.classList.add("activo");
       dot.addEventListener("click", () => {
         current = i;
-        actualizar();
+        if (esMobile) {
+          slides[i].scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest",
+          });
+        } else {
+          actualizar(); // solo usa transform en PC
+        }
         pausarYReanudar();
       });
+
       indicadores.appendChild(dot);
     }
 
     autoplay = setInterval(avanzar, 5000);
     actualizar();
+    // En mobile, actualizar la bolita activa al hacer scroll manual
+    if (esMobile) {
+      slider.addEventListener("scroll", () => {
+        let indexVisible = 0;
+        let minDist = Infinity;
+
+        slides.forEach((slide, i) => {
+          const rect = slide.getBoundingClientRect();
+          const dist = Math.abs(rect.left - window.innerWidth / 2);
+          if (dist < minDist) {
+            minDist = dist;
+            indexVisible = i;
+          }
+        });
+
+        if (indexVisible !== current) {
+          current = indexVisible;
+          indicadores
+            .querySelectorAll(".indicador-bolita-ultimos")
+            .forEach((dot, i) => dot.classList.toggle("activo", i === current));
+        }
+      });
+    }
   })();
 
   // Contador inicial del carrito
