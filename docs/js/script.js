@@ -559,81 +559,92 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   })();
 
-  // Carrusel de historias
   (() => {
-    const itemsHistoria = document.querySelectorAll(
+    const items = document.querySelectorAll(
       "#carruselHistorias .carrusel-item"
     );
-    const prevHistoria = document.getElementById("prevHistoria");
-    const nextHistoria = document.getElementById("nextHistoria");
-    const indicadoresHistoria = document.getElementById(
-      "indicadores-historias"
-    );
-    const carruselHistorias = document.getElementById("carruselHistorias");
+    const prev = document.getElementById("prevHistoria");
+    const next = document.getElementById("nextHistoria");
+    const indicadores = document.getElementById("indicadores-historias");
+    const carrusel = document.getElementById("carruselHistorias");
     const esEscritorio = window.innerWidth > 768;
 
-    if (
-      itemsHistoria.length > 0 &&
-      prevHistoria &&
-      nextHistoria &&
-      indicadoresHistoria &&
-      carruselHistorias
-    ) {
-      let currentHistoria = 0;
+    if (items.length && carrusel && indicadores) {
+      let index = 0;
       let autoplay;
+      let startX = 0;
 
-      itemsHistoria.forEach((_, i) => {
+      // Crear los indicadores (solo en escritorio)
+      items.forEach((_, i) => {
         const dot = document.createElement("span");
         dot.classList.add("indicador-transito");
         if (i === 0) dot.classList.add("activo");
         dot.addEventListener("click", () => {
-          currentHistoria = i;
-          actualizarCarruselHistorias();
+          index = i;
+          actualizar();
         });
-        indicadoresHistoria.appendChild(dot);
+        indicadores.appendChild(dot);
       });
 
-      const actualizarCarruselHistorias = () => {
-        itemsHistoria.forEach((item, i) => {
+      const actualizar = () => {
+        items.forEach((item, i) => {
           if (esEscritorio) {
-            item.classList.toggle("activo", i === currentHistoria);
+            item.classList.toggle("activo", i === index);
           } else {
-            item.classList.add("activo");
+            item.classList.add("activo"); // siempre visibles en móvil
           }
         });
 
-        indicadoresHistoria
+        indicadores
           .querySelectorAll(".indicador-transito")
           .forEach((dot, i) => {
             if (esEscritorio) {
-              dot.classList.toggle("activo", i === currentHistoria);
+              dot.classList.toggle("activo", i === index);
             } else {
               dot.classList.remove("activo");
             }
           });
       };
 
-      prevHistoria.addEventListener("click", () => {
-        currentHistoria =
-          (currentHistoria - 1 + itemsHistoria.length) % itemsHistoria.length;
-        actualizarCarruselHistorias();
-      });
+      // Flechas (solo en escritorio)
+      if (esEscritorio) {
+        if (prev && next) {
+          prev.addEventListener("click", () => {
+            index = (index - 1 + items.length) % items.length;
+            actualizar();
+          });
 
-      nextHistoria.addEventListener("click", () => {
-        currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
-        actualizarCarruselHistorias();
-      });
+          next.addEventListener("click", () => {
+            index = (index + 1) % items.length;
+            actualizar();
+          });
+        }
 
-      if (window.innerWidth > 768) {
-        setInterval(() => {
-          currentHistoria = (currentHistoria + 1) % itemsHistoria.length;
-          actualizarCarruselHistorias();
+        autoplay = setInterval(() => {
+          index = (index + 1) % items.length;
+          actualizar();
         }, 6000);
       }
 
-      carruselHistorias.addEventListener("touchstart", () =>
-        clearInterval(autoplay)
-      );
+      // Swipe en móvil
+      if (!esEscritorio) {
+        carrusel.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX;
+        });
+
+        carrusel.addEventListener("touchend", (e) => {
+          const endX = e.changedTouches[0].clientX;
+          const diff = startX - endX;
+
+          if (diff > 50) index = (index + 1) % items.length;
+          else if (diff < -50)
+            index = (index - 1 + items.length) % items.length;
+
+          actualizar();
+        });
+      }
+
+      actualizar();
     }
   })();
 });
