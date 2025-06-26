@@ -433,6 +433,7 @@ header {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    align-items: center; /* 🔥 Esta línea centra los botones */
   }
 
   .botones-ayuda .boton-claro {
@@ -441,6 +442,7 @@ header {
     font-size: 0.95rem;
     padding: 12px 10px;
     width: 100%;
+    max-width: 320px; /* ✅ Limita el ancho visual */
     box-sizing: border-box;
     line-height: 1.3;
     text-align: center;
