@@ -445,57 +445,82 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // Carrusel de testimonios de eventos (sección en eventos.html)
-  const carruselEvItems = document.querySelectorAll(
-    "#carruselEventos .carrusel-item"
-  );
-  const prevEv = document.getElementById("prevEvento");
-  const nextEv = document.getElementById("nextEvento");
-  const indicadoresEv = document.getElementById("indicadores-eventos");
+  // Carrusel exclusivo de eventos (eventos.html)
+  (() => {
+    const items = document.querySelectorAll(
+      "#carruselEventos .carrusel-eventos-item"
+    );
+    const prevBtn = document.getElementById("prevEvento");
+    const nextBtn = document.getElementById("nextEvento");
+    const indicadores = document.getElementById("indicadores-eventos");
 
-  if (carruselEvItems.length > 0 && prevEv && nextEv && indicadoresEv) {
-    let currentEv = 0;
+    if (items.length === 0 || !prevBtn || !nextBtn || !indicadores) return;
 
-    // Crear indicadores visuales (bolitas)
-    carruselEvItems.forEach((_, i) => {
-      const bolita = document.createElement("span");
-      bolita.classList.add("indicador-bolita");
-      if (i === 0) bolita.classList.add("activo");
-      bolita.addEventListener("click", () => {
-        currentEv = i;
-        actualizarCarruselEventos();
+    let currentIndex = 0;
+    let autoplay = true;
+    let autoplayInterval;
+
+    // Crear indicadores únicos
+    items.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-evento");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        actualizar();
+        detenerAutoplay();
       });
-      indicadoresEv.appendChild(bolita);
+      indicadores.appendChild(dot);
     });
 
-    // Actualiza el carrusel mostrando solo el testimonio actual
-    const actualizarCarruselEventos = () => {
-      carruselEvItems.forEach((item, i) =>
-        item.classList.toggle("activo", i === currentEv)
-      );
-      indicadoresEv
-        .querySelectorAll(".indicador-bolita")
-        .forEach((dot, i) => dot.classList.toggle("activo", i === currentEv));
+    const actualizar = () => {
+      items.forEach((item, i) => {
+        item.classList.toggle("activo", i === currentIndex);
+      });
+      indicadores.querySelectorAll("span").forEach((dot, i) => {
+        dot.classList.toggle("activo", i === currentIndex);
+      });
     };
 
-    // Navegación con flechas
-    prevEv.addEventListener("click", () => {
-      currentEv =
-        (currentEv - 1 + carruselEvItems.length) % carruselEvItems.length;
-      actualizarCarruselEventos();
+    const siguiente = () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      actualizar();
+    };
+
+    const anterior = () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      actualizar();
+    };
+
+    const iniciarAutoplay = () => {
+      autoplayInterval = setInterval(siguiente, 6000);
+    };
+
+    const detenerAutoplay = () => {
+      autoplay = false;
+      clearInterval(autoplayInterval);
+    };
+
+    prevBtn.addEventListener("click", () => {
+      anterior();
+      detenerAutoplay();
     });
 
-    nextEv.addEventListener("click", () => {
-      currentEv = (currentEv + 1) % carruselEvItems.length;
-      actualizarCarruselEventos();
+    nextBtn.addEventListener("click", () => {
+      siguiente();
+      detenerAutoplay();
     });
 
-    // Autoplay cada 6 segundos
-    setInterval(() => {
-      currentEv = (currentEv + 1) % carruselEvItems.length;
-      actualizarCarruselEventos();
-    }, 6000);
-  }
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", detenerAutoplay);
+      item.addEventListener("mouseleave", () => {
+        if (!autoplay) return;
+        iniciarAutoplay();
+      });
+    });
+
+    iniciarAutoplay();
+  })();
 
   // Carrusel de historias
   const itemsHistoria = document.querySelectorAll(
