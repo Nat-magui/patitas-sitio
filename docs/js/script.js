@@ -334,24 +334,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const esMobile = window.innerWidth <= 600;
 
     const actualizar = () => {
-      if (esMobile) {
-        slides[current].scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest",
-        });
+      const dotElements = indicadores.querySelectorAll(
+        ".indicador-bolita-ultimos"
+      );
 
-        // También actualizamos las bolitas en caso de autoplay en mobile
-        indicadores
-          .querySelectorAll(".indicador-bolita-ultimos")
-          .forEach((dot, i) => dot.classList.toggle("activo", i === current));
+      if (esMobile) {
+        // Solo hacer scrollIntoView si el carrusel está visible
+        const rectSlider = slider.getBoundingClientRect();
+        const visible =
+          rectSlider.top >= 0 &&
+          rectSlider.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight);
+
+        if (visible) {
+          slides[current].scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest",
+          });
+        }
+
+        dotElements.forEach((dot, i) =>
+          dot.classList.toggle("activo", i === current)
+        );
       } else {
         const slideWidth = slides[0].offsetWidth + 20;
         slider.style.transform = `translateX(-${current * slideWidth}px)`;
 
-        indicadores
-          .querySelectorAll(".indicador-bolita-ultimos")
-          .forEach((dot, i) => dot.classList.toggle("activo", i === current));
+        dotElements.forEach((dot, i) =>
+          dot.classList.toggle("activo", i === current)
+        );
       }
     };
 
