@@ -238,6 +238,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (sliderTrack && slides.length > 0 && indicadores) {
       esperarCargaImagenes(sliderTrack, () => {
+        const isMobile = window.innerWidth <= 600;
+        if (isMobile) {
+          // Solo para móvil: scroll táctil
+          sliderTrack.style.scrollSnapType = "x mandatory";
+          sliderTrack.style.overflowX = "auto";
+          sliderTrack.style.webkitOverflowScrolling = "touch";
+          sliderTrack.style.transform = "none";
+
+          nextSlide?.classList.add("oculto");
+          prevSlide?.classList.add("oculto");
+          indicadores?.classList.add("oculto");
+
+          slides.forEach((slide) => {
+            slide.style.scrollSnapAlign = "start";
+            slide.style.flex = "0 0 100%";
+            slide.style.boxSizing = "border-box";
+          });
+
+          return; // Salta todo el resto del carrusel
+        }
+
         let currentIndex = 0;
         let visibleCards = window.matchMedia("(max-width: 600px)").matches
           ? 1
@@ -327,29 +348,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Inicial
         updateIndicators();
         updateSlider();
+        // Iniciar scroll automático al cargar (solo escritorio)
+        autoScroll = setInterval(() => {
+          const maxIndex = totalSlides - visibleCards;
+          currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+          updateSlider();
+        }, 5000);
       });
-    }
-    const isMobile = window.innerWidth <= 600;
-
-    if (isMobile) {
-      // Configuración especial solo para móviles
-      sliderTrack.style.scrollSnapType = "x mandatory";
-      sliderTrack.style.overflowX = "auto";
-      sliderTrack.style.webkitOverflowScrolling = "touch";
-
-      // Hacer scroll suave con los dedos (sin flechas ni translateX)
-      nextSlide?.classList.add("oculto");
-      prevSlide?.classList.add("oculto");
-
-      // Eliminar cualquier transform aplicado
-      sliderTrack.style.transform = "none";
-
-      // Activar scroll táctil en cada tarjeta
-      slides.forEach((slide) => {
-        slide.style.scrollSnapAlign = "start";
-      });
-
-      return; // Salteamos toda la lógica de carrusel si es mobile
     }
   }
   // Contador inicial del carrito
