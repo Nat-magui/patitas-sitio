@@ -226,6 +226,14 @@ input:checked + label .slider {
   transform: translateX(40px);
 }
 
+@media (max-width: 600px) {
+  .modo-toggle {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 20px !important;
+  }
+}
+
 /* ===================================== */
 /*   Reset y tipografía base (General)   */
 /* ===================================== */
