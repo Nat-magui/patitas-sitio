@@ -85,9 +85,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mostrar contador real de michis en index.html
   if (location.pathname.includes("index")) {
     const contador = document.getElementById("contador-michis");
-    const total = localStorage.getItem("totalMichis");
-    if (contador) {
-      contador.textContent = total ?? "0";
+    const total = parseInt(localStorage.getItem("totalMichis") || "0");
+
+    if (contador && total > 0) {
+      let actual = 0;
+      const duracion = 4000; // 4 segundoS total
+      const pasos = 20;
+      const incremento = Math.ceil(total / pasos);
+      const intervalo = duracion / pasos;
+
+      const animarContador = setInterval(() => {
+        actual += incremento;
+        if (actual >= total) {
+          contador.textContent = total;
+          clearInterval(animarContador);
+        } else {
+          contador.textContent = actual;
+        }
+      }, intervalo);
+    } else if (contador) {
+      contador.textContent = "0";
     }
   }
 
@@ -558,89 +575,88 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   })();
-//carrusel historas de la calle al sillon
-(() => {
-  const items = document.querySelectorAll("#carruselHistorias .carrusel-item");
-  const prev = document.getElementById("prevHistoria");
-  const next = document.getElementById("nextHistoria");
-  const indicadores = document.getElementById("indicadores-historias");
-  const carrusel = document.getElementById("carruselHistorias");
+  //carrusel historas de la calle al sillon
+  (() => {
+    const items = document.querySelectorAll(
+      "#carruselHistorias .carrusel-item"
+    );
+    const prev = document.getElementById("prevHistoria");
+    const next = document.getElementById("nextHistoria");
+    const indicadores = document.getElementById("indicadores-historias");
+    const carrusel = document.getElementById("carruselHistorias");
 
-  if (!items.length || !carrusel || !indicadores) return;
+    if (!items.length || !carrusel || !indicadores) return;
 
-  let index = 0;
-  let autoplay;
-  let startX = 0;
+    let index = 0;
+    let autoplay;
+    let startX = 0;
 
-  const esEscritorio = window.innerWidth > 768;
+    const esEscritorio = window.innerWidth > 768;
 
-  // Crear bolitas
-  items.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.classList.add("indicador-transito");
-    if (i === 0) dot.classList.add("activo");
-    dot.addEventListener("click", () => {
-      index = i;
-      actualizar();
-    });
-    indicadores.appendChild(dot);
-  });
-
-  const actualizar = () => {
-    items.forEach((item, i) => {
-      if (esEscritorio) {
-        item.classList.toggle("activo", i === index);
-      } else {
-        item.classList.add("activo"); // mostrar todos en móvil
-      }
+    // Crear bolitas
+    items.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-transito");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        index = i;
+        actualizar();
+      });
+      indicadores.appendChild(dot);
     });
 
-    indicadores
-      .querySelectorAll(".indicador-transito")
-      .forEach((dot, i) => {
+    const actualizar = () => {
+      items.forEach((item, i) => {
+        if (esEscritorio) {
+          item.classList.toggle("activo", i === index);
+        } else {
+          item.classList.add("activo"); // mostrar todos en móvil
+        }
+      });
+
+      indicadores.querySelectorAll(".indicador-transito").forEach((dot, i) => {
         dot.classList.toggle("activo", i === index);
       });
-  };
+    };
 
-  // Flechas en escritorio
-  if (esEscritorio) {
-    prev?.addEventListener("click", () => {
-      index = (index - 1 + items.length) % items.length;
-      actualizar();
-    });
-
-    next?.addEventListener("click", () => {
-      index = (index + 1) % items.length;
-      actualizar();
-    });
-
-    autoplay = setInterval(() => {
-      index = (index + 1) % items.length;
-      actualizar();
-    }, 6000);
-  }
-
-  // Swipe en móvil
-  if (!esEscritorio) {
-    carrusel.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    carrusel.addEventListener("touchend", (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-
-      if (diff > 50) {
-        index = (index + 1) % items.length;
-        actualizar();
-      } else if (diff < -50) {
+    // Flechas en escritorio
+    if (esEscritorio) {
+      prev?.addEventListener("click", () => {
         index = (index - 1 + items.length) % items.length;
         actualizar();
-      }
-    });
-  }
+      });
 
-  actualizar();
-})();
+      next?.addEventListener("click", () => {
+        index = (index + 1) % items.length;
+        actualizar();
+      });
 
+      autoplay = setInterval(() => {
+        index = (index + 1) % items.length;
+        actualizar();
+      }, 6000);
+    }
+
+    // Swipe en móvil
+    if (!esEscritorio) {
+      carrusel.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
+
+      carrusel.addEventListener("touchend", (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+
+        if (diff > 50) {
+          index = (index + 1) % items.length;
+          actualizar();
+        } else if (diff < -50) {
+          index = (index - 1 + items.length) % items.length;
+          actualizar();
+        }
+      });
+    }
+
+    actualizar();
+  })();
 });

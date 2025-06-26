@@ -2624,3 +2624,10 @@ textarea:valid {
     background-color: var(--acento);
   }
 }
+
+#contador-michis {
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: var(--acento);
+  transition: all 0.3s ease;
+}
