@@ -163,57 +163,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Carrusel "Historias de quienes ya transitaron" - Página transito.html
   (() => {
-    const carruselItems = document.querySelectorAll(
-      "#carruselTransito .carrusel-item-transito"
-    );
-    const prevBtn = document.getElementById("prevTransito");
-    const nextBtn = document.getElementById("nextTransito");
-    const indicadores = document.getElementById("indicadores-transito");
+  const carruselItems = document.querySelectorAll("#carruselTransito .carrusel-item-transito");
+  const prevBtn = document.getElementById("prevTransito");
+  const nextBtn = document.getElementById("nextTransito");
+  const indicadores = document.getElementById("indicadores-transito");
 
-    if (carruselItems.length > 0 && prevBtn && nextBtn && indicadores) {
-      let currentIndex = 0;
+  if (carruselItems.length > 0 && indicadores) {
+    let currentIndex = 0;
+    let autoplayActivo = true;
+    let intervaloAutoplay;
 
-      // Crear indicadores
-      carruselItems.forEach((_, i) => {
-        const dot = document.createElement("span");
-        dot.classList.add("indicador-transito");
-        if (i === 0) dot.classList.add("activo");
-        dot.addEventListener("click", () => {
-          currentIndex = i;
-          updateCarrusel();
-        });
-        indicadores.appendChild(dot);
+    // Crear indicadores
+    carruselItems.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-transito");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        updateCarrusel();
+        detenerAutoplay();
       });
+      indicadores.appendChild(dot);
+    });
 
-      const updateCarrusel = () => {
-        carruselItems.forEach((item, i) =>
-          item.classList.toggle("activo", i === currentIndex)
+    const updateCarrusel = () => {
+      carruselItems.forEach((item, i) =>
+        item.classList.toggle("activo", i === currentIndex)
+      );
+      indicadores
+        .querySelectorAll(".indicador-transito")
+        .forEach((dot, i) =>
+          dot.classList.toggle("activo", i === currentIndex)
         );
-        indicadores;
-        indicadores
-          .querySelectorAll(".indicador-transito")
-          .forEach((dot, i) =>
-            dot.classList.toggle("activo", i === currentIndex)
-          );
-      };
+    };
 
-      prevBtn.addEventListener("click", () => {
-        currentIndex =
-          (currentIndex - 1 + carruselItems.length) % carruselItems.length;
-        updateCarrusel();
-      });
+    const avanzar = () => {
+      currentIndex = (currentIndex + 1) % carruselItems.length;
+      updateCarrusel();
+    };
 
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % carruselItems.length;
-        updateCarrusel();
-      });
+    const iniciarAutoplay = () => {
+      intervaloAutoplay = setInterval(avanzar, 8000); // cada 8 segundos
+    };
 
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % carruselItems.length;
-        updateCarrusel();
-      }, 8000); // cada 8 segundos
+    const detenerAutoplay = () => {
+      if (autoplayActivo) {
+        clearInterval(intervaloAutoplay);
+        autoplayActivo = false;
+      }
+    };
+
+    // Detener autoplay si el usuario toca/interactúa
+    document.getElementById("carruselTransito").addEventListener("touchstart", detenerAutoplay);
+    
+    prevBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + carruselItems.length) % carruselItems.length;
+      updateCarrusel();
+      detenerAutoplay();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % carruselItems.length;
+      updateCarrusel();
+      detenerAutoplay();
+    });
+
+    // Iniciar autoplay solo si hay más de un item
+    if (carruselItems.length > 1) {
+      iniciarAutoplay();
     }
-  })();
+  }
+})();
+
 
   // Animaciones por scroll
   const fadeIns = document.querySelectorAll(".fade-in");
