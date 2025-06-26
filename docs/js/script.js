@@ -446,81 +446,91 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Carrusel exclusivo de eventos (eventos.html)
-  (() => {
-    const items = document.querySelectorAll(
-      "#carruselEventos .carrusel-eventos-item"
-    );
-    const prevBtn = document.getElementById("prevEvento");
-    const nextBtn = document.getElementById("nextEvento");
-    const indicadores = document.getElementById("indicadores-eventos");
+(() => {
+  const items = document.querySelectorAll('#carruselEventos .carrusel-eventos-item');
+  const prevBtn = document.getElementById('prevEvento');
+  const nextBtn = document.getElementById('nextEvento');
+  const indicadores = document.getElementById('indicadores-eventos');
 
-    if (items.length === 0 || !prevBtn || !nextBtn || !indicadores) return;
+  let currentIndex = 0;
+  let autoplayActivo = true;
+  let autoplayInterval;
 
-    let currentIndex = 0;
-    let autoplay = true;
-    let autoplayInterval;
-
-    // Crear indicadores únicos
-    items.forEach((_, i) => {
-      const dot = document.createElement("span");
-      dot.classList.add("indicador-evento");
-      if (i === 0) dot.classList.add("activo");
-      dot.addEventListener("click", () => {
-        currentIndex = i;
-        actualizar();
-        detenerAutoplay();
-      });
-      indicadores.appendChild(dot);
+  const updateCarrusel = () => {
+    items.forEach((item, i) => {
+      item.classList.toggle('activo', i === currentIndex);
     });
 
-    const actualizar = () => {
-      items.forEach((item, i) => {
-        item.classList.toggle("activo", i === currentIndex);
-      });
-      indicadores.querySelectorAll("span").forEach((dot, i) => {
-        dot.classList.toggle("activo", i === currentIndex);
-      });
-    };
+    [...indicadores.children].forEach((dot, i) => {
+      dot.classList.toggle('activo', i === currentIndex);
+    });
+  };
 
-    const siguiente = () => {
-      currentIndex = (currentIndex + 1) % items.length;
-      actualizar();
-    };
+  const irA = (index) => {
+    currentIndex = (index + items.length) % items.length;
+    updateCarrusel();
+  };
 
-    const anterior = () => {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
-      actualizar();
-    };
+  const siguiente = () => irA(currentIndex + 1);
+  const anterior = () => irA(currentIndex - 1);
 
-    const iniciarAutoplay = () => {
-      autoplayInterval = setInterval(siguiente, 6000);
-    };
+  const iniciarAutoplay = () => {
+    autoplayInterval = setInterval(siguiente, 5000);
+  };
 
-    const detenerAutoplay = () => {
-      autoplay = false;
-      clearInterval(autoplayInterval);
-    };
+  const detenerAutoplay = () => {
+    clearInterval(autoplayInterval);
+    autoplayActivo = false;
+  };
 
-    prevBtn.addEventListener("click", () => {
+  // Crear indicadores
+  items.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.classList.add('indicador-bolita');
+    if (i === 0) dot.classList.add('activo');
+    dot.addEventListener('click', () => {
+      irA(i);
+      detenerAutoplay();
+    });
+    indicadores.appendChild(dot);
+  });
+
+  updateCarrusel();
+  iniciarAutoplay();
+
+  // Eventos
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
       anterior();
       detenerAutoplay();
     });
-
-    nextBtn.addEventListener("click", () => {
+    nextBtn.addEventListener('click', () => {
       siguiente();
       detenerAutoplay();
     });
+  }
 
-    items.forEach((item) => {
-      item.addEventListener("mouseenter", detenerAutoplay);
-      item.addEventListener("mouseleave", () => {
-        if (!autoplay) return;
-        iniciarAutoplay();
-      });
+  // Gestos táctiles (Swipe)
+  let startX = 0;
+  let endX = 0;
+
+  const carruselTouch = document.getElementById('carruselEventos');
+  if (carruselTouch) {
+    carruselTouch.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
     });
 
-    iniciarAutoplay();
-  })();
+    carruselTouch.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) siguiente();
+        else anterior();
+        detenerAutoplay();
+      }
+    });
+  }
+})();
 
   // Carrusel de historias
   const itemsHistoria = document.querySelectorAll(

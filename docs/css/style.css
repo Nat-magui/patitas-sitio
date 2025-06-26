@@ -2451,24 +2451,29 @@ textarea:valid {
   }
 
   .carrusel-eventos-btn {
-    width: 100%;
-    max-width: 140px;
-    font-size: 1.2rem;
-    padding: 10px 0;
-    border-radius: 10px;
-    margin: 0 auto;
-  }
-
-  .carrusel-eventos-btn:first-child {
-    order: 1;
+    display: none;
   }
 
   .carrusel-eventos-contenido {
     order: 2;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .carrusel-eventos-btn:last-child {
+  .carrusel-eventos-item {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
+    display: block;
+  }
+
+  .indicadores-eventos {
     order: 3;
+    margin-top: 0.5rem;
   }
 }
 
