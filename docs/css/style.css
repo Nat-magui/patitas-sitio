@@ -662,6 +662,13 @@ section ul li {
 /* ===================================== */
 /* Formulario de contacto (contacto.html) */
 /* ===================================== */
+.contacto-hero {
+  background: url("../img/gato-feliz.webp") center/cover no-repeat;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
 .formulario-contacto {
   display: flex;
   flex-direction: column;
