@@ -308,13 +308,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!slider || !slides.length || !prev || !next || !indicadores) return;
 
     let current = 0;
-    let visible = 2;
     let autoplay;
-    let reinicio; // 👈 importante
+    let reinicio;
+
+    const esMobile = window.innerWidth <= 600;
 
     const actualizar = () => {
-      const slideWidth = slides[0].offsetWidth + 20;
-      slider.style.transform = `translateX(-${current * slideWidth}px)`;
+      if (esMobile) {
+        slides[current].scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      } else {
+        const slideWidth = slides[0].offsetWidth + 20;
+        slider.style.transform = `translateX(-${current * slideWidth}px)`;
+      }
+
       indicadores
         .querySelectorAll(".indicador-bolita-ultimos")
         .forEach((dot, i) => dot.classList.toggle("activo", i === current));
@@ -335,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearTimeout(reinicio);
       reinicio = setTimeout(() => {
         autoplay = setInterval(avanzar, 5000);
-      }, 6000); // ⏱️ vuelve a activarse luego de 6 segundos
+      }, 6000);
     };
 
     prev.addEventListener("click", () => {
@@ -349,8 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Crear bolitas
-    const total = slides.length;
-    for (let i = 0; i < total; i++) {
+    for (let i = 0; i < slides.length; i++) {
       const dot = document.createElement("span");
       dot.className = "indicador-bolita-ultimos";
       if (i === 0) dot.classList.add("activo");
