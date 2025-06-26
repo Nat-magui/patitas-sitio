@@ -2465,11 +2465,16 @@ textarea:valid {
     -webkit-overflow-scrolling: touch;
     width: 100%;
     box-sizing: border-box;
+    scrollbar-width: none;
+  }
+
+  .carrusel-eventos-contenido::-webkit-scrollbar {
+    display: none;
   }
 
   .carrusel-eventos-item {
     scroll-snap-align: center;
-    flex: 0 0 88%; /* 🔧 Menos del 100% para que no rompa */
+    flex: 0 0 88%;
     box-sizing: border-box;
     display: block !important;
     opacity: 1 !important;
@@ -2500,7 +2505,7 @@ textarea:valid {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    padding-bottom: 1rem; /* espacio con sección siguiente */
+    padding-bottom: 1rem;
   }
 
   .indicadores-eventos span {
