@@ -306,16 +306,19 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   // Animaciones por scroll
-  const fadeIns = document.querySelectorAll(".fade-in");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  });
-  fadeIns.forEach((el) => observer.observe(el));
+  const elementosAnimados = document.querySelectorAll(".fade-in");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // para que se ejecute solo una vez
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  elementosAnimados.forEach((el) => observer.observe(el));
 
   // Carrusel "Últimos rescatados"
   (() => {

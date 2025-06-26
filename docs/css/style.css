@@ -249,15 +249,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body.fade-in-global {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-body.fade-in-global.visible {
-  opacity: 1;
-}
-
 /* ===================================== */
 /* Header + Nav (Todas las páginas con navegación) */
 /* ===================================== */
@@ -967,6 +958,16 @@ blockquote {
   opacity: 0.9;
 }
 
+.subtitulo-motivacional {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #fefefe;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+
 @media (max-width: 600px) {
   .hero-overlay {
     padding: 20px 15px;
@@ -1389,6 +1390,15 @@ blockquote {
   transform: translateY(0);
 }
 
+body.fade-in-global {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+body.fade-in-global.visible {
+  opacity: 1;
+}
+
 /* ===================================== */
 /* Historias - De la calle al sillón (historias.html) */
 /* ===================================== */
@@ -1492,6 +1502,19 @@ blockquote {
 .historia-imgs img {
   height: 260px;
   object-position: top; /* Asegura que se vea el texto arriba */
+}
+
+.texto-motivador-adicional {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1rem;
+  color: var(--gris-texto);
+}
+
+.texto-motivador-adicional a {
+  color: var(--acento);
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .carrusel-btn-historia {
