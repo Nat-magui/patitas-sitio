@@ -388,14 +388,17 @@ document.addEventListener("DOMContentLoaded", () => {
     autoplay = setInterval(avanzar, 5000);
     actualizar();
     // En mobile, actualizar la bolita activa al hacer scroll manual
+    // En mobile, actualizar la bolita activa al hacer scroll manual
     if (esMobile) {
       slider.addEventListener("scroll", () => {
         let indexVisible = 0;
         let minDist = Infinity;
+        const centroPantalla = window.innerWidth / 2;
 
         slides.forEach((slide, i) => {
           const rect = slide.getBoundingClientRect();
-          const dist = Math.abs(rect.left - window.innerWidth / 2);
+          const centroSlide = rect.left + rect.width / 2;
+          const dist = Math.abs(centroSlide - centroPantalla);
           if (dist < minDist) {
             minDist = dist;
             indexVisible = i;
