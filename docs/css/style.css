@@ -1721,7 +1721,7 @@ body.fade-in-global.visible {
 @media (max-width: 768px) {
   .historia-card {
     width: 100%;
-    max-width: 95vw;
+    max-width: 500px;
     margin: 0 auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     border-radius: 16px;
@@ -1729,7 +1729,7 @@ body.fade-in-global.visible {
   }
 
   .historia-imgs img {
-    height: 180px; /* más adaptado al ancho */
+    height: 200px; /* más adaptado al ancho */
   }
 
   .historia-info {
@@ -1757,6 +1757,11 @@ body.fade-in-global.visible {
 
   .carrusel-historias-contenido::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
+  }
+
+  .carrusel-historias-contenido::after {
+    content: "";
+    flex: 0 0 1rem;
   }
 
   .carrusel-historias-contenido .carrusel-item {
