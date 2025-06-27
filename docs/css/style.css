@@ -1759,6 +1759,12 @@ body.fade-in-global.visible {
     display: none; /* Chrome, Safari */
   }
 
+  .carrusel-historias-contenido::before {
+  content: "";
+  flex: 0 0 1rem; /* o el mismo valor que uses en ::after */
+}
+
+
   .carrusel-historias-contenido::after {
     content: "";
     flex: 0 0 1rem;
