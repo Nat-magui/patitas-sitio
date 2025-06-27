@@ -1719,6 +1719,31 @@ body.fade-in-global.visible {
 }
 
 @media (max-width: 768px) {
+  .historia-card {
+    width: 100%;
+    max-width: 95vw;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .historia-imgs img {
+    height: 180px; /* más adaptado al ancho */
+  }
+
+  .historia-info {
+    padding: 16px;
+  }
+
+  .historia-info p {
+    font-size: 1rem;
+  }
+
+  .historia-info a.boton-secundario {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
   .carrusel-historias-contenido {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
