@@ -690,11 +690,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const endX = e.changedTouches[0].clientX;
         const diff = startX - endX;
 
-        if (diff > 50) {
-          index = (index + 1) % items.length;
+        if (diff > 50 && index < items.length - 1) {
+          // Swipe izquierda → siguiente
+          index++;
           actualizar();
-        } else if (diff < -50) {
-          index = (index - 1 + items.length) % items.length;
+        } else if (diff < -50 && index > 0) {
+          // Swipe derecha → anterior, solo si no estamos en la primera
+          index--;
           actualizar();
         }
       });
