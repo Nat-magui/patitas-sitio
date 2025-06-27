@@ -1438,6 +1438,10 @@ textarea:valid {
   }
   .carrusel-item p {
     font-size: 0.95rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   .carrusel-contenido {
     padding: 0 5px;
@@ -1731,7 +1735,8 @@ body.fade-in-global.visible {
   }
 
   .carrusel-historias-contenido .carrusel-item {
-    flex: 0 0 92%;
+    flex: 0 0 98%; /* más ancha visualmente */
+    max-width: 98%;
     scroll-snap-align: center;
     display: block !important;
     opacity: 1 !important;
@@ -2470,7 +2475,7 @@ body.fade-in-global.visible {
   padding: 10px 16px;
   font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   align-self: center; /* 🧭 Alineación vertical */
   transition: transform 0.2s ease;
 }
