@@ -1765,8 +1765,8 @@ body.fade-in-global.visible {
   }
 
   .carrusel-historias-contenido .carrusel-item {
-    flex: 0 0 98%; /* más ancha visualmente */
-    max-width: 98%;
+    flex: 0 0 98%;
+    max-width: 420px;
     scroll-snap-align: center;
     display: block !important;
     opacity: 1 !important;

@@ -701,16 +701,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // Detectar el scroll horizontal en mobile y actualizar bolitas
     carrusel.addEventListener("scroll", () => {
-      const itemWidth = items[0].offsetWidth + 16; // 16px por el gap: 1rem
-      const scrollLeft = carrusel.scrollLeft;
-      const nuevoIndex = Math.round(scrollLeft / itemWidth);
+      let indexVisible = 0;
+      let minDist = Infinity;
+      const centroPantalla = window.innerWidth / 2;
 
-      index = nuevoIndex; // actualizamos el índice actual
-      indicadores.querySelectorAll(".indicador-transito").forEach((dot, i) => {
-        dot.classList.toggle("activo", i === nuevoIndex);
+      items.forEach((item, i) => {
+        const rect = item.getBoundingClientRect();
+        const centroItem = rect.left + rect.width / 2;
+        const dist = Math.abs(centroItem - centroPantalla);
+        if (dist < minDist) {
+          minDist = dist;
+          indexVisible = i;
+        }
       });
-    });
 
+      if (indexVisible !== index) {
+        index = indexVisible;
+        indicadores
+          .querySelectorAll(".indicador-transito")
+          .forEach((dot, i) => {
+            dot.classList.toggle("activo", i === index);
+          });
+      }
+    });
     actualizar();
   })();
 });
