@@ -2693,6 +2693,12 @@ body.fade-in-global.visible {
   max-width: 600px;
 }
 
+.carrusel-eventos-contenido::before,
+.carrusel-eventos-contenido::after {
+  content: "";
+  flex: 0 0 1rem; /* Podés ajustar el espacio si querés más o menos aire */
+}
+
 .carrusel-eventos-item {
   min-width: 100%;
   opacity: 0;
