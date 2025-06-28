@@ -1,263 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gatitos en Adopción | Patitas Salvajes</title>
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 
-    <meta
-      name="description"
-      content="Conocé a los gatitos en adopción de Patitas Salvajes. Todos buscan una familia amorosa."
-    />
-    <meta name="author" content="Patitas Salvajes" />
-    <!-- Open Graph -->
-    <meta
-      property="og:title"
-      content="Gatitos en Adopción | Patitas Salvajes"
-    />
-    <meta
-      property="og:description"
-      content="Conocé a los michis disponibles para adopción en Junín. Sumate a Patitas Salvajes."
-    />
-    <meta
-      property="og:image"
-      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
-    />
-    <meta
-      property="og:url"
-      content="https://nat-magui.github.io/patitas-sitio/adopta.html"
-    />
-    <meta property="og:type" content="website" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Gatitos en Adopción | Patitas Salvajes"
-    />
-    <meta
-      name="twitter:description"
-      content="Conocé a los michis disponibles para adopción en Junín. Sumate a Patitas Salvajes."
-    />
-    <meta
-      name="twitter:image"
-      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gatitos en Adopción | Patitas Salvajes</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 
-    <meta
-      name="keywords"
-      content="adopción de gatos, refugio felino, Junín, gatos en adopción, patitas salvajes, adoptar gatos"
-    />
+  <meta name="description"
+    content="Conocé a los gatitos en adopción de Patitas Salvajes. Todos buscan una familia amorosa." />
+  <meta name="author" content="Patitas Salvajes" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gatitos en Adopción | Patitas Salvajes" />
+  <meta property="og:description"
+    content="Conocé a los michis disponibles para adopción en Junín. Sumate a Patitas Salvajes." />
+  <meta property="og:image" content="https://nat-magui.github.io/patitas-sitio/img/logo.png" />
+  <meta property="og:url" content="https://nat-magui.github.io/patitas-sitio/adopta.html" />
+  <meta property="og:type" content="website" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gatitos en Adopción | Patitas Salvajes" />
+  <meta name="twitter:description"
+    content="Conocé a los michis disponibles para adopción en Junín. Sumate a Patitas Salvajes." />
+  <meta name="twitter:image" content="https://nat-magui.github.io/patitas-sitio/img/logo.png" />
 
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+  <meta name="keywords"
+    content="adopción de gatos, refugio felino, Junín, gatos en adopción, patitas salvajes, adoptar gatos" />
 
-  <body>
-    <header>
-      <div class="logo">
-        <img src="img/logo.png" alt="Logo Patitas Salvajes" />
-        <h1>Patitas Salvajes</h1>
-      </div>
-      <nav class="nav-principal">
-        <button class="menu-toggle" aria-label="Abrir menú">☰</button>
-        <ul class="nav-lista">
-          <li><a href="index.html">🏠 Inicio</a></li>
-          <li><a href="adopta.html">💞 Adoptá</a></li>
-          <li><a href="transito.html">🏠 Tránsito</a></li>
-          <li><a href="ayuda.html">🤝 Cómo ayudar</a></li>
-          <li><a href="cuidados.html">🩺 Cuidados</a></li>
-          <li><a href="eventos.html">🎟️ Eventos</a></li>
-          <li><a href="historias.html">📸 Historias</a></li>
-          <li><a href="nosotras.html">👩‍🦰 Nosotras</a></li>
-          <li><a href="contacto.html">📬 Contacto</a></li>
-        </ul>
-        <a href="carrito.html" class="icono-carrito" aria-label="Ir al carrito">
-          🛒
-          <span class="carrito-contador" id="carrito-contador">0</span>
-        </a>
-      </nav>
-    </header>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+</head>
 
-    <main>
-      <section class="hero-adopta fade-in">
-        <div class="hero-adopta-contenido">
-          <h1>🐱 Adopciones responsables</h1>
-          <p>
-            Todos estos gatitos buscan una familia. Adoptar salva vidas y llena
-            tu hogar de amor. Conocelos y encontrá a tu próximo compañero de
-            vida. 💖
-          </p>
-        </div>
-      </section>
-
-      <section id="adopta" class="fondo-lavanda">
-        <h2>💞 Gatitos disponibles para adopción</h2>
-        <p>
-          Conocé a algunos de los michis que buscan sillón, comida rica y amor
-          para siempre 🐾
-        </p>
-        <!-- Michi 1 -->
-        <div class="galeria-michis">
-          <div class="michi-card">
-            <img src="img/michi-atrigado.webp" alt="Pelusa" />
-            <h3>Pelusa</h3>
-            <p>Edad: 3 meses<br />Estado: En tránsito</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Pelusa', 3,'img/michi-atrigado.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-          <!-- Michi 2 -->
-          <div class="michi-card">
-            <img src="img/michi-blanco-negro.webp" alt="Bigotes" />
-            <h3>Bigotes</h3>
-            <p>Edad: 1 año<br />Estado: Listo para adoptar</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Bigotes', 12,'img/michi-blanco-negro.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-          <!-- Michi 3 -->
-          <div class="michi-card">
-            <img src="img/michi-luna.webp" alt="Luna" />
-            <h3>Luna</h3>
-            <p>Edad: 6 meses<br />Estado: En tratamiento</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Luna', 6,'img/michi-negro.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-          <!-- Michi 4 -->
-          <div class="michi-card">
-            <img src="img/michi-tomate.webp" alt="Tomate" />
-            <h3>Tomate</h3>
-            <p>Edad: 2 meses<br />Estado: Juguetón y curioso</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Tomate', 2,'img/michi-tomate.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-
-          <!-- Michi 5 -->
-          <div class="michi-card">
-            <img src="img/michi-daisy.webp" alt="Daisy" />
-            <h3>Daisy</h3>
-            <p>Edad: 1 año<br />Estado: Muy dulce, ama dormir</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Daisy', 12,'img/michi-daisy.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-
-          <!-- Michi 6 -->
-          <div class="michi-card">
-            <img src="img/michi-rayito.webp" alt="Rayito" />
-            <h3>Rayito</h3>
-            <p>Edad: 4 meses<br />Estado: Corre como un rayo ⚡</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Rayito', 4,'img/michi-rayito.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-
-          <!-- Michi 7 -->
-          <div class="michi-card">
-            <img src="img/michi-almendra.webp" alt="Almendra" />
-            <h3>Almendra</h3>
-            <p>Edad: 8 meses<br />Estado: Tranquila y observadora</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Almendra', 8,'img/michi-almendra.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-
-          <!-- Michi 8 -->
-          <div class="michi-card">
-            <img src="img/michi-zazu.webp" alt="Zazú" />
-            <h3>Zazú</h3>
-            <p>Edad: 6 meses<br />Estado: Ama treparse a todos lados</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Zazú', 6,'img/michi-zazu.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-
-          <!-- Michi 9 -->
-          <div class="michi-card">
-            <img src="img/michi-estrella.webp" alt="Estrella" />
-            <h3>Estrella</h3>
-            <p>Edad: 11 meses<br />Estado: Brilla con luz propia</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Estrella', 11,'img/michi-estrella.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-
-          <!-- Michi 10 -->
-          <div class="michi-card">
-            <img src="img/michi-gofio.webp" alt="Gofio" />
-            <h3>Gofio</h3>
-            <p>Edad: 7 meses<br />Estado: Goloso y ronronero</p>
-            <button
-              class="boton"
-              onclick="agregarAlCarrito('Gofio', 7,'img/michi-gofio.webp')"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-        </div>
-      </section>
-      <section class="cta-adopta">
-        <h2>¿Te enamoraste de alguno?</h2>
-        <p>
-          Cada michi que ves acá tiene mucho amor para dar. Si uno de ellos tocó
-          tu corazón, <strong>¡no dudes en escribirnos!</strong> Adoptar es
-          cambiar dos vidas: la suya y la tuya.
-        </p>
-        <a href="contacto.html" class="boton-cta">💌 Quiero adoptar</a>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
-    </footer>
-
-    <div class="modo-toggle">
-      <input
-        type="checkbox"
-        id="modo-switch"
-        aria-label="Alternar modo oscuro"
-      />
-      <label for="modo-switch">
-        <span class="icono-sol">🌞</span>
-        <span class="icono-luna">🌙</span>
-        <span class="slider"></span>
-      </label>
+<body>
+  <header>
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo Patitas Salvajes" />
+      <h1>Patitas Salvajes</h1>
     </div>
+    <nav class="nav-principal">
+      <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+      <ul class="nav-lista">
+        <li><a href="index.html">🏠 Inicio</a></li>
+        <li><a href="adopta.html">💞 Adoptá</a></li>
+        <li><a href="transito.html">🏠 Tránsito</a></li>
+        <li><a href="ayuda.html">🤝 Cómo ayudar</a></li>
+        <li><a href="cuidados.html">🩺 Cuidados</a></li>
+        <li><a href="eventos.html">🎟️ Eventos</a></li>
+        <li><a href="historias.html">📸 Historias</a></li>
+        <li><a href="nosotras.html">👩‍🦰 Nosotras</a></li>
+        <li><a href="contacto.html">📬 Contacto</a></li>
+      </ul>
+      <a href="carrito.html" class="icono-carrito" aria-label="Ir al carrito">
+        🛒
+        <span class="carrito-contador" id="carrito-contador">0</span>
+      </a>
+    </nav>
+  </header>
 
-    <script src="js/script.js"></script>
-    <div id="notificacion" class="notificacion" aria-live="polite"></div>
-  </body>
+  <main>
+    <section class="hero-adopta fade-in">
+      <div class="hero-adopta-contenido">
+        <h1>🐱 Adopciones responsables</h1>
+        <p>
+          Todos estos gatitos buscan una familia. Adoptar salva vidas y llena
+          tu hogar de amor. Conocelos y encontrá a tu próximo compañero de
+          vida. 💖
+        </p>
+      </div>
+    </section>
+
+    <section id="adopta" class="fondo-lavanda fade-in">
+      <h2>💞 Gatitos disponibles para adopción</h2>
+      <p>
+        Conocé a algunos de los michis que buscan sillón, comida rica y amor
+        para siempre 🐾
+      </p>
+      <!-- Michi 1 -->
+      <div class="galeria-michis">
+        <article class="michi-card">
+          <img src="img/michi-atrigado.webp" alt="Pelusa" />
+          <h3>Pelusa</h3>
+          <p>Edad: 3 meses<br />Estado: En tránsito</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Pelusa', 3,'img/michi-atrigado.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 2 -->
+        <article class="michi-card">
+          <img src="img/michi-blanco-negro.webp" alt="Bigotes" />
+          <h3>Bigotes</h3>
+          <p>Edad: 1 año<br />Estado: Listo para adoptar</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Bigotes', 12,'img/michi-blanco-negro.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 3 -->
+        <article class="michi-card">
+          <img src="img/michi-luna.webp" alt="Luna" />
+          <h3>Luna</h3>
+          <p>Edad: 6 meses<br />Estado: En tratamiento</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Luna', 6,'img/michi-negro.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 4 -->
+        <article class="michi-card">
+          <img src="img/michi-tomate.webp" alt="Tomate" />
+          <h3>Tomate</h3>
+          <p>Edad: 2 meses<br />Estado: Juguetón y curioso</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Tomate', 2,'img/michi-tomate.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 5 -->
+        <article class="michi-card">
+          <img src="img/michi-daisy.webp" alt="Daisy" />
+          <h3>Daisy</h3>
+          <p>Edad: 1 año<br />Estado: Muy dulce, ama dormir</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Daisy', 12,'img/michi-daisy.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 6 -->
+        <article class="michi-card">
+          <img src="img/michi-rayito.webp" alt="Rayito" />
+          <h3>Rayito</h3>
+          <p>Edad: 4 meses<br />Estado: Corre como un rayo ⚡</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Rayito', 4,'img/michi-rayito.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 7 -->
+        <article class="michi-card">
+          <img src="img/michi-almendra.webp" alt="Almendra" />
+          <h3>Almendra</h3>
+          <p>Edad: 8 meses<br />Estado: Tranquila y observadora</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Almendra', 8,'img/michi-almendra.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 8 -->
+        <article class="michi-card">
+          <img src="img/michi-zazu.webp" alt="Zazú" />
+          <h3>Zazú</h3>
+          <p>Edad: 6 meses<br />Estado: Ama treparse a todos lados</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Zazú', 6,'img/michi-zazu.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 9 -->
+        <article class="michi-card">
+          <img src="img/michi-estrella.webp" alt="Estrella" />
+          <h3>Estrella</h3>
+          <p>Edad: 11 meses<br />Estado: Brilla con luz propia</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Estrella', 11,'img/michi-estrella.webp')">
+            Agregar al carrito
+          </button>
+        </article>
+        <!-- Michi 10 -->
+        <article class="michi-card">
+          <img src="img/michi-gofio.webp" alt="Gofio" />
+          <h3>Gofio</h3>
+          <p>Edad: 7 meses<br />Estado: Goloso y ronronero</p>
+          <button class="boton" aria-label="Agregar este michi al carrito"
+            onclick="agregarAlCarrito('Gofio', 7,'img/michi-gofio.webp')">
+            Agregar al carrito
+          </button>
+      </div>
+      </div>
+    </section>
+    <section class="cta-adopta fade-in">
+      <h2>¿Te enamoraste de alguno?</h2>
+      <p>
+        Cada michi que ves acá tiene mucho amor para dar. Si uno de ellos tocó
+        tu corazón, <strong>¡no dudes en escribirnos!</strong> Adoptar es
+        cambiar dos vidas: la suya y la tuya.
+      </p>
+      <a href="contacto.html" class="boton-cta">💌 Quiero adoptar</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
+  </footer>
+
+  <div class="modo-toggle">
+    <input type="checkbox" id="modo-switch" aria-label="Alternar modo oscuro" />
+    <label for="modo-switch">
+      <span class="icono-sol">🌞</span>
+      <span class="icono-luna">🌙</span>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <script src="js/script.js"></script>
+  <div id="notificacion" class="notificacion" aria-live="polite"></div>
+</body>
+
 </html>
