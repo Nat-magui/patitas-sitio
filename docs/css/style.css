@@ -679,6 +679,98 @@ section ul li {
 }
 
 /* ===================================== */
+/* Hero de adopta.html */
+/* ===================================== */
+.hero-adopta {
+  background-color: #fffdf4;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../img/michi-rescatado.webp"); /* 🐾 Repetí el fondo clásico */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px;
+  text-align: center;
+  border-bottom: 3px dashed var(--acento);
+  margin-bottom: 40px;
+}
+
+.hero-adopta-contenido {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.85
+  ); /* opcional: mejora la legibilidad */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.hero-adopta h1 {
+  font-size: 2.4rem;
+  color: var(--gris-texto);
+  margin-bottom: 1rem;
+}
+
+.hero-adopta p {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===================================== */
+/* CTA de adopta.html */
+/* ===================================== */
+.cta-adopta {
+  background-image: 
+    linear-gradient(135deg, #fcdde5 0%, #c8d8b9 100%),
+    url("../img/fondo-patitas.webp");
+  background-size: cover, contain;
+  background-repeat: no-repeat, repeat;
+  background-position: center, center;
+  padding: 60px 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 60px auto 40px;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.cta-adopta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--gris-texto);
+}
+
+.cta-adopta p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.boton-cta {
+  background-color: var(--acento);
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.boton-cta:hover {
+  background-color: var(--acento-oscuro, #e07789);
+  transform: scale(1.08);
+}
+
+/* ===================================== */
 /* Formulario de contacto (contacto.html) */
 /* ===================================== */
 .contacto-hero {
@@ -1503,7 +1595,7 @@ body.fade-in-global.visible {
   position: absolute;
   bottom: 8px;
   font-size: 1.1rem;
-  font-family: 'Comic Sans MS', cursive;
+  font-family: "Comic Sans MS", cursive;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
@@ -1595,7 +1687,7 @@ body.fade-in-global.visible {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 700px;;
+  max-width: 700px;
   margin-inline: auto;
   opacity: 0;
   transform: scale(0.95);

@@ -4,12 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gatitos en Adopción | Patitas Salvajes</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <meta
+      name="description"
+      content="Conocé a los gatitos en adopción de Patitas Salvajes. Todos buscan una familia amorosa."
+    />
+    <meta name="author" content="Patitas Salvajes" />
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Gatitos en Adopción | Patitas Salvajes"
+    />
+    <meta
+      property="og:description"
+      content="Conocé a los michis disponibles para adopción en Junín. Sumate a Patitas Salvajes."
+    />
+    <meta
+      property="og:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://nat-magui.github.io/patitas-sitio/adopta.html"
+    />
+    <meta property="og:type" content="website" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Gatitos en Adopción | Patitas Salvajes"
+    />
+    <meta
+      name="twitter:description"
+      content="Conocé a los michis disponibles para adopción en Junín. Sumate a Patitas Salvajes."
+    />
+    <meta
+      name="twitter:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+
+    <meta
+      name="keywords"
+      content="adopción de gatos, refugio felino, Junín, gatos en adopción, patitas salvajes, adoptar gatos"
+    />
+
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header>
       <div class="logo">
@@ -37,6 +83,17 @@
     </header>
 
     <main>
+      <section class="hero-adopta fade-in">
+        <div class="hero-adopta-contenido">
+          <h1>🐱 Adopciones responsables</h1>
+          <p>
+            Todos estos gatitos buscan una familia. Adoptar salva vidas y llena
+            tu hogar de amor. Conocelos y encontrá a tu próximo compañero de
+            vida. 💖
+          </p>
+        </div>
+      </section>
+
       <section id="adopta" class="fondo-lavanda">
         <h2>💞 Gatitos disponibles para adopción</h2>
         <p>
@@ -172,11 +229,33 @@
           </div>
         </div>
       </section>
+      <section class="cta-adopta">
+        <h2>¿Te enamoraste de alguno?</h2>
+        <p>
+          Cada michi que ves acá tiene mucho amor para dar. Si uno de ellos tocó
+          tu corazón, <strong>¡no dudes en escribirnos!</strong> Adoptar es
+          cambiar dos vidas: la suya y la tuya.
+        </p>
+        <a href="contacto.html" class="boton-cta">💌 Quiero adoptar</a>
+      </section>
     </main>
 
-    <footer>
+    <footer class="footer">
       <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
     </footer>
+
+    <div class="modo-toggle">
+      <input
+        type="checkbox"
+        id="modo-switch"
+        aria-label="Alternar modo oscuro"
+      />
+      <label for="modo-switch">
+        <span class="icono-sol">🌞</span>
+        <span class="icono-luna">🌙</span>
+        <span class="slider"></span>
+      </label>
+    </div>
 
     <script src="js/script.js"></script>
     <div id="notificacion" class="notificacion" aria-live="polite"></div>
