@@ -1516,7 +1516,8 @@ textarea:valid {
   }
 
   .menu-toggle {
-    display: block;
+    display: block !important;
+    z-index: 1001;
     background: none;
     border: none;
     font-size: 2rem;
