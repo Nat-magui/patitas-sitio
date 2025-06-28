@@ -1160,6 +1160,7 @@ blockquote {
   padding: 20px;
   margin-bottom: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-color: var(--lavanda);
 }
 
 .formulario-contacto legend {
@@ -1263,10 +1264,8 @@ textarea:valid {
     font-size: 1rem;
     padding: 12px 20px;
     width: 100%;
-    margin-top: 10px;
-    border-radius: 8px;
+    max-width: 240px;
   }
-
   .gracias-envio {
     font-size: 0.95rem;
     padding: 1rem;
