@@ -29,17 +29,17 @@
   --lavanda: #3b2f44;
   --celeste: #2a3d45;
   --acento: #ff7f9f;
-  --gris-texto: #f0f0f0;
+  --gris-texto: #eaeaea;
   --fondo-tarjeta: #2c2c2c;
   --fondo-tarjeta-clara: #383838;
-  --texto-claro: #f4f4f4;
+  --texto-claro: #ffffff;
 }
 
 .modo-oscuro .card-michi,
 .modo-oscuro .card-ayuda,
 .modo-oscuro .michi-card,
 .modo-oscuro .historia-card {
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .modo-oscuro .card-ayuda,
@@ -189,7 +189,7 @@ body.modo-oscuro {
 
 .modo-oscuro a:hover,
 .modo-oscuro .boton:hover {
-  filter: brightness(1.1);
+  background-color: #ff5a7a; /* un tono más oscuro manualmente */
 }
 
 .modo-oscuro .faq-transito details {
@@ -202,13 +202,28 @@ body.modo-oscuro {
   color: var(--texto-claro);
 }
 
+.modo-oscuro .faq-transito summary::before {
+  color: var(--acento);
+}
+
+/*modo oscuro cuidados.html*/
+.modo-oscuro .card-cuidados {
+  background-color: var(--fondo-tarjeta);
+  color: var(--texto-claro);
+  border-left: 6px solid var(--verde-salvajes); /* sugerencia para destacarlas */
+}
+.modo-oscuro .card-cuidados h3,
+.modo-oscuro .card-cuidados li {
+  color: var(--texto-claro);
+}
+
 /*adopta apadrina html*/
 /* 🌙 Modo oscuro */
 .modo-oscuro .michi-card {
   background-color: #2b2b2b;
   color: #f0f0f0;
   border-color: var(--lavanda);
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ===================================== */
@@ -550,6 +565,84 @@ section ul li {
   border-left: 6px solid var(--verde-salvajes);
   border-radius: 5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ===================================== */
+/* Estilo extra para cuidados especialmente en los bloques */
+/* ===================================== */
+/* 💅 Bloques visuales para secciones de cuidados */
+.bloque-cuidado {
+  background-color: var(--celeste);
+  border: 2px dashed var(--verde-salvajes);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.bloque-cuidado h2 {
+  font-size: 1.7rem;
+  margin-bottom: 1.2rem;
+  color: var(--gris-texto);
+  text-align: center;
+}
+
+.card-cuidados,
+.card-cuidado-tema {
+  background-color: white;
+  border: 2px dashed var(--verde-salvajes);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.card-cuidado-tema h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--verde-salvajes);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-cuidado-tema ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.card-cuidado-tema li {
+  background-color: #fdfdfd;
+  border-left: 5px solid var(--verde-salvajes);
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease;
+}
+
+.card-cuidado-tema li:hover {
+  transform: scale(1.01);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-cuidado-tema .mensaje-fijo {
+  margin-top: 1rem;
+  background-color: var(--rosa-patitas);
+  border: 2px dashed var(--verde-salvajes);
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--gris-texto);
+}
+
+#cuidados h2,
+#preparativos h2,
+#antes-de-adoptar h2 {
+  margin-bottom: 1rem;
 }
 
 /* ===================================== */
