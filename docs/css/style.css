@@ -217,6 +217,13 @@ body.modo-oscuro {
   color: var(--texto-claro);
 }
 
+/*modo oscuro nosotras.html*/
+.modo-oscuro .frase-motivadora {
+  background-color: var(--fondo-tarjeta-clara);
+  color: var(--texto-claro);
+  border-left-color: var(--acento);
+}
+
 /*adopta apadrina html*/
 /* 🌙 Modo oscuro */
 .modo-oscuro .michi-card {
@@ -2310,6 +2317,19 @@ body.fade-in-global.visible {
 #origen .galeria-michis img:hover {
   transform: scale(1.03) translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.frase-motivadora {
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 700px;
+  background-color: var(--lavanda);
+  border-left: 5px solid var(--acento);
+  border-radius: 10px;
+  color: var(--gris-texto);
 }
 
 @media (max-width: 600px) {
