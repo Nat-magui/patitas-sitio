@@ -118,12 +118,12 @@
 }
 
 /* Arreglo de título de testimonios en modo oscuro */
-.modo-oscuro #testimonios-transito {
+.modo-oscuro {
   background-color: var(--fondo-tarjeta);
   color: var(--texto-claro);
 }
 
-.modo-oscuro #testimonios-transito h2 {
+.modo-oscuro h2 {
   color: var(--texto-claro);
 }
 
@@ -691,16 +691,14 @@ section ul li {
 .formulario-contacto {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  /* más espacio entre bloques */
-  max-width: 650px;
-  margin: 40px auto;
+  gap: 20px; /* promedio entre 15px y 25px */
+  max-width: 650px; /* usamos la más amplia */
+  margin: 35px auto; /* término medio */
   background-color: #fff;
-  padding: 30px;
-  /* más aire interno */
-  border-radius: 14px;
+  padding: 24px; /* término medio */
+  border-radius: 13px; /* valor intermedio entre 12 y 14 */
   border: 2px dashed var(--rosa-patitas);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.09); /* suavizado intermedio */
 }
 
 .formulario-contacto label {
@@ -901,18 +899,6 @@ blockquote {
 /* ===================================== */
 /* Estilo adicional para formularios (contacto.html) */
 /* ===================================== */
-.formulario-contacto {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 600px;
-  margin: 30px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  border: 2px dashed var(--rosa-patitas);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
 
 /* FIELDSETS */
 .formulario-contacto fieldset {
@@ -988,20 +974,50 @@ textarea:valid {
   animation: shake 0.3s;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .formulario-contacto {
-    padding: 20px 15px;
-    margin: 20px 10px;
+    padding: 1rem;
   }
 
   .formulario-contacto fieldset {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    border: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
   }
 
-  .formulario-contacto fieldset > div {
-    flex: 1 1 45%;
+  .formulario-contacto div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .formulario-contacto label {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .formulario-contacto input,
+  .formulario-contacto select,
+  .formulario-contacto textarea {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .formulario-contacto button {
+    font-size: 1rem;
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+
+  .gracias-envio {
+    font-size: 0.95rem;
+    padding: 1rem;
   }
 }
 
@@ -1292,163 +1308,6 @@ textarea:valid {
 }
 
 /* ===================================== */
-/* Carrusel general (usado en eventos, historias, etc.) */
-/* NO se usa en transito.html desde que se aisló su propio carrusel */
-/* ===================================== */
-#testimonios-transito {
-  margin: 60px auto;
-  padding: 30px;
-  max-width: 900px;
-  background-color: #f0fef6;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
-.carrusel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-  margin-bottom: 2rem;
-}
-
-.carrusel-btn {
-  background-color: var(--acento);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 8px 14px;
-}
-
-.carrusel-contenido {
-  width: 100%;
-  max-width: 600px;
-  position: relative;
-  overflow: hidden;
-  min-height: 280px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-
-.carrusel-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  background-color: #fff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  border: 2px dashed var(--verde-salvajes);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-
-  opacity: 0;
-  position: relative; /* Quitamos absolute */
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
-
-  display: none;
-}
-
-.carrusel-item img {
-  width: 100%;
-  max-width: 280px;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  object-fit: cover;
-}
-
-.carrusel-item p {
-  font-style: italic;
-  font-size: 1.05rem;
-  color: var(--gris-texto);
-  max-width: 90%;
-  margin-bottom: 10px;
-}
-
-.carrusel-item strong {
-  display: block;
-  margin-top: 5px;
-  font-size: 0.95rem;
-  color: #444;
-}
-
-.carrusel-item.activo {
-  display: block;
-  opacity: 1;
-  transform: scale(1);
-  position: relative;
-}
-
-.indicadores-testimonios {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.indicador-bolita {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ccc;
-  background-color: var(--verde-salvajes);
-  opacity: 0.5;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.indicador-bolita.activo {
-  background-color: var(--acento);
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-.indicadores-slider {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.indicador-bolita-slider {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ccc;
-  transition: background-color 0.3s ease;
-}
-
-.indicador-bolita-slider.activo {
-  background-color: var(--acento);
-}
-
-@media (max-width: 600px) {
-  .carrusel {
-    flex-direction: column;
-  }
-  .carrusel-item p {
-    font-size: 0.95rem;
-    padding: 1rem;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-  .carrusel-contenido {
-    padding: 0 5px;
-  }
-}
-
-/* ===================================== */
 /* Galería de eventos pasados (eventos.html) */
 /* ===================================== */
 #galeria-eventos {
@@ -1577,6 +1436,7 @@ body.fade-in-global.visible {
 /* ===================================== */
 /* Historias - De la calle al sillón (historias.html) */
 /* ===================================== */
+
 #historias {
   margin: 60px auto;
   padding: 30px;
@@ -1598,6 +1458,7 @@ body.fade-in-global.visible {
   color: #555;
 }
 
+/* Grilla para mostrar todas las historias (modo visual no carrusel) */
 .historias-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1612,19 +1473,8 @@ body.fade-in-global.visible {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease;
-
   display: flex;
   flex-direction: column;
-}
-
-.historia-info {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* 💡 centra verticalmente */
-  align-items: center;
-  text-align: center;
-  padding: 20px;
 }
 
 .historia-card:hover {
@@ -1632,17 +1482,54 @@ body.fade-in-global.visible {
 }
 
 .historia-imgs {
+  position: relative; /* Necesario para posicionar las etiquetas dentro */
   display: flex;
-  gap: 0;
-  flex-wrap: nowrap;
   width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .historia-imgs img {
+  flex: 1 1 50%;
   width: 50%;
-  object-fit: cover;
   height: 220px;
+  object-fit: cover;
   display: block;
+}
+
+.etiqueta {
+  position: absolute;
+  bottom: 8px;
+  font-size: 1.1rem;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  padding: 4px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.etiqueta.antes {
+  left: 5%;
+}
+
+.etiqueta.despues {
+  right: 5%;
+}
+
+.historia-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .historia-info h3 {
@@ -1668,17 +1555,6 @@ body.fade-in-global.visible {
   text-align: center;
 }
 
-.carrusel-historias {
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-.historia-imgs img {
-  height: 260px;
-  object-position: top; /* Asegura que se vea el texto arriba */
-}
-
 .texto-motivador-adicional {
   text-align: center;
   margin-top: 15px;
@@ -1692,14 +1568,57 @@ body.fade-in-global.visible {
   text-decoration: underline;
 }
 
+/* Carrusel individual */
+.carrusel-historias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.carrusel-historias-contenido {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carrusel-historias-item {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 700px;;
+  margin-inline: auto;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.carrusel-historias-item.activo {
+  display: flex;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Botones de flechas */
 .carrusel-btn-historia {
   background-color: var(--acento);
   border: none;
   color: white;
-  font-size: 28px; /* Tamaño de la flecha un poco mayor */
-  width: 56px; /* Más ancho */
-  height: 56px; /* Más alto */
-  border-radius: 12px; /* Esquinas suavemente redondeadas */
+  font-size: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -1716,6 +1635,37 @@ body.fade-in-global.visible {
   background-color: var(--acento-oscuro, #e07789);
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Ajustes para las flechas del carrusel de historias */
+#prevHistoria {
+  left: 12px;
+}
+
+#nextHistoria {
+  right: 12px;
+}
+
+/* Indicadores / bolitas del carrusel */
+.indicadores-testimonios {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 12px; /* buena separación entre bolitas */
+}
+
+.indicadores-testimonios .indicador-transito {
+  height: 12px;
+  width: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.indicadores-testimonios .indicador-transito.activo {
+  background-color: var(--acento);
 }
 
 @media (max-width: 768px) {
@@ -1760,10 +1710,9 @@ body.fade-in-global.visible {
   }
 
   .carrusel-historias-contenido::before {
-  content: "";
-  flex: 0 0 1rem; /* o el mismo valor que uses en ::after */
-}
-
+    content: "";
+    flex: 0 0 1rem; /* o el mismo valor que uses en ::after */
+  }
 
   .carrusel-historias-contenido::after {
     content: "";
@@ -1786,101 +1735,6 @@ body.fade-in-global.visible {
   .carrusel-btn-historia {
     display: none !important; /* oculta flechas en móvil */
   }
-
-  .indicadores-testimonios {
-    margin-top: 1rem;
-  }
-}
-
-/* ===================================== */
-/* Carrusel historias (historias.html) */
-/* ===================================== */
-.carrusel {
-  position: relative;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.carrusel-contenido {
-  position: relative;
-  overflow: hidden;
-  min-height: 480px;
-}
-
-.carrusel-item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.4s ease;
-  display: none;
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-.carrusel-item.activo {
-  opacity: 1;
-  transform: scale(1);
-  display: block;
-}
-
-.carrusel-btn {
-  background-color: var(--acento);
-  border: none;
-  color: white;
-  font-size: 24px;
-  width: 56px;
-  height: 44px;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, background-color 0.3s;
-}
-
-.contenedor-carrusel {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#prevHistoria {
-  left: 100px;
-}
-#nextHistoria {
-  right: 100px;
-}
-
-.indicadores-testimonios {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  gap: 10px;
-}
-
-.indicadores-testimonios .dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 4px;
-  background-color: #ccc;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s;
-  cursor: pointer;
-}
-
-.indicadores-testimonios .dot.activo {
-  background-color: var(--acento);
 }
 
 /* ===================================== */
@@ -2004,6 +1858,14 @@ body.fade-in-global.visible {
 }
 
 /* Bolitas indicadores */
+#indicadores-slider-rescatados {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-bottom: 10px;
+}
+
 .indicadores-slider-ultimos {
   margin-top: 1rem;
   display: flex;
@@ -2016,6 +1878,7 @@ body.fade-in-global.visible {
   height: 12px;
   border-radius: 50%;
   background-color: #fcdde5;
+  display: inline-block;
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -2085,7 +1948,7 @@ body.fade-in-global.visible {
     line-height: 1.4;
   }
 
-  #indicadores-slider {
+  #indicadores-slider-rescatados {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -2610,6 +2473,29 @@ body.fade-in-global.visible {
   color: #444;
 }
 
+#indicadores-slider-transito {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-bottom: 10px;
+}
+
+.indicador-bolita-transito {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.indicador-bolita-transito.activo {
+  background-color: var(--acento);
+  opacity: 1;
+}
+
 .indicador-transito {
   width: 12px;
   height: 12px;
@@ -2682,61 +2568,35 @@ body.fade-in-global.visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
   margin-top: 2rem;
-}
-
-.carrusel-eventos-contenido {
-  display: flex;
-  overflow: hidden;
-  max-width: 600px;
-}
-
-.carrusel-eventos-contenido::before,
-.carrusel-eventos-contenido::after {
-  content: "";
-  flex: 0 0 1rem; /* Podés ajustar el espacio si querés más o menos aire */
-}
-
-.carrusel-eventos-item {
-  min-width: 100%;
-  opacity: 0;
-  transform: translateX(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  background-color: #ffffffcc;
-  border-radius: 16px;
-  border: 2px dashed var(--verde-salvajes);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  display: none;
   position: relative;
 }
 
-.carrusel-eventos-item.activo {
-  display: block;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.carrusel-eventos-btn {
-  background-color: var(--acento);
-  border: none;
-  font-size: 1.4rem;
-  padding: 10px 16px;
+.carrusel-eventos-item {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  margin: 0 1.5rem; /* 👉 separa los botones del mensaje central */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 70%;
+  margin-inline: auto;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
 }
 
-.carrusel-eventos-btn:hover {
-  background-color: #ff90a6;
-  transform: translateY(-2px);
+.carrusel-eventos-item.activo {
+  display: flex;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
 .indicadores-eventos {
@@ -2746,32 +2606,53 @@ body.fade-in-global.visible {
   margin-top: 1rem;
 }
 
-.indicadores-eventos span {
+.indicador-bolita-eventos {
   width: 10px;
   height: 10px;
-  background-color: #bbb;
+  background-color: #ccc;
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.indicadores-eventos .activo {
-  background-color: var(--acento, #ffa8b6);
+.indicador-bolita-eventos.activo {
+  background-color: var(--acento);
 }
 
-.carrusel-eventos-item p {
-  font-style: italic;
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+.carrusel-eventos-btn {
+  background-color: var(--acento);
+  color: white;
+  border: none;
+  border-radius: 5px; /* 🟪 más cuadradas */
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s ease;
+  z-index: 2;
 }
 
-.carrusel-eventos-item strong {
-  margin-top: 1rem;
-  display: inline-block;
-  font-weight: 600;
-  color: #222;
+.carrusel-eventos-btn:hover {
+  background-color: #ff7f9f;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* 📌 Posicionamiento más cercano a la tarjeta */
+#prevTestimonioEvento {
+  left: 50px;
+}
+
+#nextTestimonioEvento {
+  right: 50px;
 }
 
 @media (max-width: 600px) {
@@ -2792,7 +2673,7 @@ body.fade-in-global.visible {
     display: flex;
     gap: 1rem;
     scroll-behavior: smooth;
-    padding: 1rem;
+    padding: 0;
     -webkit-overflow-scrolling: touch;
     width: 100%;
     box-sizing: border-box;

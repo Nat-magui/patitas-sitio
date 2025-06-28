@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const prevBtn = document.getElementById("prevTransito");
     const nextBtn = document.getElementById("nextTransito");
-    const indicadores = document.getElementById("indicadores-transito");
+    const indicadores = document.getElementById("indicadores-slider-transito");
     const carrusel = document.getElementById("carruselTransito");
     if (!carrusel) return;
     if (carruselItems.length > 0 && indicadores) {
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Crear indicadores
       carruselItems.forEach((_, i) => {
         const dot = document.createElement("span");
-        dot.classList.add("indicador-transito");
+        dot.classList.add("indicador-bolita-transito");
         if (i === 0) dot.classList.add("activo");
         dot.addEventListener("click", () => {
           currentIndex = i;
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
           item.classList.toggle("activo", i === currentIndex)
         );
         indicadores
-          .querySelectorAll(".indicador-transito")
+          .querySelectorAll(".indicador-bolita-transito")
           .forEach((dot, i) =>
             dot.classList.toggle("activo", i === currentIndex)
           );
@@ -316,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Swipe derecha → anterior
         document.getElementById("prevTransito")?.click();
       }
+      updateCarrusel();
     }
   })();
 
@@ -340,7 +341,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll(".michi-slide-ultimos");
     const prev = document.getElementById("prevRescatados");
     const next = document.getElementById("nextRescatados");
-    const indicadores = document.getElementById("indicadores-slider");
+    const indicadores = document.getElementById(
+      "indicadores-slider-rescatados"
+    );
 
     if (!slider || !slides.length || !prev || !next || !indicadores) return;
 
@@ -505,227 +508,186 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // Carrusel de Lo que nos dejó cada encuentro - eventos
+  // Carrusel "Lo que nos dejó cada encuentro" - eventos.html
   (() => {
-    const items = document.querySelectorAll(
+    const carruselItems = document.querySelectorAll(
       "#carruselEventos .carrusel-eventos-item"
     );
-    const prevBtn = document.getElementById("prevEvento");
-    const nextBtn = document.getElementById("nextEvento");
+    const prevBtn = document.getElementById("prevTestimonioEvento");
+    const nextBtn = document.getElementById("nextTestimonioEvento");
     const indicadores = document.getElementById("indicadores-eventos");
     const carrusel = document.getElementById("carruselEventos");
-    const isMobile = window.innerWidth <= 600;
 
-    if (!carrusel || items.length === 0 || !indicadores) return;
+    if (!carrusel || carruselItems.length === 0 || !indicadores) return;
 
-    let currentIndex = 0;
-    let autoplayInterval;
+    let currentIndexEvento = 0;
+    let intervaloAutoplayEvento;
+    let reinicioAutoplayEvento;
 
-    // Crear indicadores (siempre)
-    items.forEach((_, i) => {
+    // Crear bolitas
+    carruselItems.forEach((_, i) => {
       const dot = document.createElement("span");
-      dot.classList.add("indicador-bolita");
+      dot.classList.add("indicador-bolita-eventos");
       if (i === 0) dot.classList.add("activo");
       dot.addEventListener("click", () => {
-        if (isMobile) {
-          items[i].scrollIntoView({ behavior: "smooth", inline: "center" });
-        } else {
-          irA(i);
-          detenerAutoplay();
-        }
+        currentIndexEvento = i;
+        updateCarruselEventos();
+        detenerAutoplayEvento();
       });
       indicadores.appendChild(dot);
     });
 
-    if (isMobile) {
-      // Estilos forzados en mobile
-      items.forEach((item) => {
-        item.style.display = "block";
-        item.style.opacity = "1";
-        item.style.transform = "none";
-      });
+    const updateCarruselEventos = () => {
+      carruselItems.forEach((item, i) =>
+        item.classList.toggle("activo", i === currentIndexEvento)
+      );
+      indicadores
+        .querySelectorAll(".indicador-bolita-eventos")
+        .forEach((dot, i) =>
+          dot.classList.toggle("activo", i === currentIndexEvento)
+        );
+    };
 
-      // Scroll tracking en mobile
-      carrusel.addEventListener("scroll", () => {
-        const scrollLeft = carrusel.scrollLeft;
-        const itemWidth = carrusel.clientWidth;
-        const index = Math.round(scrollLeft / itemWidth);
-        [...indicadores.children].forEach((dot, i) => {
-          dot.classList.toggle("activo", i === index);
-        });
-      });
+    const avanzarEvento = () => {
+      currentIndexEvento = (currentIndexEvento + 1) % carruselItems.length;
+      updateCarruselEventos();
+    };
 
-      return; // no seguir con la lógica de escritorio
-    }
+    const iniciarAutoplayEvento = () => {
+      intervaloAutoplayEvento = setInterval(avanzarEvento, 8000);
+    };
 
-    // ---- Lógica para escritorio ----
-    function updateCarrusel() {
-      items.forEach((item, i) => {
-        item.classList.toggle("activo", i === currentIndex);
-      });
-
-      [...indicadores.children].forEach((dot, i) => {
-        dot.classList.toggle("activo", i === currentIndex);
-      });
-    }
-
-    function irA(index) {
-      currentIndex = (index + items.length) % items.length;
-      updateCarrusel();
-    }
-
-    function siguiente() {
-      irA(currentIndex + 1);
-    }
-
-    function anterior() {
-      irA(currentIndex - 1);
-    }
-
-    function iniciarAutoplay() {
-      autoplayInterval = setInterval(siguiente, 5000);
-    }
-
-    function detenerAutoplay() {
-      clearInterval(autoplayInterval);
-    }
-
-    updateCarrusel();
-    iniciarAutoplay();
+    const detenerAutoplayEvento = () => {
+      clearInterval(intervaloAutoplayEvento);
+      clearTimeout(reinicioAutoplayEvento);
+      reinicioAutoplayEvento = setTimeout(() => {
+        iniciarAutoplayEvento();
+      }, 6000); // se reactiva después de 6 segundos sin interacción
+    };
 
     prevBtn?.addEventListener("click", () => {
-      anterior();
-      detenerAutoplay();
+      currentIndexEvento =
+        (currentIndexEvento - 1 + carruselItems.length) % carruselItems.length;
+      updateCarruselEventos();
+      detenerAutoplayEvento();
     });
 
     nextBtn?.addEventListener("click", () => {
-      siguiente();
-      detenerAutoplay();
+      currentIndexEvento = (currentIndexEvento + 1) % carruselItems.length;
+      updateCarruselEventos();
+      detenerAutoplayEvento();
     });
 
-    // Swipe manual (escritorio táctil)
-    let startX = 0;
+    // Swipe en celulares
+    let startXEvento = 0;
     carrusel.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
+      startXEvento = e.touches[0].clientX;
     });
+
     carrusel.addEventListener("touchend", (e) => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) siguiente();
-        else anterior();
-        detenerAutoplay();
-      }
-    });
-  })();
-  //carrusel historas de la calle al sillon
-  (() => {
-    const items = document.querySelectorAll(
-      "#carruselHistorias .carrusel-item"
-    );
-    const prev = document.getElementById("prevHistoria");
-    const next = document.getElementById("nextHistoria");
-    const indicadores = document.getElementById("indicadores-historias");
-    const carrusel = document.getElementById("carruselHistorias");
-
-    if (!items.length || !carrusel || !indicadores) return;
-
-    let index = 0;
-    let autoplay;
-    let startX = 0;
-
-    const esEscritorio = window.innerWidth > 768;
-
-    // Crear bolitas
-    items.forEach((_, i) => {
-      const dot = document.createElement("span");
-      dot.classList.add("indicador-transito");
-      if (i === 0) dot.classList.add("activo");
-      dot.addEventListener("click", () => {
-        index = i;
-        actualizar();
-      });
-      indicadores.appendChild(dot);
-    });
-
-    const actualizar = () => {
-      items.forEach((item, i) => {
-        if (esEscritorio) {
-          item.classList.toggle("activo", i === index);
+      const deltaX = e.changedTouches[0].clientX - startXEvento;
+      if (Math.abs(deltaX) > 50) {
+        if (deltaX < 0) {
+          nextBtn?.click();
         } else {
-          item.classList.add("activo"); // mostrar todos en móvil
+          prevBtn?.click();
         }
-      });
-
-      indicadores.querySelectorAll(".indicador-transito").forEach((dot, i) => {
-        dot.classList.toggle("activo", i === index);
-      });
-    };
-
-    // Flechas en escritorio
-    if (esEscritorio) {
-      prev?.addEventListener("click", () => {
-        index = (index - 1 + items.length) % items.length;
-        actualizar();
-      });
-
-      next?.addEventListener("click", () => {
-        index = (index + 1) % items.length;
-        actualizar();
-      });
-
-      autoplay = setInterval(() => {
-        index = (index + 1) % items.length;
-        actualizar();
-      }, 6000);
-    }
-
-    // Swipe en móvil
-    if (!esEscritorio) {
-      carrusel.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-      });
-
-      carrusel.addEventListener("touchend", (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-
-        if (diff > 50 && index < items.length - 1) {
-          // Swipe izquierda → siguiente
-          index++;
-          actualizar();
-        } else if (diff < -50 && index > 0) {
-          // Swipe derecha → anterior, solo si no estamos en la primera
-          index--;
-          actualizar();
-        }
-      });
-    }
-    // Detectar el scroll horizontal en mobile y actualizar bolitas
-    carrusel.addEventListener("scroll", () => {
-      let indexVisible = 0;
-      let minDist = Infinity;
-      const centroPantalla = window.innerWidth / 2;
-
-      items.forEach((item, i) => {
-        const rect = item.getBoundingClientRect();
-        const centroItem = rect.left + rect.width / 2;
-        const dist = Math.abs(centroItem - centroPantalla);
-        if (dist < minDist) {
-          minDist = dist;
-          indexVisible = i;
-        }
-      });
-
-      if (indexVisible !== index) {
-        index = indexVisible;
-        indicadores
-          .querySelectorAll(".indicador-transito")
-          .forEach((dot, i) => {
-            dot.classList.toggle("activo", i === index);
-          });
       }
+      detenerAutoplayEvento();
     });
-    actualizar();
+
+    if (carruselItems.length > 1) iniciarAutoplayEvento();
+
+    updateCarruselEventos();
   })();
+
+// Carrusel "De la calle al sillón" - historias.html
+(() => {
+  const items = document.querySelectorAll(
+    "#carruselHistorias .carrusel-historias-item"
+  );
+  const prevBtn = document.getElementById("prevHistoria");
+  const nextBtn = document.getElementById("nextHistoria");
+  const indicadores = document.getElementById("indicadores-historias");
+  const carrusel = document.getElementById("carruselHistorias");
+
+  if (!carrusel || items.length === 0 || !indicadores) return;
+
+  let currentIndex = 0;
+  let autoplayInterval;
+  let autoplayTimeout;
+
+  // Crear bolitas
+  items.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("indicador-transito");
+    if (i === 0) dot.classList.add("activo");
+    dot.addEventListener("click", () => {
+      currentIndex = i;
+      updateCarrusel();
+      detenerYReiniciarAutoplay();
+    });
+    indicadores.appendChild(dot);
+  });
+
+  const updateCarrusel = () => {
+    const isMobile = window.innerWidth <= 768;
+
+    items.forEach((item, i) => {
+      item.classList.toggle("activo", isMobile || i === currentIndex);
+    });
+
+    indicadores.querySelectorAll(".indicador-transito").forEach((dot, i) => {
+      dot.classList.toggle("activo", i === currentIndex);
+    });
+  };
+
+  const avanzar = () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarrusel();
+  };
+
+  const iniciarAutoplay = () => {
+    autoplayInterval = setInterval(avanzar, 8000);
+  };
+
+  const detenerYReiniciarAutoplay = () => {
+    if (autoplayInterval) clearInterval(autoplayInterval);
+    clearTimeout(autoplayTimeout);
+    autoplayTimeout = setTimeout(() => {
+      iniciarAutoplay();
+    }, 6000);
+  };
+
+  // Flechas
+  prevBtn?.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarrusel();
+    detenerYReiniciarAutoplay();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarrusel();
+    detenerYReiniciarAutoplay();
+  });
+
+  // Swipe para celulares
+  let startX = 0;
+  carrusel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  carrusel.addEventListener("touchend", (e) => {
+    const desplazamientoX = e.changedTouches[0].clientX - startX;
+    if (Math.abs(desplazamientoX) > 50) {
+      if (desplazamientoX < 0) nextBtn?.click();
+      else prevBtn?.click();
+    }
+    detenerYReiniciarAutoplay();
+  });
+
+  if (items.length > 1) iniciarAutoplay();
+  updateCarrusel();
+})();
 });
