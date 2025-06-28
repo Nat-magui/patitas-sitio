@@ -226,76 +226,87 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.getElementById("nextTransito");
     const indicadores = document.getElementById("indicadores-slider-transito");
     const carrusel = document.getElementById("carruselTransito");
-    if (!carrusel) return;
-    if (carruselItems.length > 0 && indicadores) {
-      let currentIndex = 0;
-      let autoplayActivo = true;
-      let intervaloAutoplay;
+    const isMobile = window.innerWidth <= 600;
 
-      // Crear indicadores
-      carruselItems.forEach((_, i) => {
-        const dot = document.createElement("span");
-        dot.classList.add("indicador-bolita-transito");
-        if (i === 0) dot.classList.add("activo");
-        dot.addEventListener("click", () => {
-          currentIndex = i;
-          updateCarrusel();
-          detenerAutoplay();
-        });
-        indicadores.appendChild(dot);
+    if (!carrusel || carruselItems.length === 0 || !indicadores) return;
+
+    let currentIndex = 0;
+    let autoplayActivo = true;
+    let intervaloAutoplay;
+
+    // Crear indicadores
+    carruselItems.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.classList.add("indicador-bolita-transito");
+      dot.setAttribute("aria-label", `Ver historia ${i + 1} de tránsito`);
+      dot.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      if (i === 0) dot.classList.add("activo");
+
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        updateCarrusel();
+        detenerAutoplay();
       });
 
-      const updateCarrusel = () => {
-        carruselItems.forEach((item, i) =>
-          item.classList.toggle("activo", i === currentIndex)
-        );
-        indicadores
-          .querySelectorAll(".indicador-bolita-transito")
-          .forEach((dot, i) =>
-            dot.classList.toggle("activo", i === currentIndex)
+      indicadores.appendChild(dot);
+    });
+
+    const updateCarrusel = () => {
+      carruselItems.forEach((item, i) =>
+        item.classList.toggle("activo", i === currentIndex)
+      );
+      indicadores
+        .querySelectorAll(".indicador-bolita-transito")
+        .forEach((dot, i) => {
+          dot.classList.toggle("activo", i === currentIndex);
+          dot.setAttribute(
+            "aria-pressed",
+            i === currentIndex ? "true" : "false"
           );
-      };
+        });
+    };
 
-      const avanzar = () => {
-        currentIndex = (currentIndex + 1) % carruselItems.length;
-        updateCarrusel();
-      };
+    const avanzar = () => {
+      currentIndex = (currentIndex + 1) % carruselItems.length;
+      updateCarrusel();
+    };
 
-      const iniciarAutoplay = () => {
-        intervaloAutoplay = setInterval(avanzar, 8000); // cada 8 segundos
-      };
+    const iniciarAutoplay = () => {
+      intervaloAutoplay = setInterval(avanzar, 8000);
+    };
 
-      const detenerAutoplay = () => {
-        if (autoplayActivo) {
-          clearInterval(intervaloAutoplay);
-          autoplayActivo = false;
-        }
-      };
-
-      // Detener autoplay si el usuario toca/interactúa
-      document
-        .getElementById("carruselTransito")
-        .addEventListener("touchstart", detenerAutoplay);
-
-      prevBtn?.addEventListener("click", () => {
-        currentIndex =
-          (currentIndex - 1 + carruselItems.length) % carruselItems.length;
-        updateCarrusel();
-        detenerAutoplay();
-      });
-
-      nextBtn?.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % carruselItems.length;
-        updateCarrusel();
-        detenerAutoplay();
-      });
-
-      // Iniciar autoplay solo si hay más de un item
-      if (carruselItems.length > 1) {
-        iniciarAutoplay();
+    const detenerAutoplay = () => {
+      if (autoplayActivo) {
+        clearInterval(intervaloAutoplay);
+        autoplayActivo = false;
       }
+    };
+
+    // Iniciar autoplay si hay más de un item
+    if (carruselItems.length > 1) {
+      iniciarAutoplay();
     }
 
+    // Solo en mobile: detener autoplay al tocar
+    if (isMobile) {
+      carrusel.addEventListener("touchstart", detenerAutoplay);
+    }
+
+    // Botones ← →
+    prevBtn?.addEventListener("click", () => {
+      currentIndex =
+        (currentIndex - 1 + carruselItems.length) % carruselItems.length;
+      updateCarrusel();
+      detenerAutoplay();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % carruselItems.length;
+      updateCarrusel();
+      detenerAutoplay();
+    });
+
+    // Swipe (mobile)
     let startX = 0;
     let endX = 0;
 
@@ -310,16 +321,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleSwipe() {
       const diff = startX - endX;
-      const minSwipeDistance = 50; // px
+      const minSwipeDistance = 50;
 
       if (Math.abs(diff) < minSwipeDistance) return;
 
       if (diff > 0) {
-        // Swipe izquierda → siguiente
-        document.getElementById("nextTransito")?.click();
+        nextBtn?.click();
       } else {
-        // Swipe derecha → anterior
-        document.getElementById("prevTransito")?.click();
+        prevBtn?.click();
       }
       updateCarrusel();
     }

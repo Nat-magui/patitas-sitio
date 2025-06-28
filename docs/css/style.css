@@ -82,8 +82,7 @@
 .modo-oscuro h1,
 .modo-oscuro h2,
 .modo-oscuro h3,
-.modo-oscuro p,
-.modo-oscuro a {
+.modo-oscuro p {
   color: var(--texto-claro);
 }
 
@@ -170,6 +169,46 @@
 body,
 body.modo-oscuro {
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.modo-oscuro .indicador-bolita-transito.activo {
+  background-color: var(--acento);
+}
+
+.modo-oscuro .mensajito-final {
+  background-color: var(--verde-salvajes);
+  color: #fff;
+}
+
+.modo-oscuro a,
+.modo-oscuro .boton,
+.modo-oscuro .boton-secundario {
+  color: var(--texto-claro);
+  background-color: var(--acento);
+}
+
+.modo-oscuro a:hover,
+.modo-oscuro .boton:hover {
+  filter: brightness(1.1);
+}
+
+.modo-oscuro .faq-transito details {
+  background-color: var(--fondo-tarjeta-clara);
+  color: var(--texto-claro);
+}
+
+.modo-oscuro .faq-transito details[open] {
+  background-color: var(--lavanda);
+  color: var(--texto-claro);
+}
+
+/*adopta apadrina html*/
+/* 🌙 Modo oscuro */
+.modo-oscuro .michi-card {
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+  border-color: var(--lavanda);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
 }
 
 /* ===================================== */
@@ -679,14 +718,6 @@ section ul li {
   outline-offset: 4px;
 }
 
-/* 🌙 Modo oscuro */
-.modo-oscuro .michi-card {
-  background-color: #2b2b2b;
-  color: #f0f0f0;
-  border-color: var(--lavanda);
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
-}
-
 /* 📱 Responsive */
 @media (max-width: 480px) {
   .michi-card {
@@ -755,8 +786,7 @@ section ul li {
 /* CTA de adopta.html */
 /* ===================================== */
 .cta-adopta {
-  background-image: 
-    linear-gradient(135deg, #fcdde5 0%, #c8d8b9 100%),
+  background-image: linear-gradient(135deg, #fcdde5 0%, #c8d8b9 100%),
     url("../img/fondo-patitas.webp");
   background-size: cover, contain;
   background-repeat: no-repeat, repeat;
@@ -768,7 +798,6 @@ section ul li {
   max-width: 800px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-
 
 .cta-adopta h2 {
   font-size: 2rem;
@@ -2684,6 +2713,172 @@ body.fade-in-global.visible {
 }
 
 /* ===================================== */
+/* Propiedades exclusivo para transito.html */
+/* ===================================== */
+.lista-pasos-transito {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 🔽 antes 1rem */
+}
+
+.lista-pasos-transito li {
+  background-color: white;
+  border-left: 5px solid var(--verde-salvajes);
+  padding: 1rem;
+  border-radius: 10px;
+  padding: 0.75rem 1rem; /* 🔽 antes era 1rem */
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.lista-pasos-transito li:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.lista-pasos-transito li span {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.mensajito-final {
+  background-color: var(--verde-salvajes);
+  color: var(--gris-texto);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+.card-ayuda:hover,
+.card-ayuda-suave:hover,
+.lista-pasos-transito li:hover,
+.card-beneficio:hover,
+.card-cuidado:hover,
+.card-evento:hover,
+.card-historia:hover {
+  transform: scale(1.01);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.faq-transito {
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px dashed var(--verde-salvajes);
+  background-color: var(--rosa-patitas);
+  margin: 2rem auto;
+  max-width: 900px;
+}
+
+.faq-transito h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--gris-texto);
+}
+
+.faq-transito details {
+  background-color: white;
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  border-left: 6px solid var(--verde-salvajes);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.faq-transito details[open] {
+  background-color: var(--lavanda);
+  color: var(--texto-claro);
+}
+
+.faq-transito summary {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.faq-transito summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-transito summary::before {
+  content: "▶";
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+  color: var(--acento);
+}
+
+.faq-transito details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.faq-transito details[open] p {
+  margin-top: 0.5rem;
+  color: var(--gris-texto);
+}
+
+.estilo-ganancias {
+  background-color: var(--celeste);
+  border: 2px dashed var(--verde-salvajes);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 1000px;
+}
+
+.estilo-ganancias h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.grid-ganancias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.item-ganancia {
+  background-color: white;
+  border: 2px dashed var(--acento);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.item-ganancia:hover {
+  transform: scale(1.02);
+  border-color: var(--lavanda);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
+
+.item-ganancia span {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.item-ganancia p {
+  font-weight: 500;
+  color: var(--gris-texto);
+}
+
+/* ===================================== */
 /* Carrusel exclusivo para EVENTOS.html */
 /* NO compartir clases con otros sliders */
 /* ===================================== */
@@ -2862,4 +3057,34 @@ body.fade-in-global.visible {
   font-size: 1.6rem;
   color: var(--acento);
   transition: color 0.3s ease;
+}
+
+/* =============================== */
+/* Corrección de contraste visual */
+/* =============================== */
+
+header,
+header a,
+.menu-toggle {
+  color: var(--gris-texto);
+}
+
+header * {
+  color: var(--gris-texto) !important;
+}
+
+.icono-carrito,
+.menu-toggle {
+  color: var(--gris-texto);
+}
+
+.menu-toggle {
+  background-color: var(--verde-salvajes);
+  border: 2px solid #aaa;
+}
+
+.fondo-verde,
+.llamado-evento,
+.card-ayuda {
+  color: var(--gris-texto);
 }

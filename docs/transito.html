@@ -60,6 +60,7 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header>
       <div class="logo">
@@ -95,22 +96,14 @@
             camino hacia una vida mejor.
           </p>
           <div class="botones-inicio">
-            <a href="#transito" class="boton">📖 Saber más</a>
+            <a href="#transito-significado" class="boton">📖 Saber más</a>
             <a href="contacto.html" class="boton-secundario"
               >✉️ Quiero ayudar</a
             >
           </div>
         </div>
       </section>
-
-      <section id="transito" class="fade-in">
-        <h2>🏠 Sé hogar de tránsito</h2>
-        <p>
-          Los hogares de tránsito son el corazón de cada rescate. Son el lugar
-          seguro donde los michis pueden recuperarse, adaptarse y prepararse
-          para encontrar su familia definitiva.
-        </p>
-
+      <section id="transito-significado" class="fade-in">
         <div class="card-ayuda">
           <h3>💛 ¿Qué significa transitar?</h3>
           <ul>
@@ -130,7 +123,8 @@
             </p>
           </div>
         </div>
-
+      </section>
+      <section id="transito-situacion-actual" class="fade-in">
         <div class="card-ayuda">
           <h3>🚨 Situación actual en Junín</h3>
           <p>
@@ -178,7 +172,160 @@
             >
           </div>
         </div>
+      </section>
+      <section id="transito-como-funciona" class="bloque-transito pastel">
+        <h2>🔄 ¿Cómo funciona el tránsito?</h2>
 
+        <ul class="lista-pasos-transito">
+          <li>
+            <span>📩</span> Nos contactás por WhatsApp o el formulario de
+            contacto.
+          </li>
+          <li>
+            <span>🗣️</span> Charlamos sobre tu espacio, tiempo y experiencias.
+          </li>
+          <li>
+            <span>🤝</span> Te acompañamos en los primeros días con el michi.
+          </li>
+          <li>
+            <span>📢</span> Difundimos juntos para encontrarle familia
+            definitiva.
+          </li>
+          <li>
+            <span>🎉</span> Celebramos su adopción (¡y quizás quieras repetir!).
+          </li>
+        </ul>
+
+        <div class="mensajito-final pastel-verde">
+          ✨ Tranquila/o, te guiamos paso a paso. ¡El amor lo ponés vos, lo
+          demás lo armamos juntxs! 🐾
+        </div>
+      </section>
+
+<section class="ganancias-transito estilo-ganancias">
+  <h2>🎁 ¿Qué gano siendo hogar de tránsito?</h2>
+  <div class="grid-ganancias">
+    <div class="item-ganancia">
+      <span>💖</span>
+      <p>Ayudás a un michi a sanar y confiar nuevamente.</p>
+    </div>
+    <div class="item-ganancia">
+      <span>🐾</span>
+      <p>Vivís una experiencia transformadora y llena de gratitud.</p>
+    </div>
+    <div class="item-ganancia">
+      <span>🧘‍♀️</span>
+      <p>Acompañás a un ser vivo en su camino a una nueva vida.</p>
+    </div>
+    <div class="item-ganancia">
+      <span>📦</span>
+      <p>No estás sola/o: te damos todo lo necesario y apoyo constante.</p>
+    </div>
+  </div>
+
+  <div class="mensajito-final">
+    Cada tránsito cambia dos vidas: la del michi y la tuya. 💞 Gracias por animarte a hacer la diferencia.
+  </div>
+</section>
+
+
+
+      <section id="testimonios-transito" class="fade-in">
+        <h2>🗣️ Historias de quienes ya transitaron</h2>
+        <p class="centrado">
+          Cada historia de tránsito empieza con una decisión y termina con un
+          corazón lleno.
+        </p>
+
+        <div class="carrusel-transito">
+          <button
+            id="prevTransito"
+            class="carrusel-btn-transito"
+            aria-label="Mostrar historia anterior de tránsito"
+          >
+            ←
+          </button>
+          <div class="carrusel-contenido-transito" id="carruselTransito">
+            <div class="carrusel-item-transito activo">
+              <img
+                src="img/michi-lana.webp"
+                alt="Lana, una gata negra rescatada, recuperándose durante su tránsito"
+              />
+              <p>
+                “Nunca había tenido gatos, pero el acompañamiento fue total. Hoy
+                Lana tiene una nueva familia y yo la satisfacción de haber sido
+                parte de eso.”
+              </p>
+              <strong>— Clara, Junín</strong>
+            </div>
+            <div class="carrusel-item-transito">
+              <img
+                src="img/michi-ramon.webp"
+                alt="Ramón, un gato blanco con manchas negras, feliz y sano tras su recuperación en tránsito"
+              />
+              <p>
+                “Brindar tránsito me ayudó emocionalmente tanto como al michi.
+                Compartir casa con él fue una experiencia hermosa.”
+              </p>
+              <strong>— Marcos, Agustina</strong>
+            </div>
+            <div class="carrusel-item-transito">
+              <img
+                src="img/michi-petunia.webp"
+                alt="Petunia, una gata tricolor, relajada y adoptada tras haber pasado por una casa de tránsito"
+              />
+              <p>
+                “Me daba miedo, pero al ver cómo se recuperó del abandono supe
+                que lo volvería a hacer mil veces.”
+              </p>
+              <strong>— Alejandra, Villa Belgrano</strong>
+            </div>
+          </div>
+          <button
+            id="nextTransito"
+            class="carrusel-btn-transito"
+            aria-label="Mostrar historia siguiente de tránsito"
+          >
+            →
+          </button>
+        </div>
+        <div
+          class="indicadores-slider-transito"
+          id="indicadores-slider-transito"
+        ></div>
+        <div class="centrado">
+          <a href="historias.html" class="boton">📸 Ver más historias reales</a>
+        </div>
+      </section>
+      <section class="faq-transito">
+        <h2>❓ Preguntas frecuentes</h2>
+
+        <details>
+          <summary>💰 ¿Tengo que pagar algo?</summary>
+          <p>
+            No. Desde Patitas cubrimos comida, piedras, traslados y atención
+            veterinaria.
+          </p>
+        </details>
+
+        <details>
+          <summary>🐾 ¿Puedo tener otros animales?</summary>
+          <p>
+            ¡Sí! Siempre evaluamos la convivencia antes y damos consejos para
+            una buena adaptación.
+          </p>
+        </details>
+
+        <details>
+          <summary>💕 ¿Y si me encariño?</summary>
+          <p>
+            Es normal. El cariño es parte del proceso. Si querés adoptarlo, lo
+            charlamos. Y si no, celebramos juntos su nueva familia.
+          </p>
+        </details>
+      </section>
+
+      <section id="transito-ayuda" class="fade-in">
         <div class="llamado-evento">
           <h3>📣 ¿Y si vos también podés ayudar?</h3>
           <p>
@@ -195,54 +342,7 @@
           </div>
         </div>
       </section>
-      <section id="testimonios-transito" class="fade-in">
-        <h2>🗣️ Historias de quienes ya transitaron</h2>
-        <p class="centrado">
-          Cada historia de tránsito empieza con una decisión y termina con un
-          corazón lleno.
-        </p>
-
-        <div class="carrusel-transito">
-          <button id="prevTransito" class="carrusel-btn-transito">←</button>
-          <div class="carrusel-contenido-transito" id="carruselTransito">
-            <div class="carrusel-item-transito activo">
-              <img src="img/michi-lana.webp" alt="Lana en tránsito" />
-              <p>
-                “Nunca había tenido gatos, pero el acompañamiento fue total. Hoy
-                Lana tiene una nueva familia y yo la satisfacción de haber sido
-                parte de eso.”
-              </p>
-              <strong>— Clara, Junín</strong>
-            </div>
-            <div class="carrusel-item-transito">
-              <img src="img/michi-ramon.webp" alt="Ramón recuperado" />
-              <p>
-                “Brindar tránsito me ayudó emocionalmente tanto como al michi.
-                Compartir casa con él fue una experiencia hermosa.”
-              </p>
-              <strong>— Marcos, Agustina</strong>
-            </div>
-            <div class="carrusel-item-transito">
-              <img src="img/michi-petunia.webp" alt="Petunia adoptada" />
-              <p>
-                “Me daba miedo, pero al ver cómo se recuperó del abandono supe
-                que lo volvería a hacer mil veces.”
-              </p>
-              <strong>— Alejandra, Villa Belgrano</strong>
-            </div>
-          </div>
-          <button id="nextTransito" class="carrusel-btn-transito">→</button>
-        </div>
-        <div
-          class="indicadores-slider-transito"
-          id="indicadores-slider-transito"
-        ></div>
-        <div class="centrado">
-          <a href="historias.html" class="boton">📸 Ver más historias reales</a>
-        </div>
-      </section>
     </main>
-
     <footer class="footer">
       <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
     </footer>
