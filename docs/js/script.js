@@ -196,9 +196,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Menú hamburguesa
   const menuToggle = document.querySelector(".menu-toggle");
   const navLista = document.querySelector(".nav-lista");
+
   if (menuToggle && navLista) {
     menuToggle.addEventListener("click", () => {
-      navLista.classList.toggle("activa");
+      const estaActivo = navLista.classList.toggle("activa");
+      menuToggle.setAttribute("aria-pressed", estaActivo);
     });
   }
 
@@ -206,8 +208,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".nav-lista a").forEach((enlace) => {
     enlace.addEventListener("click", () => {
       const navLista = document.querySelector(".nav-lista");
+      const menuToggle = document.querySelector(".menu-toggle");
+
       if (navLista.classList.contains("activa")) {
         navLista.classList.remove("activa");
+        menuToggle?.setAttribute("aria-pressed", "false");
       }
     });
   });
@@ -601,93 +606,93 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCarruselEventos();
   })();
 
-// Carrusel "De la calle al sillón" - historias.html
-(() => {
-  const items = document.querySelectorAll(
-    "#carruselHistorias .carrusel-historias-item"
-  );
-  const prevBtn = document.getElementById("prevHistoria");
-  const nextBtn = document.getElementById("nextHistoria");
-  const indicadores = document.getElementById("indicadores-historias");
-  const carrusel = document.getElementById("carruselHistorias");
+  // Carrusel "De la calle al sillón" - historias.html
+  (() => {
+    const items = document.querySelectorAll(
+      "#carruselHistorias .carrusel-historias-item"
+    );
+    const prevBtn = document.getElementById("prevHistoria");
+    const nextBtn = document.getElementById("nextHistoria");
+    const indicadores = document.getElementById("indicadores-historias");
+    const carrusel = document.getElementById("carruselHistorias");
 
-  if (!carrusel || items.length === 0 || !indicadores) return;
+    if (!carrusel || items.length === 0 || !indicadores) return;
 
-  let currentIndex = 0;
-  let autoplayInterval;
-  let autoplayTimeout;
+    let currentIndex = 0;
+    let autoplayInterval;
+    let autoplayTimeout;
 
-  // Crear bolitas
-  items.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.classList.add("indicador-transito");
-    if (i === 0) dot.classList.add("activo");
-    dot.addEventListener("click", () => {
-      currentIndex = i;
+    // Crear bolitas
+    items.forEach((_, i) => {
+      const dot = document.createElement("span");
+      dot.classList.add("indicador-transito");
+      if (i === 0) dot.classList.add("activo");
+      dot.addEventListener("click", () => {
+        currentIndex = i;
+        updateCarrusel();
+        detenerYReiniciarAutoplay();
+      });
+      indicadores.appendChild(dot);
+    });
+
+    const updateCarrusel = () => {
+      const isMobile = window.innerWidth <= 768;
+
+      items.forEach((item, i) => {
+        item.classList.toggle("activo", isMobile || i === currentIndex);
+      });
+
+      indicadores.querySelectorAll(".indicador-transito").forEach((dot, i) => {
+        dot.classList.toggle("activo", i === currentIndex);
+      });
+    };
+
+    const avanzar = () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarrusel();
+    };
+
+    const iniciarAutoplay = () => {
+      autoplayInterval = setInterval(avanzar, 8000);
+    };
+
+    const detenerYReiniciarAutoplay = () => {
+      if (autoplayInterval) clearInterval(autoplayInterval);
+      clearTimeout(autoplayTimeout);
+      autoplayTimeout = setTimeout(() => {
+        iniciarAutoplay();
+      }, 6000);
+    };
+
+    // Flechas
+    prevBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
       updateCarrusel();
       detenerYReiniciarAutoplay();
     });
-    indicadores.appendChild(dot);
-  });
 
-  const updateCarrusel = () => {
-    const isMobile = window.innerWidth <= 768;
-
-    items.forEach((item, i) => {
-      item.classList.toggle("activo", isMobile || i === currentIndex);
+    nextBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarrusel();
+      detenerYReiniciarAutoplay();
     });
 
-    indicadores.querySelectorAll(".indicador-transito").forEach((dot, i) => {
-      dot.classList.toggle("activo", i === currentIndex);
+    // Swipe para celulares
+    let startX = 0;
+    carrusel.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
     });
-  };
 
-  const avanzar = () => {
-    currentIndex = (currentIndex + 1) % items.length;
+    carrusel.addEventListener("touchend", (e) => {
+      const desplazamientoX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(desplazamientoX) > 50) {
+        if (desplazamientoX < 0) nextBtn?.click();
+        else prevBtn?.click();
+      }
+      detenerYReiniciarAutoplay();
+    });
+
+    if (items.length > 1) iniciarAutoplay();
     updateCarrusel();
-  };
-
-  const iniciarAutoplay = () => {
-    autoplayInterval = setInterval(avanzar, 8000);
-  };
-
-  const detenerYReiniciarAutoplay = () => {
-    if (autoplayInterval) clearInterval(autoplayInterval);
-    clearTimeout(autoplayTimeout);
-    autoplayTimeout = setTimeout(() => {
-      iniciarAutoplay();
-    }, 6000);
-  };
-
-  // Flechas
-  prevBtn?.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    updateCarrusel();
-    detenerYReiniciarAutoplay();
-  });
-
-  nextBtn?.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % items.length;
-    updateCarrusel();
-    detenerYReiniciarAutoplay();
-  });
-
-  // Swipe para celulares
-  let startX = 0;
-  carrusel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  carrusel.addEventListener("touchend", (e) => {
-    const desplazamientoX = e.changedTouches[0].clientX - startX;
-    if (Math.abs(desplazamientoX) > 50) {
-      if (desplazamientoX < 0) nextBtn?.click();
-      else prevBtn?.click();
-    }
-    detenerYReiniciarAutoplay();
-  });
-
-  if (items.length > 1) iniciarAutoplay();
-  updateCarrusel();
-})();
+  })();
 });
