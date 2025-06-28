@@ -24,7 +24,7 @@ function mostrarCarrito() {
       <img src="${michi.imagen}" alt="${michi.nombre}, ${michi.edad} meses" />
       <h3>${michi.nombre}</h3>
       <p>Edad: ${michi.edad} mes(es)</p>
-      <button onclick="eliminarDelCarrito(${index})" class="boton-secundario">❌ Quitar</button>
+      <button onclick="eliminarDelCarrito(${index})" class="boton-secundario" aria-label="Quitar a ${michi.nombre} del carrito">❌ Quitar</button>
     `;
     contenedor.appendChild(card);
   });
@@ -66,4 +66,3 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarCarrito();
   }
 });
-

@@ -2448,10 +2448,25 @@ body.fade-in-global.visible {
 }
 
 .carrito-contenido {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin-top: 20px;
+}
+
+#carrito-contenido .michi-card {
+  margin-bottom: 1.5rem;
+}
+
+#carrito-contenido {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.michi-card {
+  width: 250px;
 }
 
 .card-michi:hover {
