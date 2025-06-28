@@ -4,6 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto | Patitas Salvajes</title>
+    <meta
+      name="description"
+      content="Contactanos para adoptar, ayudar o hacer una donación a Patitas Salvajes. Siempre estamos felices de responder."
+    />
+    <meta
+      name="keywords"
+      content="contacto, ayuda, adopción, gatos, Patitas Salvajes, Junín"
+    />
+    <meta name="author" content="Patitas Salvajes" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contacto | Patitas Salvajes" />
+    <meta
+      property="og:description"
+      content="¿Querés adoptar, ayudar o saber más? Escribinos, te esperamos con patitas abiertas 🐾"
+    />
+    <meta
+      property="og:image"
+      content="https://nat-magui.github.io/patitas-sitio/img/logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://nat-magui.github.io/patitas-sitio/contacto.html"
+    />
+    <meta property="og:type" content="website" />
+
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
@@ -103,7 +129,12 @@
                 placeholder="Contanos cómo te gustaría ayudar"
                 required
               ></textarea>
-              <small id="error-mensaje" class="error-texto"></small>
+              <small
+                id="error-mensaje"
+                class="error-texto"
+                role="alert"
+                aria-live="assertive"
+              ></small>
             </div>
           </fieldset>
 
@@ -114,7 +145,6 @@
               class="gracias-envio"
               role="status"
               aria-live="polite"
-              style="display: none"
             >
               🐾 ¡Gracias por tu mensaje! Te responderemos pronto.
             </div>

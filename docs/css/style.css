@@ -1159,7 +1159,7 @@ blockquote {
   background-color: #fff;
   padding: 20px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   border-color: var(--lavanda);
 }
 
@@ -1225,6 +1225,15 @@ textarea:valid {
 /* Animación al invalidar */
 .agitar {
   animation: shake 0.3s;
+}
+
+.gracias-envio {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gracias-envio.visible {
+  opacity: 1;
 }
 
 @media (max-width: 600px) {

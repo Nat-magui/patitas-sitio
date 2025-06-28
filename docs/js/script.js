@@ -164,10 +164,12 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         const mensajeGracias = document.getElementById("gracias-envio");
         if (mensajeGracias) {
-          mensajeGracias.style.display = "block";
-          setTimeout(() => {
-            mensajeGracias.style.display = "none";
-          }, 5000);
+          mensajeGracias.classList.remove("visible"); // Reinicia si ya estaba visible
+          void mensajeGracias.offsetWidth; // Fuerza reflow para reiniciar animación
+          mensajeGracias.classList.add("visible"); // Aparece suavemente otra vez
+
+          setTimeout(() => mensajeGracias.classList.remove("visible"), 5000);
+          formulario.reset(); // 👉 Limpia todos los campos del formulario
         }
       }
     });
