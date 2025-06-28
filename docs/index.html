@@ -142,8 +142,8 @@
       <section id="mini-galeria" class="fade-in fondo-rosa">
         <h2>🐱 Gatitos en adopción</h2>
         <p>
-          🐾 Hoy tenemos <span id="contador-michis">0 </span> michis esperando la
-          oportunidad de tener una familia 💞
+          🐾 Hoy tenemos <span id="contador-michis">0 </span> michis esperando
+          la oportunidad de tener una familia 💞
         </p>
         <div class="galeria-michis">
           <div class="michi-card">
@@ -187,7 +187,11 @@
       <section id="ultimos-rescatados" class="fade-in fondo-blanco">
         <h2>🐾 Últimos rescatados</h2>
         <div class="slider-wrapper-ultimos">
-          <button id="prevRescatados" class="slider-btn-ultimos" aria-label="Ver anterior">
+          <button
+            id="prevRescatados"
+            class="slider-btn-ultimos"
+            aria-label="Ver anterior"
+          >
             ←
           </button>
           <div class="slider-track-ultimos" id="sliderTrackUltimos">
@@ -252,11 +256,18 @@
               <p>Ideal para un hogar tranquilo y sin perritos 🐶🚫</p>
             </div>
           </div>
-          <button id="nextRescatados" class="slider-btn-ultimos" aria-label="Ver siguiente">
+          <button
+            id="nextRescatados"
+            class="slider-btn-ultimos"
+            aria-label="Ver siguiente"
+          >
             →
           </button>
         </div>
-        <div class="indicadores-slider-rescatados" id="indicadores-slider-rescatados"></div>
+        <div
+          class="indicadores-slider-rescatados"
+          id="indicadores-slider-rescatados"
+        ></div>
       </section>
 
       <!-- CTA final -->
@@ -274,21 +285,22 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="footer">
       <p>© 2025 Patitas Felices y Salvajes | Hecho con amor por Magalí 🐱</p>
-      <div class="modo-toggle">
-        <input
-          type="checkbox"
-          id="modo-switch"
-          aria-label="Alternar modo oscuro"
-        />
-        <label for="modo-switch">
-          <span class="icono-sol">🌞</span>
-          <span class="icono-luna">🌙</span>
-          <span class="slider"></span>
-        </label>
-      </div>
     </footer>
+
+    <div class="modo-toggle">
+      <input
+        type="checkbox"
+        id="modo-switch"
+        aria-label="Alternar modo oscuro"
+      />
+      <label for="modo-switch">
+        <span class="icono-sol">🌞</span>
+        <span class="icono-luna">🌙</span>
+        <span class="slider"></span>
+      </label>
+    </div>
 
     <script src="js/script.js" defer></script>
   </body>
